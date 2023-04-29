@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Buildings/Stockpile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Drones/Drone.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Buildings/MarketBurger.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Buildings/Ranch.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Buildings/JustBurgers.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Buildings/DroneGarage.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Buildings/Land.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 100, 100 )
@@ -101,6 +103,7 @@ cargo_count = 1
 
 [node name="MapScene" type="Spatial"]
 script = ExtResource( 4 )
+np_map_ui = NodePath("MapUI")
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 22, 30 )
@@ -155,6 +158,7 @@ route = [ SubResource( 17 ), SubResource( 18 ) ]
 [node name="Buildings" type="Spatial" parent="."]
 
 [node name="StockpileNodePathSource" type="Spatial" parent="Buildings"]
+visible = false
 
 [node name="ExportStockpile" parent="Buildings" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.26106, 0, -6.12889 )
@@ -195,6 +199,12 @@ transform = Transform( 0.616926, 0, 0.787021, 0, 1, 0, -0.787021, 0, 0.616926, -
 
 [node name="MarketBurger" parent="Buildings" instance=ExtResource( 10 )]
 transform = Transform( -0.0736734, 0, -0.997282, 0, 1, 0, 0.997282, 0, -0.0736734, 0.162072, 0, 2.5459 )
+
+[node name="DroneGarage" parent="Buildings" instance=ExtResource( 13 )]
+transform = Transform( 0.875953, 0, 0.482396, 0, 1, 0, -0.482396, 0, 0.875953, -6.18188, -9.53674e-07, -2.39907 )
+
+[node name="Land" parent="Buildings" instance=ExtResource( 14 )]
+transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, 8.32923, 0, 4.77028 )
 
 [node name="MapUI" parent="." instance=ExtResource( 9 )]
 

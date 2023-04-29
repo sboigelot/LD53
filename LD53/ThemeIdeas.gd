@@ -50,7 +50,9 @@
 #	Drone delivery soko loco style
 #	ideas for names
 #	McNom, Nom Nom Drone
-#
+#	Sky Suplly
+#	Glide & Dine
+#	Hover Bites
 #	3D map
 #
 #	City
