@@ -1,0 +1,187 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://fonts/ld53/ld52_def_normal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=5]
+[ext_resource path="res://fonts/ld53/ld52_def_xsmall.tres" type="DynamicFont" id=7]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+np_ui_audio_master = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/MasterVolumeSlider")
+np_ui_audio_music = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/MusicVolumeSlider")
+np_ui_audio_soundfx = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/SoundFxVolumeSlider")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="MarginContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+custom_constants/margin_right = 100
+custom_constants/margin_top = 100
+custom_constants/margin_left = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 1820.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+margin_right = 1720.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 5 )
+text = "TITLE"
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 1720.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 5 )
+text = "Subtitle"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 1720.0
+margin_bottom = 980.0
+size_flags_vertical = 3
+custom_constants/margin_top = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+margin_top = 35.0
+margin_right = 1720.0
+margin_bottom = 816.0
+custom_constants/separation = 10
+
+[node name="StartGameButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 275.0
+margin_bottom = 45.0
+rect_pivot_offset = Vector2( 41.5, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Start new game"
+
+[node name="FullscreenButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 55.0
+margin_right = 406.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 41.5, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Toggle Fullscreen (F11)"
+
+[node name="MusicControl" type="GridContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 1720.0
+margin_bottom = 184.0
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl"]
+margin_right = 94.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "Master"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl"]
+margin_left = 98.0
+margin_top = 3.0
+margin_right = 398.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl"]
+margin_top = 26.0
+margin_right = 94.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 7 )
+text = "Music"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl"]
+margin_left = 98.0
+margin_top = 29.0
+margin_right = 398.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 4
+
+[node name="Label3" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl"]
+margin_top = 52.0
+margin_right = 94.0
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 7 )
+text = "Sound FX"
+
+[node name="SoundFxVolumeSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl"]
+margin_left = 98.0
+margin_top = 55.0
+margin_right = 398.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 194.0
+margin_right = 1720.0
+margin_bottom = 482.0
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 492.0
+margin_right = 1720.0
+margin_bottom = 781.0
+size_flags_vertical = 3
+
+[node name="Sprite" type="Sprite" parent="MarginContainer"]
+position = Vector2( 1533, 703 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
+margin_left = 585.0
+margin_top = 1045.0
+margin_right = 1335.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 750, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 8
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer2"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 744.0
+margin_bottom = 29.0
+custom_fonts/normal_font = ExtResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]Made for Ludum Dare 53 \"Delivery\" by [color=#00ffff]Bu[/color] & [color=#00ffff]Togis[/color]"
+text = "Made for Ludum Dare 53 \"Delivery\" by Bu & Togis"
+fit_content_height = true
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/SoundFxVolumeSlider" to="." method="_on_SoundFxVolumeSlider_value_changed"]

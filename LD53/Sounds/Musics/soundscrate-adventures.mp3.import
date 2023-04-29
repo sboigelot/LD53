@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/soundscrate-adventures.mp3-18e682618d62ab3e04c3c7311b85bb03.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/soundscrate-adventures.mp3"
+dest_files=[ "res://.import/soundscrate-adventures.mp3-18e682618d62ab3e04c3c7311b85bb03.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

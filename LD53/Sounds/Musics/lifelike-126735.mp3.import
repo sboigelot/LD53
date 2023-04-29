@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lifelike-126735.mp3-74e13791787c8894231307d2161ee5e5.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/lifelike-126735.mp3"
+dest_files=[ "res://.import/lifelike-126735.mp3-74e13791787c8894231307d2161ee5e5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

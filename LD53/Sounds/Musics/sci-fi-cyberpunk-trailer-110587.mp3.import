@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sci-fi-cyberpunk-trailer-110587.mp3-f1f88c89c75e79032ee1fedbfb5e5ffa.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/sci-fi-cyberpunk-trailer-110587.mp3"
+dest_files=[ "res://.import/sci-fi-cyberpunk-trailer-110587.mp3-f1f88c89c75e79032ee1fedbfb5e5ffa.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

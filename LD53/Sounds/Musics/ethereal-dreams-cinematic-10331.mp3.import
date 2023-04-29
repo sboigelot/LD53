@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ethereal-dreams-cinematic-10331.mp3-1102b587988bba4051da5c2221c98e41.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/ethereal-dreams-cinematic-10331.mp3"
+dest_files=[ "res://.import/ethereal-dreams-cinematic-10331.mp3-1102b587988bba4051da5c2221c98e41.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

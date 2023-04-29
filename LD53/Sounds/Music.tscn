@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sounds/Musics/abstract-technology-112288.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Musics/lifelike-126735.mp3" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Musics/dark-sci-fi-cyberpunk-112399.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Musics/sci-fi-cyberpunk-trailer-110587.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Musics/sci-fi-survival-dreamscape-6319.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Musics/soundscrate-adventures.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/Musics/ethereal-dreams-cinematic-10331.mp3" type="AudioStream" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+signal MusicStarts
+
+onready var audio:AudioStreamPlayer = $AudioStreamPlayer
+
+export var auto_play:bool = true
+export var play_on_start:bool = false
+export var playing_index = -1
+export var random:bool = true
+
+export var current_song_title = \"\"
+
+var rng = RandomNumberGenerator.new()
+
+export(Array, Resource) var playlist
+
+export var previous_random_picks = []
+
+func _ready():
+	rng.randomize()
+	audio.connect(\"finished\", self, \"on_audio_finished\")
+	if play_on_start:
+		on_audio_finished()
+		
+func play(music:AudioStream)->void:
+	emit_signal(\"MusicStarts\", current_song_title)
+	audio.stream = music
+	audio.play()
+	
+func stop()->void:
+	if audio.playing:
+		audio.stop()
+	else:
+		on_audio_finished()
+	
+func on_audio_finished():
+	if not auto_play:
+		return
+	play_next_music()
+	
+func play_next_music():
+	if playlist.size() == 0:
+		return
+		
+	if not random:
+		playing_index = (playing_index + 1) % playlist.size()
+	else:
+		
+		var possible_index = []
+		for i in range(0, playlist.size()):
+			if not previous_random_picks.has(i):
+				possible_index.append(i)
+				
+		if possible_index.size() == 0:
+			previous_random_picks.clear()
+			possible_index = range(0, playlist.size())
+			
+		playing_index = possible_index[rng.randi() % possible_index.size()]
+		previous_random_picks.append(playing_index)
+	
+	var file_path = playlist[playing_index].resource_path
+	var audio_stream = load(file_path) as AudioStream
+	current_song_title = file_path.replace(\"res://Sounds/Musics/\",\"\")
+
+	play(audio_stream)
+"
+
+[node name="Music" type="Node"]
+script = SubResource( 1 )
+play_on_start = true
+playlist = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = "Music"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/v2.ogg-caf3b0c3a77e539f335a676c59a70e8a.oggstr"
+
+[deps]
+
+source_file="res://addons/voice_generator/v2.ogg"
+dest_files=[ "res://.import/v2.ogg-caf3b0c3a77e539f335a676c59a70e8a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

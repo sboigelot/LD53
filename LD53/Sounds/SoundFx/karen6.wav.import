@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/karen6.wav-991c4d393fc497d030444653e5c649a1.sample"
+
+[deps]
+
+source_file="res://Sounds/SoundFx/karen6.wav"
+dest_files=[ "res://.import/karen6.wav-991c4d393fc497d030444653e5c649a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

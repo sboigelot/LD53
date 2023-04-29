@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/abstract-technology-112288.mp3-93af9586223de280dfe05ae1e770c16b.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/abstract-technology-112288.mp3"
+dest_files=[ "res://.import/abstract-technology-112288.mp3-93af9586223de280dfe05ae1e770c16b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

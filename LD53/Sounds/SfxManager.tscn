@@ -1,0 +1,16 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sounds/SfxManager.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/SoundFx/bomb.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/SoundFx/bow.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/SoundFx/laser.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/SoundFx/back.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/SoundFx/punch.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/SoundFx/hover.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Sounds/SoundFx/buttonpress.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Sounds/SoundFx/confirm.ogg" type="AudioStream" id=20]
+
+[node name="SfxManager" type="Node"]
+script = ExtResource( 1 )
+start_player_count = 5
+sample_collection = [ ExtResource( 5 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 15 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 4 ) ]
