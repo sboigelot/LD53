@@ -154,6 +154,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-next/resources/discrete_gradient_texture.gd"
 }, {
+"base": "RigidBody",
+"class": "Drone",
+"language": "GDScript",
+"path": "res://Actors/Drones/Drone.gd"
+}, {
 "base": "Reference",
 "class": "EditorTools",
 "language": "GDScript",
@@ -172,7 +177,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "GameData",
 "language": "GDScript",
-"path": "res://data/GameData.gd"
+"path": "res://Data/GameData.gd"
 }, {
 "base": "CollisionShape2D",
 "class": "Geometry2D",
@@ -198,6 +203,11 @@ _global_script_classes=[ {
 "class": "InspectorControls",
 "language": "GDScript",
 "path": "res://addons/godot-next/global/inspector_controls.gd"
+}, {
+"base": "Spatial",
+"class": "MapScene",
+"language": "GDScript",
+"path": "res://Scenes/MapScene.gd"
 }, {
 "base": "Reference",
 "class": "MessageDispatcher",
@@ -264,6 +274,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/imjp94.yafsm/src/StateMachinePlayer.gd"
 }, {
+"base": "Spatial",
+"class": "Stockpile",
+"language": "GDScript",
+"path": "res://Buildings/Stockpile.gd"
+}, {
 "base": "Line2D",
 "class": "Trail2D",
 "language": "GDScript",
@@ -273,16 +288,6 @@ _global_script_classes=[ {
 "class": "Trail3D",
 "language": "GDScript",
 "path": "res://addons/godot-next/3d/trail_3d.gd"
-}, {
-"base": "Reference",
-"class": "TweenSequence",
-"language": "GDScript",
-"path": "res://addons/godot-next/references/tween_sequence/tween_sequence.gd"
-}, {
-"base": "Reference",
-"class": "Tweener",
-"language": "GDScript",
-"path": "res://addons/godot-next/references/tween_sequence/tweener.gd"
 }, {
 "base": "VBoxContainer",
 "class": "VBoxItemList",
@@ -303,6 +308,11 @@ _global_script_classes=[ {
 "class": "VectorDisplay3D",
 "language": "GDScript",
 "path": "res://addons/godot-next/3d/vector_display_3d.gd"
+}, {
+"base": "Resource",
+"class": "WaypointData",
+"language": "GDScript",
+"path": "res://Data/WaypointData.gd"
 } ]
 _global_script_class_icons={
 "Arc2D": "",
@@ -334,6 +344,7 @@ _global_script_class_icons={
 "DialogicResources": "",
 "DialogicUtil": "",
 "DiscreteGradientTexture": "",
+"Drone": "",
 "EditorTools": "",
 "FileSearch": "",
 "FileSystemLink": "",
@@ -343,6 +354,7 @@ _global_script_class_icons={
 "Icons": "",
 "Inflector": "",
 "InspectorControls": "",
+"MapScene": "",
 "MessageDispatcher": "",
 "MessageDispatcherWrapper": "",
 "PhysicsLayers": "",
@@ -356,20 +368,20 @@ _global_script_class_icons={
 "ResourceSet": "",
 "Singletons": "",
 "StateMachinePlayer": "",
+"Stockpile": "",
 "Trail2D": "res://addons/godot-next/icons/icon_trail_2d.svg",
 "Trail3D": "res://addons/godot-next/icons/icon_trail_3d.svg",
-"TweenSequence": "",
-"Tweener": "",
 "VBoxItemList": "res://addons/godot-next/icons/icon_v_box_item_list.svg",
 "Variant": "",
 "VectorDisplay2D": "",
-"VectorDisplay3D": ""
+"VectorDisplay3D": "",
+"WaypointData": ""
 }
 
 [application]
 
 config/name="LD53"
-run/main_scene="res://Scenes/MainMenu.tscn"
+run/main_scene="res://Scenes/MapScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -388,7 +400,7 @@ window/size/height=1080
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/godot-next/plugin.cfg", "res://addons/google_fonts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/primitives2d/plugin.cfg", "res://addons/retile/plugin.cfg", "res://addons/water2d/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/google_fonts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/primitives2d/plugin.cfg", "res://addons/retile/plugin.cfg", "res://addons/water2d/plugin.cfg" )
 
 [gui]
 

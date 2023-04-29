@@ -4,5 +4,4 @@ class_name GameData
 
 export var player_name:String = "Player"
 
-#func get_world():
-#	return $WorldData
+export var deliver_phase:bool = false

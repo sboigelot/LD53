@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.stex"
-path.etc2="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.etc2.stex"
+path.s3tc="res://.import/crate.png-e3f8d255404cdd2ac5ef9e5c5a98317e.s3tc.stex"
+path.etc2="res://.import/crate.png-e3f8d255404cdd2ac5ef9e5c5a98317e.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.stex", "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.etc2.stex" ]
+source_file="res://Assets/Icons/crate.png"
+dest_files=[ "res://.import/crate.png-e3f8d255404cdd2ac5ef9e5c5a98317e.s3tc.stex", "res://.import/crate.png-e3f8d255404cdd2ac5ef9e5c5a98317e.etc2.stex" ]
 
 [params]
 

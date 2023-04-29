@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Actors/Drones/Drone.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Icons/confused.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/crate.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Icons/wait.png" type="Texture" id=5]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.3
+
+[sub_resource type="SphereMesh" id=2]
+radius = 0.3
+height = 0.3
+radial_segments = 8
+rings = 8
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.1, 0.1, 0.8 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 1, 1, 1 )
+
+[node name="Drone" type="RigidBody"]
+mode = 3
+gravity_scale = 0.0
+script = ExtResource( 1 )
+np_warning_no_cargo_sprite_3D = NodePath("WarningNoCargoSprite3D")
+np_warning_no_cargo_space_sprite_3D = NodePath("WarningNoSpaceSprite3D")
+np_warning_long_wait_time_sprite_3D = NodePath("WarningLongWaitSprite3D")
+np_warning_confused = NodePath("WarninConfusedSprite3D")
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="WarningNoCargoSprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 3 )
+
+[node name="WarningNoSpaceSprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 4 )
+
+[node name="WarningLongWaitSprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 5 )
+
+[node name="WarninConfusedSprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 2 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.330616, 0 )
+mesh = SubResource( 4 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="."]
+transform = Transform( 0.197912, 0, -0.0288229, 0, 0.2, 0, 0.0288229, 0, 0.197912, 0, 0.471202, 0 )
+visible = false
+mesh = SubResource( 4 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="."]
+transform = Transform( 0.197912, 0, -0.0288229, 0, 0.2, 0, 0.0288229, 0, 0.197912, 0, 0.693412, 0 )
+visible = false
+mesh = SubResource( 4 )

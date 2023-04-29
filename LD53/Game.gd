@@ -1,19 +1,21 @@
 extends Node
 
 export(PackedScene) var game_data_scene
-var data: GameData
+var Data: GameData
+
+var Map: MapScene
 
 func _ready():
 	new_game() # for debug singl components
 	randomize()
-	
-func new_game():
-	pass
-	if data != null:
-		data.queue_free()
 
-	data = game_data_scene.instance()
-	add_child(data)
+func new_game():
+#	pass
+	if Data != null:
+		Data.queue_free()
+
+	Data = game_data_scene.instance()
+	add_child(Data)
 
 func transition_to_scene(scene_path):
 	var colors = [
@@ -38,6 +40,11 @@ func transition_to_scene(scene_path):
 	ScreenTransition.transition_to_scene(scene_path)
 
 func _input(_event):
+	
+	if Input.is_action_just_released("ui_accept"):
+		if Data != null:
+			Data.deliver_phase = not Data.deliver_phase 
+			
 	if Input.is_action_just_released("toggle_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
 

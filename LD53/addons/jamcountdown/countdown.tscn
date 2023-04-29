@@ -41,10 +41,8 @@ size_flags_horizontal = 5
 size_flags_vertical = 5
 theme = SubResource( 2 )
 script = ExtResource( 1 )
-year = 2023
-month = 1
-day = 9
-hour = 21
+month = 5
+hour = 3
 minute = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -61,7 +59,8 @@ __meta__ = {
 }
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer"]
-margin_right = 68.0
+margin_left = 5.0
+margin_right = 73.0
 margin_bottom = 22.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
@@ -73,15 +72,15 @@ __meta__ = {
 }
 
 [node name="CountdownLabel" type="Label" parent="HBoxContainer"]
-margin_left = 72.0
-margin_right = 187.0
+margin_left = 77.0
+margin_right = 183.0
 margin_bottom = 22.0
 grow_horizontal = 0
 size_flags_horizontal = 5
 size_flags_vertical = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 4 )
-text = "1d 11h 59m 43s"
+text = "1d 21h 2m 27s"
 __meta__ = {
 "_edit_use_anchors_": false
 }

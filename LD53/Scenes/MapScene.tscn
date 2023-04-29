@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Buildings/Stockpile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Actors/Drones/Drone.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Data/WaypointData.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MapScene.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../ExportStockpile")
+cargo_count = 1
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../ImportStockpile")
+cargo_count = 1
+
+[node name="MapScene" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92922, 0, 21.3027 )
+
+[node name="StockpileNodePathSource" type="Spatial" parent="."]
+
+[node name="ExportStockpile" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.26106, 0, -6.12889 )
+cargo_max = 4
+cargo_count = 2
+
+[node name="ImportStockpile" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98678, 0, 0 )
+import = true
+
+[node name="Drone" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
+route = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="Drone2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
+route = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="Drone3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
+route = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="Drone4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
+route = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="Drone5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
+route = [ SubResource( 1 ), SubResource( 2 ) ]
