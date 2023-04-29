@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Icons/salad.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/burger.png" type="Texture" id=2]
 [ext_resource path="res://Buildings/Factory.gd" type="Script" id=3]
 [ext_resource path="res://Buildings/Stockpile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=5]
 
 [sub_resource type="CylinderMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.341176, 0.0352941, 0.0352941, 1 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Cycle"
@@ -118,7 +121,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0.1, 0.1, 0.1 ) ]
 }
 
-[node name="MarketSalad" type="Spatial"]
+[node name="MarketBurger" type="Spatial"]
 script = ExtResource( 3 )
 np_animation_player = NodePath("AnimationPlayer")
 np_money_animation_player = NodePath("MoneyAnimationPlayer")
@@ -136,6 +139,7 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 [node name="MeshInstance" type="MeshInstance" parent="Visual"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.969537, 0 )
 mesh = SubResource( 5 )
+material/0 = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Cycle = SubResource( 3 )
@@ -168,6 +172,6 @@ texture = ExtResource( 5 )
 [node name="Input" parent="Stockpiles" instance=ExtResource( 4 )]
 transform = Transform( 0.999853, 0, 0.0171213, 0, 1, 0, -0.0171213, 0, 0.999853, 0.110262, 0, 1.06473 )
 import = true
-cargo_type = "salad"
+cargo_type = "burger"
 
 [connection signal="animation_finished" from="MoneyAnimationPlayer" to="." method="_on_MoneyAnimationPlayer_animation_finished"]

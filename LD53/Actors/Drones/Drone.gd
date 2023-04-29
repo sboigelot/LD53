@@ -68,6 +68,9 @@ func _physics_process(delta):
 	if not Game.Data.deliver_phase:
 		return
 		
+	if name == "Drone6":
+		pass
+		
 	if not visible:
 		return
 		
@@ -86,12 +89,12 @@ func _physics_process(delta):
 		waypoint_reached = move_toward_waypoint(delta)
 		return
 		
+	if not drone_turn_in_lane(delta):
+		return
+		
 	# 2 try reserve waypoint space
 	if not waypoint_reserved:
 		waypoint_reserved = reserve_waypoint(delta)
-		return
-		
-	if not drone_turn_in_lane(delta):
 		return
 	
 	# 3 free waypoint parking spot
@@ -203,7 +206,7 @@ func try_reserve_delivery(delta) -> bool:
 	return true
 
 func try_reserve_pickup(delta) -> bool:
-	if cargo.size() >= cargo_max:
+	if cargo.size() + waypoint.cargo_count > cargo_max:
 		sp_warning_no_cargo_space_sprite_3D.visible = true
 		return false
 		
@@ -222,6 +225,10 @@ func unregister_waypoint_parking(delta) -> bool:
 	return true
 
 func drone_turn_in_lane(delta) -> bool:
+	
+	if waypoint_parking_spot_id != 0:
+		return false
+	
 	if waypoint.stockpile.drone_in_lane == self:
 		return true
 		
@@ -288,7 +295,6 @@ func on_cargo_change():
 		if cargo_icon.visible:
 			cargo_icon.texture = load("res://Assets/Icons/%s.png" % cargo[i])
 	
-
 
 func _on_Drone_input_event(camera, event, position, normal, shape_idx):
 	if Game.Data.deliver_phase:

@@ -19,9 +19,12 @@ var drone_in_lane
 
 func set_crate_count(value:int):
 	cargo_count = min(cargo_max, value)
-	get_node("Crates/crate1").visible = cargo_count > 0
-	get_node("Crates/crate2").visible = cargo_count > 1
-	get_node("Crates/crate3").visible = cargo_count > 2
+	get_node("Crates/crate1").visible = cargo_type != "water" and cargo_count > 0
+	get_node("Crates/crate2").visible = cargo_type != "water" and cargo_count > 1
+	get_node("Crates/crate3").visible = cargo_type != "water" and cargo_count > 2
+	get_node("Buckets/bucket1").visible = cargo_type == "water" and cargo_count > 0
+	get_node("Buckets/bucket2").visible = cargo_type == "water" and cargo_count > 1
+	get_node("Buckets/bucket3").visible = cargo_type == "water" and cargo_count > 2
 	
 func _on_StaticBody_mouse_entered():
 	if Game.Data.deliver_phase:

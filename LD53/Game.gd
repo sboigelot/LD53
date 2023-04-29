@@ -10,7 +10,6 @@ func _ready():
 	randomize()
 
 func new_game():
-#	pass
 	if Data != null:
 		Data.queue_free()
 

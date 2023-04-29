@@ -56,8 +56,8 @@
 #	City
 #		Restaurent
 #
-#		Water tower --> Farm --> Restaurent (Burger)
-#		Water tower --> Farm --> Ranch --> Restaurent (Salad)
+#		Water tower --> Farm --> SalarBar
+#		Water tower --> Farm --> Ranch --> JustBurgers
 #		Restaurent --> Market
 #
 #		Water tower --> Water
