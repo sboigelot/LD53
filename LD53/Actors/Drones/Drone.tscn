@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Actors/Drones/Drone.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Icons/confused.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/wait.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/meat.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Models/Drone/drone.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.3
@@ -92,26 +93,32 @@ np_cargo_icon_3 = NodePath("Cargos/CargoSprite3D3")
 np_animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109384, 0 )
 shape = SubResource( 1 )
 
 [node name="Visual" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Visual"]
+visible = false
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Visual"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="Visual"]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
+
+[node name="drone" parent="Visual" instance=ExtResource( 7 )]
 
 [node name="Warnings" type="Spatial" parent="."]
 

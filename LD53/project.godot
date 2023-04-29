@@ -294,6 +294,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-next/3d/trail_3d.gd"
 }, {
+"base": "MarginContainer",
+"class": "UpgradeView",
+"language": "GDScript",
+"path": "res://Scenes/UpgradeView.gd"
+}, {
 "base": "VBoxContainer",
 "class": "VBoxItemList",
 "language": "GDScript",
@@ -377,6 +382,7 @@ _global_script_class_icons={
 "Stockpile": "",
 "Trail2D": "res://addons/godot-next/icons/icon_trail_2d.svg",
 "Trail3D": "res://addons/godot-next/icons/icon_trail_3d.svg",
+"UpgradeView": "",
 "VBoxItemList": "res://addons/godot-next/icons/icon_v_box_item_list.svg",
 "Variant": "",
 "VectorDisplay2D": "",

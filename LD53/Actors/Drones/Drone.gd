@@ -56,6 +56,10 @@ var wait_for_waypoint: float
 const max_wait_for_waypoint: float = 5.0
 const need_take_off_before_move: bool = false
 
+var upgrade_speed: int = 1
+var upgrade_cargo: int = 1
+var upgrade_memory: int = 1
+
 func _ready():
 	sp_warning_no_cargo_sprite_3D.visible = false
 	sp_warning_no_cargo_space_sprite_3D.visible = false
@@ -309,6 +313,8 @@ func _on_Drone_input_event(camera, event, position, normal, shape_idx):
 func on_mouse_left_button_click():
 	print("on_mouse_left_button_click")
 	emit_signal("Pressed", self)
+	
+	Game.Map.map_ui.show_drone_popup(self)
 
 func _on_Drone_mouse_entered():
 	if Game.Data.deliver_phase:
