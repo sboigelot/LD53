@@ -57,7 +57,7 @@
 #		Restaurent
 #
 #		Water tower --> Farm --> Restaurent (Burger)
-#		Water tower --> Farm --> Animal Farms --> Restaurent (Salad)
+#		Water tower --> Farm --> Ranch --> Restaurent (Salad)
 #		Restaurent --> Market
 #
 #		Water tower --> Water

@@ -1,46 +1,36 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Buildings/Stockpile.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Models/Crate/crate.glb" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Models/Pallet/pallet.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=2]
 
-[sub_resource type="CubeMesh" id=1]
-
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 1, 1, 1 )
-
 [node name="Stockpile" type="Spatial"]
 script = ExtResource( 1 )
+cargo_type = "Vegetable"
 
 [node name="PaletteStaticBody" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="PaletteStaticBody"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="PaletteStaticBody"]
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
+[node name="pallet" parent="PaletteStaticBody" instance=ExtResource( 3 )]
 
 [node name="Crates" type="Spatial" parent="."]
 
-[node name="Crate1" type="MeshInstance" parent="Crates"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+[node name="crate1" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.972917, 0, -0.231154, 0, 1, 0, 0.231154, 0, 0.972917, -0.173, 0.17, -0.085 )
 visible = false
-mesh = SubResource( 3 )
-skeleton = NodePath("")
 
-[node name="Crate2" type="MeshInstance" parent="Crates"]
-transform = Transform( 0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, 0, 1.5, 0 )
+[node name="crate2" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.966205, 0, -0.257774, 0, 1, 0, 0.257774, 0, 0.966205, 0.198502, 0.17, 0.112058 )
 visible = false
-mesh = SubResource( 3 )
-skeleton = NodePath("")
 
-[node name="Crate3" type="MeshInstance" parent="Crates"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+[node name="crate3" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.920594, 0, 0.390522, 0, 1, 0, -0.390522, 0, 0.920594, 0.00542337, 0.530991, 0.0576297 )
 visible = false
-mesh = SubResource( 3 )
-skeleton = NodePath("")
 
 [connection signal="input_event" from="PaletteStaticBody" to="." method="_on_StaticBody_input_event"]
 [connection signal="mouse_entered" from="PaletteStaticBody" to="." method="_on_StaticBody_mouse_entered"]

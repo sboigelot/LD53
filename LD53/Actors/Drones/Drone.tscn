@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Actors/Drones/Drone.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Icons/confused.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Icons/crate.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/wait.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons/meat.png" type="Texture" id=6]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.3
@@ -18,66 +19,144 @@ rings = 8
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 0.1, 0.1, 0.8 )
 
-[sub_resource type="CubeMesh" id=4]
-size = Vector3( 1, 1, 1 )
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Wobble"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 3, 0, 0 ), Vector3( 0, 0, -3 ), Vector3( 0, 1, -1 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.01, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
 
 [node name="Drone" type="RigidBody"]
 mode = 3
 gravity_scale = 0.0
 script = ExtResource( 1 )
-np_warning_no_cargo_sprite_3D = NodePath("WarningNoCargoSprite3D")
-np_warning_no_cargo_space_sprite_3D = NodePath("WarningNoSpaceSprite3D")
-np_warning_long_wait_time_sprite_3D = NodePath("WarningLongWaitSprite3D")
-np_warning_confused = NodePath("WarninConfusedSprite3D")
+np_warning_no_cargo_sprite_3D = NodePath("Warnings/WarningNoCargoSprite3D")
+np_warning_no_cargo_space_sprite_3D = NodePath("Warnings/WarningNoSpaceSprite3D")
+np_warning_long_wait_time_sprite_3D = NodePath("Warnings/WarningLongWaitSprite3D")
+np_warning_confused = NodePath("Warnings/WarninConfusedSprite3D")
+np_cargo_icon_1 = NodePath("Cargos/CargoSprite3D1")
+np_cargo_icon_2 = NodePath("Cargos/CargoSprite3D2")
+np_cargo_icon_3 = NodePath("Cargos/CargoSprite3D3")
+np_animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+[node name="Warnings" type="Spatial" parent="."]
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="MeshInstance3" type="MeshInstance" parent="."]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="WarningNoCargoSprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+[node name="WarningNoCargoSprite3D" type="Sprite3D" parent="Warnings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 3 )
 
-[node name="WarningNoSpaceSprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+[node name="WarningNoSpaceSprite3D" type="Sprite3D" parent="Warnings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 4 )
 
-[node name="WarningLongWaitSprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+[node name="WarningLongWaitSprite3D" type="Sprite3D" parent="Warnings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 5 )
 
-[node name="WarninConfusedSprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551218, 0 )
+[node name="WarninConfusedSprite3D" type="Sprite3D" parent="Warnings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 2 )
 
-[node name="MeshInstance4" type="MeshInstance" parent="."]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.330616, 0 )
-mesh = SubResource( 4 )
+[node name="Cargos" type="Spatial" parent="."]
 
-[node name="MeshInstance5" type="MeshInstance" parent="."]
-transform = Transform( 0.197912, 0, -0.0288229, 0, 0.2, 0, 0.0288229, 0, 0.197912, 0, 0.471202, 0 )
+[node name="CargoSprite3D1" type="Sprite3D" parent="Cargos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 visible = false
-mesh = SubResource( 4 )
+billboard = 1
+texture = ExtResource( 6 )
 
-[node name="MeshInstance6" type="MeshInstance" parent="."]
-transform = Transform( 0.197912, 0, -0.0288229, 0, 0.2, 0, 0.0288229, 0, 0.197912, 0, 0.693412, 0 )
+[node name="CargoSprite3D2" type="Sprite3D" parent="Cargos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 visible = false
-mesh = SubResource( 4 )
+billboard = 1
+texture = ExtResource( 6 )
+
+[node name="CargoSprite3D3" type="Sprite3D" parent="Cargos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 6 )
+
+[node name="Visual" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Visual"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance2" type="MeshInstance" parent="Visual"]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3" type="MeshInstance" parent="Visual"]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/Wobble = SubResource( 5 )
+
+[connection signal="input_event" from="." to="." method="_on_Drone_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Drone_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Drone_mouse_exited"]

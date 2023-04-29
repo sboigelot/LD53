@@ -400,7 +400,11 @@ window/size/height=1080
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/google_fonts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/primitives2d/plugin.cfg", "res://addons/retile/plugin.cfg", "res://addons/water2d/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/blend/plugin.cfg", "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/google_fonts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/primitives2d/plugin.cfg", "res://addons/retile/plugin.cfg", "res://addons/water2d/plugin.cfg" )
+
+[filesystem]
+
+import/blend/blender_path="C:\\Program Files\\Blender Foundation\\Blender 3.1\\blender.exe"
 
 [gui]
 

@@ -1,9 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Buildings/Stockpile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Drones/Drone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Data/WaypointData.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/MapScene.gd" type="Script" id=4]
+[ext_resource path="res://Buildings/WaterTower.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Buildings/Farm.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Buildings/MarketSalad.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Buildings/RestoSalad.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/MapUI.tscn" type="PackedScene" id=9]
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 100, 100 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.329412, 0.560784, 0.0745098, 1 )
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -15,39 +26,110 @@ script = ExtResource( 3 )
 np_stockpile = NodePath("../ImportStockpile")
 cargo_count = 1
 
+[sub_resource type="Resource" id=5]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../WaterTower/Stockpiles/Stockpile")
+cargo_count = 2
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../Farm/Stockpiles/Input")
+cargo_count = 2
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../Farm/Stockpiles/Output")
+cargo_count = 1
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../ImportStockpile")
+cargo_count = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../../Buildings/Farm/Stockpiles/Output")
+cargo_count = 1
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../../Buildings/RestoSalad/Stockpiles/Input")
+cargo_count = 1
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../../Buildings/RestoSalad/Stockpiles/Output")
+cargo_count = 1
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 3 )
+np_stockpile = NodePath("../../Buildings/MarketSalad/Stockpiles/Input")
+cargo_count = 1
+
 [node name="MapScene" type="Spatial"]
 script = ExtResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92922, 0, 21.3027 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 30, 31.5535 )
+projection = 1
+current = true
+size = 20.0
 
-[node name="StockpileNodePathSource" type="Spatial" parent="."]
+[node name="Plane" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
 
-[node name="ExportStockpile" parent="." instance=ExtResource( 1 )]
+[node name="Drones" type="Spatial" parent="."]
+
+[node name="Drone1" parent="Drones" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
+route = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="Drone2" parent="Drones" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28644, 0, 4.71466 )
+route = [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+
+[node name="Drone3" parent="Drones" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28644, 0, 4.71466 )
+route = [ SubResource( 5 ), SubResource( 6 ) ]
+
+[node name="Drone4" parent="Drones" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28644, 0, 4.71466 )
+route = [ SubResource( 9 ), SubResource( 10 ) ]
+
+[node name="Drone5" parent="Drones" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28644, 0, 4.71466 )
+route = [ SubResource( 11 ), SubResource( 12 ) ]
+
+[node name="Buildings" type="Spatial" parent="."]
+
+[node name="StockpileNodePathSource" type="Spatial" parent="Buildings"]
+
+[node name="ExportStockpile" parent="Buildings" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.26106, 0, -6.12889 )
-cargo_max = 4
-cargo_count = 2
+cargo_count = 3
+cargo_type = "vegetable"
 
-[node name="ImportStockpile" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98678, 0, 0 )
+[node name="ImportStockpile" parent="Buildings" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72107, 0, 0 )
 import = true
+cargo_type = "vegetable"
 
-[node name="Drone" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
-route = [ SubResource( 1 ), SubResource( 2 ) ]
+[node name="WaterTower" parent="Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72604, 0, -6.12499 )
 
-[node name="Drone2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
-route = [ SubResource( 1 ), SubResource( 2 ) ]
+[node name="Farm" parent="Buildings" instance=ExtResource( 6 )]
+transform = Transform( 0.449413, 0, -0.893324, 0, 1, 0, 0.893324, 0, 0.449413, 6.21252, 0, -6.02114 )
 
-[node name="Drone3" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
-route = [ SubResource( 1 ), SubResource( 2 ) ]
+[node name="RestoSalad" parent="Buildings" instance=ExtResource( 8 )]
+transform = Transform( 0.081521, 0, -0.996672, 0, 1, 0, 0.996672, 0, 0.081521, 10.5085, 0, -2.56809 )
 
-[node name="Drone4" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
-route = [ SubResource( 1 ), SubResource( 2 ) ]
+[node name="MarketSalad" parent="Buildings" instance=ExtResource( 7 )]
+transform = Transform( -0.674831, 0, -0.737973, 0, 1, 0, 0.737973, 0, -0.674831, 5.72722, 0, 2.12353 )
 
-[node name="Drone5" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.71466 )
-route = [ SubResource( 1 ), SubResource( 2 ) ]
+[node name="MapUI" parent="." instance=ExtResource( 9 )]
+
+[editable path="Buildings/WaterTower"]
+[editable path="Buildings/Farm"]
+[editable path="Buildings/RestoSalad"]
+[editable path="Buildings/MarketSalad"]
