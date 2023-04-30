@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://fonts/ld53/ld52_def_normal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/HoverLabel3D.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=8]
@@ -37,11 +37,12 @@ tracks/0/keys = {
 [node name="HoverLabel3D" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.464086, 0 )
 script = ExtResource( 2 )
-text = ""
+text = "test"
 np_animation_player = NodePath("AnimationPlayer")
 
 [node name="Label" type="Label3D" parent="."]
 billboard = 1
+text = "test"
 font = ExtResource( 1 )
 width = 0.0
 

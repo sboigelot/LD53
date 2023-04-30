@@ -21,11 +21,12 @@ func _ready():
 		Game.Data.start_delivery_phase(not allow_keyboard_control)
 
 func _input(event):
-	if allow_keyboard_control and Input.is_action_just_released("ui_accept"):
-		if Game.Data.deliver_phase:
-			Game.Data.start_delivery_phase()
-		else:
-			Game.Data.reset_delivery_phase()
+	if allow_keyboard_control:
+		if Input.is_action_just_released("ui_accept"):
+			if not Game.Data.deliver_phase:
+				Game.Data.start_delivery_phase()
+			else:
+				Game.Data.reset_delivery_phase()
 
 func get_stockpile(node_path:NodePath):
 	return $Buildings/StockpileNodePathSource.get_node(node_path)
