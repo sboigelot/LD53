@@ -1,0 +1,82 @@
+extends MarginContainer
+
+class_name WaypointView
+
+signal PickingTarget(waypoint_view)
+signal Delete(data)
+
+export(NodePath) var np_index_label
+export(NodePath) var np_direction_toggle_button
+export(NodePath) var np_cargo_count_item_list
+export(NodePath) var np_cargo_item_list
+export(NodePath) var np_to_from_label
+export(NodePath) var np_target_button
+export(NodePath) var np_delete_button
+
+onready var ui_index_label				= get_node(np_index_label) as Label
+onready var ui_direction_toggle_button	= get_node(np_direction_toggle_button) as Button
+onready var ui_cargo_count_item_list	= get_node(np_cargo_count_item_list) as OptionButton
+onready var ui_cargo_item_list			= get_node(np_cargo_item_list) as OptionButton
+onready var ui_to_from_label			= get_node(np_to_from_label) as Label
+onready var ui_target_button			= get_node(np_target_button) as Button
+onready var ui_np_delete_button			= get_node(np_delete_button) as Button
+
+var data:WaypointData
+var index: int
+
+const cargo_ids: Dictionary = {
+	"water":	0,
+	"vegetable":1,
+	"meat":		2,
+	"salad":	3,
+	"burger":	4
+}
+
+func _ready():
+	if data == null:
+		data = WaypointData.new()
+	update_ui()
+
+func update_ui():
+	ui_index_label.text = "#%d" % (index + 1)
+	ui_direction_toggle_button.pressed = data.factory_input
+	ui_direction_toggle_button.text = "Deliver" if data.factory_input else "Pickup"
+	ui_cargo_count_item_list.selected =  (data.cargo_count - 1)
+	ui_cargo_item_list.selected = cargo_ids[data.cargo_type]
+	ui_to_from_label.text = "to" if data.factory_input else "from"
+	ui_target_button.text = "Pick Target" if data.factory == null else data.factory.display_name
+	
+	
+func toggle_target_button_off():
+	ui_target_button.pressed = false
+	
+func on_factory_selected(factory):
+	data.factory = factory
+	update_ui()
+
+func _on_DirectionToggleButton_toggled(button_pressed):
+	data.factory_input = button_pressed
+	update_ui()
+		
+func _on_CargoCountItemList_item_selected(index):
+	data.cargo_count = ui_cargo_count_item_list.selected + 1
+	update_ui()
+
+func _on_CargoItemList_item_selected(index):
+	for cargo_name in cargo_ids.keys():
+		var cargo_id = cargo_ids[cargo_name]
+		if ui_cargo_item_list.selected == cargo_id:
+			data.cargo_type = cargo_name
+			update_ui()
+			return
+
+func _on_DeleteButton_pressed():
+	emit_signal("Delete", data)
+
+func _on_TargetButton_toggled(button_pressed):
+	if button_pressed == true:	
+		Game.Map.map_ui.wait_for_factory_target(self)
+		emit_signal("PickingTarget", self)
+	elif Game.Map.map_ui.waiting_for_factory_target == self:
+		 Game.Map.map_ui.waiting_for_factory_target = null
+		

@@ -28,7 +28,7 @@ onready var sp_cargo_icons = [
 
 onready var sp_animation_player = 					get_node(np_animation_player)					as AnimationPlayer
 
-export var speed:float = 4.0
+export var speed:float = 3.0
 export var take_off_speed:float = 2.0
 export var cargo_max:int = 1
 export var memory_size:int = 3
@@ -38,9 +38,9 @@ const dock_y: float = 0.5
 const parking_speration: float = 2.0
 const destination_snap_distance: float = 0.1 
 
-export var cargo: PoolStringArray = []
+export var cargo: PoolStringArray
 
-export var route: Array = []
+export var route: Array
 var route_index: int = 0 
 
 var waypoint: WaypointData
@@ -60,23 +60,49 @@ var upgrade_speed: int = 1
 var upgrade_cargo: int = 1
 var upgrade_memory: int = 1
 
+func get_upgraded_speed() -> float:
+	return speed + (upgrade_speed * 0.5)
+	
+func get_upgraded_cargo_max() -> int:
+	return cargo_max + (upgrade_cargo - 1)
+	
+func get_upgraded_memory() -> int:
+	return memory_size + (upgrade_memory - 1)
+	
+var drone_pad
+var left_drone_pad:bool = false
+
 func _ready():
-	sp_warning_no_cargo_sprite_3D.visible = false
-	sp_warning_no_cargo_space_sprite_3D.visible = false
-	sp_warning_long_wait_time_sprite_3D.visible = false
-	sp_warning_confused.visible = false
+	clear_all()
 	on_cargo_change()
 	sp_animation_player.play("Wobble")
 
+func teleport_to_drone_pad():
+	clear_all()
+	cargo.resize(0)
+	on_cargo_change()
+	route_index = 0
+	waypoint = null
+	if drone_pad == null:
+		return
+	global_translation = drone_pad.global_translation
+	global_rotation = drone_pad.global_rotation
+	left_drone_pad = false
+		
 func _physics_process(delta):
 	if not Game.Data.deliver_phase:
+		if left_drone_pad:
+			teleport_to_drone_pad()
 		return
+	left_drone_pad = true
 		
 	if name == "Drone6":
 		pass
 		
 	if not visible:
 		return
+		
+	var game_delta = Game.Data.deliver_phase_speed * delta
 		
 	if waypoint == null:
 		waypoint = get_current_route_waypoint()
@@ -85,20 +111,23 @@ func _physics_process(delta):
 
 	# 0: register waypoint parking spot
 	if not waypoint_parking_registered:
-		waypoint_parking_registered = register_waypoint_parking(delta)
+		waypoint_parking_registered = register_waypoint_parking(game_delta)
 		return
 
 	# 1 goto waypoint next parking spot
 	if not waypoint_reached:
-		waypoint_reached = move_toward_waypoint(delta)
+		waypoint_reached = move_toward_waypoint(game_delta)
+		return
+	
+	if not waypoint_order_match_stockpile():
 		return
 		
-	if not drone_turn_in_lane(delta):
+	if not drone_turn_in_lane(game_delta):
 		return
 		
 	# 2 try reserve waypoint space
 	if not waypoint_reserved:
-		waypoint_reserved = reserve_waypoint(delta)
+		waypoint_reserved = reserve_waypoint(game_delta)
 		return
 	
 	# 3 free waypoint parking spot
@@ -108,12 +137,12 @@ func _physics_process(delta):
 		
 	# 4 land on waypoint
 	if not waypoint_landed:
-		waypoint_landed = land_on_waypoint(delta)
+		waypoint_landed = land_on_waypoint(game_delta)
 		return
 	
 	if not waypoint_pickup_or_delivered:
 		# 5 pickup/deliver cargo
-		waypoint_pickup_or_delivered = pickup_or_deliver(delta)
+		waypoint_pickup_or_delivered = pickup_or_deliver(game_delta)
 		return
 		
 	free_turn_in_lane()
@@ -132,7 +161,10 @@ func get_current_route_waypoint() -> WaypointData:
 	return route_waypoint
 	
 func next_waypoint():
+	clear_all()
 	route_index = (route_index + 1) % route.size()
+	
+func clear_all():
 	waypoint = null
 	
 	waypoint_parking_spot_id = 0
@@ -187,8 +219,13 @@ func move_toward_waypoint(delta) -> bool:
 				rad2deg(translation.angle_to(destination)), 1.0)
 
 	var direction = translation.direction_to(destination)
-	translation += direction * speed * delta
+	translation += direction * get_upgraded_speed() * delta
 	return false
+
+func waypoint_order_match_stockpile() -> bool:
+	var matching_order = waypoint.cargo_type == waypoint.stockpile.cargo_type
+	sp_warning_confused.visible = not matching_order
+	return matching_order
 
 func reserve_waypoint(delta) -> bool:
 	if waypoint.stockpile.import:
@@ -210,7 +247,7 @@ func try_reserve_delivery(delta) -> bool:
 	return true
 
 func try_reserve_pickup(delta) -> bool:
-	if cargo.size() + waypoint.cargo_count > cargo_max:
+	if cargo.size() + waypoint.cargo_count > get_upgraded_cargo_max():
 		sp_warning_no_cargo_space_sprite_3D.visible = true
 		return false
 		
@@ -279,7 +316,7 @@ func try_deliver(delta) -> bool:
 
 func try_pickup(delta) -> bool:
 #	this should never be true with initial FSM
-	if cargo.size() >= cargo_max:
+	if cargo.size() >= get_upgraded_cargo_max():
 		sp_warning_no_cargo_space_sprite_3D.visible = true
 		return false
 	

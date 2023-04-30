@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Buildings/Factories/Factory.gd" type="Script" id=1]
+[ext_resource path="res://Buildings/Furnitures/Stockpile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Icons/water.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Models/WaterTower/watertower.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.05, 1.05, 1.05 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[node name="WaterTower" type="Spatial"]
+script = ExtResource( 1 )
+display_name = "Water Tower"
+np_animation_player = NodePath("AnimationPlayer")
+np_output_stockpile = NodePath("Stockpiles/Stockpile")
+np_warning_no_input_sprite_3D = NodePath("Warnings/WarningNoInputSprite3D")
+np_warning_no_output_space_sprite_3D = NodePath("Warnings/WarningNoOutputSpaceSprite3D")
+cycle_duration = 4.0
+delay_between_cycle = 0.0
+
+[node name="Visual" type="Spatial" parent="."]
+
+[node name="watertower" parent="Visual" instance=ExtResource( 5 )]
+transform = Transform( -0.0837996, 0, -0.996483, 0, 1, 0, 0.996483, 0, -0.0837996, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Cycle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="Warnings" type="Spatial" parent="."]
+
+[node name="WarningNoInputSprite3D" type="Sprite3D" parent="Warnings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27344, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 3 )
+
+[node name="WarningNoOutputSpaceSprite3D" type="Sprite3D" parent="Warnings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27344, 0 )
+visible = false
+billboard = 1
+texture = ExtResource( 4 )
+
+[node name="Stockpiles" type="Spatial" parent="."]
+
+[node name="Stockpile" parent="Stockpiles" instance=ExtResource( 2 )]
+transform = Transform( 0.690983, 0, 0.722871, 0, 1, 0, -0.722871, 0, 0.690983, 1.0047, 0, 1.10549 )
+cargo_type = "water"
+
+[connection signal="input_event" from="Visual/watertower/watertower/StaticBody" to="." method="_on_StaticBody_input_event"]
+[connection signal="mouse_entered" from="Visual/watertower/watertower/StaticBody" to="." method="_on_StaticBody_mouse_entered"]
+[connection signal="mouse_exited" from="Visual/watertower/watertower/StaticBody" to="." method="_on_StaticBody_mouse_exited"]
+
+[editable path="Visual/watertower"]

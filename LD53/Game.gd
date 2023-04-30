@@ -42,7 +42,13 @@ func _input(_event):
 	
 	if Input.is_action_just_released("ui_accept"):
 		if Data != null:
-			Data.deliver_phase = not Data.deliver_phase 
+			if not Data.deliver_phase:
+				Data.start_delivery_phase()
+			else:
+				Data.reset_delivery_phase()
+				
+	if Input.is_action_just_released("ui_cancel"):
+		get_tree().quit()
 			
 	if Input.is_action_just_released("toggle_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen

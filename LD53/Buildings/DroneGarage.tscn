@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Buildings/DronePad.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Buildings/Furnitures/DronePad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Buildings/DroneGarage.gd" type="Script" id=4]
 
 [sub_resource type="CubeMesh" id=5]
@@ -26,3 +26,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976671, 0 )
 
 [node name="DronePad3" parent="DronePads" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.571437, 0.976671, 0 )
+drone_bought = true

@@ -25,6 +25,9 @@ onready var ui_texture_rect = get_node(np_texture_rect) as TextureRect
 onready var ui_level_placeholder = get_node(np_level_placeholder) as Container
 onready var ui_cost_label = get_node(np_cost_label) as Label
 
+func get_level_upgrade_cost():
+	return upgrade_cost * upgrade_current_level
+
 func _ready():
 	update_ui()
 
@@ -36,15 +39,15 @@ func update_ui():
 		level_color_rect.color = level_aquired_color if i < upgrade_current_level else level_not_aquired_color
 		level_color_rect.visible = i < upgrade_max_level
 	
-	ui_cost_label.text = str(upgrade_cost)
+	ui_cost_label.text = str(get_level_upgrade_cost()) if upgrade_current_level < upgrade_max_level else ""
 
 func _process(delta):
-	var purchasable = Game.Data.money >= upgrade_cost
+	var purchasable = Game.Data.money >= get_level_upgrade_cost() and upgrade_current_level < upgrade_max_level
 	ui_cost_label.modulate = level_aquired_color if purchasable else level_not_aquired_color
 	ui_purchase_button.disabled = not purchasable
 
 func _on_PurchaseButton_pressed():	
-	var purchasable = Game.Data.money >= upgrade_cost
+	var purchasable = Game.Data.money >= get_level_upgrade_cost() and upgrade_current_level < upgrade_max_level
 	if purchasable:
 		Game.Data.money -= upgrade_cost
 		emit_signal("Upgraded")

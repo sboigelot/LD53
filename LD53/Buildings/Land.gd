@@ -19,7 +19,7 @@ func on_mouse_left_button_click():
 	
 	var text = ""
 	if Game.Data.money >= garage_price:
-		text = "Are you sure you want to buy a garage for %d gold" % garage_price
+		text = "Are you sure you want to buy\na garage for %d gold" % garage_price
 	else:
 		text = "You need %d gold to buy a new garage!" % garage_price
 	Game.Map.map_ui.show_confirmation_dialog("Buy Garge?", text, self, "on_confirm_garage_purchase")
