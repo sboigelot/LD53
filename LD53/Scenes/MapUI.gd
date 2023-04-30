@@ -16,6 +16,28 @@ onready var ui_drone_popup = get_node(np_drone_popup) as PopupDialog
 onready var ui_delivery_phase_info_label = get_node(np_delivery_phase_info_label) as Label
 onready var ui_delivery_phase_progress_bar = get_node(np_delivery_phase_progress_bar) as ProgressBar
 
+export(NodePath) var np_end_of_day_report_popup
+export(NodePath) var np_edr_count_label_water
+export(NodePath) var np_edr_count_label_vegetable
+export(NodePath) var np_edr_count_label_salad
+export(NodePath) var np_edr_count_label_meat
+export(NodePath) var np_edr_count_label_burger
+export(NodePath) var np_edr_count_label_coin
+export(NodePath) var np_edr_count_label_goal_salad
+export(NodePath) var np_edr_count_label_goal_meat
+export(NodePath) var np_edr_victory_label
+
+onready var ui_end_of_day_report_popup		= get_node(np_end_of_day_report_popup) as PopupDialog
+onready var ui_edr_count_label_water		= get_node(np_edr_count_label_water) as Label
+onready var ui_edr_count_label_vegetable	= get_node(np_edr_count_label_vegetable) as Label
+onready var ui_edr_count_label_salad		= get_node(np_edr_count_label_salad) as Label
+onready var ui_edr_count_label_meat			= get_node(np_edr_count_label_meat) as Label
+onready var ui_edr_count_label_burger		= get_node(np_edr_count_label_burger) as Label
+onready var ui_edr_count_label_coin			= get_node(np_edr_count_label_coin) as Label
+onready var ui_edr_count_label_goal_salad	= get_node(np_edr_count_label_goal_salad) as Label
+onready var ui_edr_count_label_goal_meat	= get_node(np_edr_count_label_goal_meat) as Label
+onready var ui_edr_victory_label			= get_node(np_edr_victory_label) as Label
+
 var last_confirmation_request_func: FuncRef
 
 var waiting_for_factory_target: WaypointView
@@ -79,3 +101,26 @@ func _on_ForwardButton_pressed():
 			Game.Data.deliver_phase_speed = 5.0
 		else:
 			Game.Data.deliver_phase_speed = 1.0
+			
+func show_end_of_day_report(day:int):
+	
+	ui_edr_count_label_water.text		=	str(Game.Data.daily_deliveries[day - 1]["water"])
+	ui_edr_count_label_vegetable.text 	=	str(Game.Data.daily_deliveries[day - 1]["vegetable"])
+	ui_edr_count_label_salad.text		=	str(Game.Data.daily_deliveries[day - 1]["salad"])
+	ui_edr_count_label_meat.text 		=	str(Game.Data.daily_deliveries[day - 1]["meat"])
+	ui_edr_count_label_burger.text		=	str(Game.Data.daily_deliveries[day - 1]["burger"])
+	ui_edr_count_label_coin.text 		=	str(Game.Data.daily_money_benefits[day - 1])
+	
+	var delivered_salad = Game.Data.get_total_goals_count("salad")
+	var goal_salad = Game.Data.get_completed_goals_count("salad")
+	ui_edr_count_label_goal_salad.text 	=	"%d / %d" % [delivered_salad, goal_salad]
+	
+	var delivered_meat = Game.Data.get_total_goals_count("meat")
+	var goal_meat = Game.Data.get_completed_goals_count("meat")
+	ui_edr_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
+	
+	ui_edr_victory_label.visible = delivered_salad >= goal_salad and delivered_meat >= goal_meat
+	ui_end_of_day_report_popup.popup_centered()
+
+func _on_CloseButton_pressed():
+	ui_end_of_day_report_popup.hide()

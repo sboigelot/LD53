@@ -12,13 +12,15 @@ export(NodePath) var np_input_stockpile
 export(NodePath) var np_output_stockpile
 export(NodePath) var np_warning_no_input_sprite_3D
 export(NodePath) var np_warning_no_output_space_sprite_3D
+export(NodePath) var np_delivery_target_placeholder
 
-onready var sp_animation_player = get_node_or_null(np_animation_player) as AnimationPlayer
-onready var sp_money_animation_player = get_node_or_null(np_money_animation_player) as AnimationPlayer
-onready var sp_input_stockpile = get_node_or_null(np_input_stockpile) as Stockpile
-onready var sp_output_stockpile = get_node_or_null(np_output_stockpile) as Stockpile
-onready var sp_warning_no_input_sprite_3D = 		get_node(np_warning_no_input_sprite_3D) 		as Spatial
-onready var sp_warning_no_output_space_sprite_3D = 	get_node(np_warning_no_output_space_sprite_3D) 	as Spatial
+onready var sp_animation_player 					= get_node_or_null(np_animation_player) as AnimationPlayer
+onready var sp_money_animation_player 				= get_node_or_null(np_money_animation_player) as AnimationPlayer
+onready var sp_input_stockpile 						= get_node_or_null(np_input_stockpile) as Stockpile
+onready var sp_output_stockpile 					= get_node_or_null(np_output_stockpile) as Stockpile
+onready var sp_warning_no_input_sprite_3D 			= get_node(np_warning_no_input_sprite_3D) 		as Spatial
+onready var sp_warning_no_output_space_sprite_3D 	= get_node(np_warning_no_output_space_sprite_3D) 	as Spatial
+onready var sp_delivery_target_placeholder 			= get_node(np_delivery_target_placeholder) 	as Spatial
 
 export var cycle_unpaid_delay_warning: float = 5.0
 export var cycle_duration: float = 5.0
@@ -38,6 +40,44 @@ var delivery_phase_started: bool = false
 func _ready():
 	sp_warning_no_input_sprite_3D.visible = false
 	sp_warning_no_output_space_sprite_3D.visible = false
+	
+	register_game_goals()
+
+func register_game_goals():
+	if (sp_delivery_target_placeholder != null and
+		sp_delivery_target_placeholder.get_child_count() > 0):
+		Game.Data.register_game_goal(self)
+		
+func reset_goals():
+	if (sp_delivery_target_placeholder != null and
+		sp_delivery_target_placeholder.get_child_count() > 0):
+		for cube in sp_delivery_target_placeholder.get_children():
+			cube.completed = false
+	
+func progress_goals():
+	if (sp_delivery_target_placeholder != null and
+		sp_delivery_target_placeholder.get_child_count() > 0):
+		for cube in sp_delivery_target_placeholder.get_children():
+			if not cube.completed:
+				cube.completed = true
+				return
+
+func get_total_goals_count() -> int:
+	if sp_delivery_target_placeholder != null:
+		return 0
+	return sp_delivery_target_placeholder.get_child_count()
+
+func get_completed_goals_count() -> int:
+	var completed = 0
+	if (sp_delivery_target_placeholder != null and
+		sp_delivery_target_placeholder.get_child_count() > 0):
+		for cube in sp_delivery_target_placeholder.get_children():
+			if cube.completed:
+				completed += 1
+	return completed
+
+func are_goals_completed() -> bool:
+	return get_total_goals_count() == get_completed_goals_count()
 
 func reset():
 	sp_warning_no_input_sprite_3D.visible = false
@@ -140,10 +180,6 @@ func complete_cycle():
 	sp_warning_no_output_space_sprite_3D.visible = false
 	current_delay_between_cycle = delay_between_cycle
 	
-	if cycle_money_generation != 0:
-		Game.Data.money += cycle_money_generation
-		sp_money_animation_player.play("CoinUp")
-	
 func produce_output() -> bool:
 	if sp_output_stockpile == null:
 		return true
@@ -155,7 +191,6 @@ func produce_output() -> bool:
 
 func _on_MoneyAnimationPlayer_animation_finished(anim_name):
 	sp_money_animation_player.play("RESET")
-
 
 func _on_StaticBody_mouse_entered():
 	if Game.Data.deliver_phase:
@@ -182,3 +217,9 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 func on_mouse_left_button_click():
 	emit_signal("Pressed", self)
 	Game.Map.map_ui.on_factory_pressed(self)
+
+func _on_Input_NewCargo():
+	if cycle_money_generation != 0:
+		Game.Data.add_money(cycle_money_generation)
+		sp_money_animation_player.play("CoinUp")
+		progress_goals()

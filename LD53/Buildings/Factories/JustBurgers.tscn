@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Buildings/Factories/Factory.gd" type="Script" id=1]
 [ext_resource path="res://Buildings/Furnitures/Stockpile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Process/justbugers.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=5]
 
 [sub_resource type="CubeMesh" id=5]
 
@@ -70,14 +71,71 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=9]
+resource_name = "CoinUp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ), Vector3( 0, 3, 0 ), Vector3( 0, 3, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
 [node name="JustBurgers" type="Spatial"]
 script = ExtResource( 1 )
 display_name = "Just Burgers"
 np_animation_player = NodePath("AnimationPlayer")
+np_money_animation_player = NodePath("MoneyEffect/MoneyAnimationPlayer")
 np_input_stockpile = NodePath("Stockpiles/Input")
 np_output_stockpile = NodePath("Stockpiles/Output")
 np_warning_no_input_sprite_3D = NodePath("Warnings/WarningNoInputSprite3D")
 np_warning_no_output_space_sprite_3D = NodePath("Warnings/WarningNoOutputSpaceSprite3D")
+cycle_money_generation = 25
 
 [node name="Visual" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -115,6 +173,18 @@ visible = false
 billboard = 1
 texture = ExtResource( 4 )
 
+[node name="MoneyEffect" type="Spatial" parent="."]
+
+[node name="MoneyGeneratedSprite3D" type="Sprite3D" parent="MoneyEffect"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.4, 0 )
+billboard = 1
+texture = ExtResource( 5 )
+
+[node name="MoneyAnimationPlayer" type="AnimationPlayer" parent="MoneyEffect"]
+root_node = NodePath("../..")
+anims/CoinUp = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
 [node name="Stockpiles" type="Spatial" parent="."]
 
 [node name="Input" parent="Stockpiles" instance=ExtResource( 2 )]
@@ -129,3 +199,5 @@ cargo_type = "burger"
 [connection signal="input_event" from="Visual/MeshInstance/StaticBody" to="." method="_on_StaticBody_input_event"]
 [connection signal="mouse_entered" from="Visual/MeshInstance/StaticBody" to="." method="_on_StaticBody_mouse_entered"]
 [connection signal="mouse_exited" from="Visual/MeshInstance/StaticBody" to="." method="_on_StaticBody_mouse_exited"]
+[connection signal="animation_finished" from="MoneyEffect/MoneyAnimationPlayer" to="." method="_on_MoneyAnimationPlayer_animation_finished"]
+[connection signal="NewCargo" from="Stockpiles/Input" to="." method="_on_Input_NewCargo"]

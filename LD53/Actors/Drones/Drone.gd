@@ -70,39 +70,54 @@ func get_upgraded_memory() -> int:
 	return memory_size + (upgrade_memory - 1)
 	
 var drone_pad
-var left_drone_pad:bool = false
+var drone_pad_reached:bool = true
+var drone_pad_landed:bool = true
 
 func _ready():
 	clear_all()
 	on_cargo_change()
 	sp_animation_player.play("Wobble")
 
-func teleport_to_drone_pad():
+func move_toward_drone_pad(delta) -> bool:
 	clear_all()
-	cargo.resize(0)
-	on_cargo_change()
+	if cargo.size() > 0:
+		cargo.resize(0)
+		on_cargo_change()
+		
 	route_index = 0
 	waypoint = null
+	
 	if drone_pad == null:
-		return
-	global_translation = drone_pad.global_translation
-	global_rotation = drone_pad.global_rotation
-	left_drone_pad = false
+		return true
+	
+	var destination = Vector3(
+		drone_pad.global_translation.x,
+		drone_pad.global_translation.y + flight_y,
+		drone_pad.global_translation.z)
+	var reached_drone_pad = move_toward_destination(destination, delta)
+		
+	if reached_drone_pad:
+		global_rotation = drone_pad.global_rotation
+	
+	return reached_drone_pad
 		
 func _physics_process(delta):
-	if not Game.Data.deliver_phase:
-		if left_drone_pad:
-			teleport_to_drone_pad()
-		return
-	left_drone_pad = true
-		
-	if name == "Drone6":
-		pass
-		
 	if not visible:
 		return
 		
 	var game_delta = Game.Data.deliver_phase_speed * delta
+	
+	if not Game.Data.deliver_phase:
+		
+		if not drone_pad_reached:
+			drone_pad_reached = move_toward_drone_pad(game_delta)
+			return
+			
+		if not drone_pad_landed:
+			drone_pad_landed = land_on_drone_pad(delta)
+			return
+			
+		return
 		
 	if waypoint == null:
 		waypoint = get_current_route_waypoint()
@@ -116,6 +131,8 @@ func _physics_process(delta):
 
 	# 1 goto waypoint next parking spot
 	if not waypoint_reached:
+		drone_pad_reached = false
+		drone_pad_landed = false
 		waypoint_reached = move_toward_waypoint(game_delta)
 		return
 	
@@ -199,20 +216,22 @@ func on_stockpile_drone_left(stockpile):
 	wait_for_waypoint = 0.0
 	
 func move_toward_waypoint(delta) -> bool:
-	
 	var destination = Vector3(
 		waypoint.stockpile.global_translation.x,
 		waypoint.stockpile.global_translation.y + flight_y + (parking_speration * waypoint_parking_spot_id),
 		waypoint.stockpile.global_translation.z)
 		
-	var distance = translation.distance_to(destination)
-	if distance < destination_snap_distance:
-		return true
-		
 	if translation.y < destination.y:
 		translation.y += (take_off_speed * delta)
 		if need_take_off_before_move:
 			return false
+		
+	return move_toward_destination(destination, delta)
+
+func move_toward_destination(destination:Vector3, delta:float) -> bool:
+	var distance = translation.distance_to(destination)
+	if distance < destination_snap_distance:
+		return true
 	
 #	look_at(destination, Vector3.UP)
 	rotation_degrees.y =  lerp(rotation_degrees.y,
@@ -283,6 +302,13 @@ func drone_turn_in_lane(delta) -> bool:
 
 func land_on_waypoint(delta) -> bool:
 	if translation.y > (waypoint.stockpile.translation.y + dock_y):
+		translation.y -= (take_off_speed * delta)
+		return false
+	
+	return true
+
+func land_on_drone_pad(delta) -> bool:
+	if translation.y > (drone_pad.global_translation.y):
 		translation.y -= (take_off_speed * delta)
 		return false
 	

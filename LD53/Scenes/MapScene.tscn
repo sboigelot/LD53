@@ -254,20 +254,23 @@ transform = Transform( 0.690983, 0, 0.722871, 0, 1, 0, -0.722871, 0, 0.690983, 0
 [node name="Farm" parent="Buildings" instance=ExtResource( 6 )]
 transform = Transform( 0.578057, 0, 0.815997, 0, 1, 0, -0.815997, 0, 0.578057, 6.1141, 0, -8.36852 )
 
-[node name="farm" parent="Buildings/Farm/Visual/farm" index="0"]
-transform = Transform( 0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 0, 0.7, 0 )
-
 [node name="RestoSalad" parent="Buildings" instance=ExtResource( 8 )]
 transform = Transform( 0.081521, 0, -0.996672, 0, 1, 0, 0.996672, 0, 0.081521, 10.5085, 0, -2.56809 )
 
 [node name="MarketSalad" parent="Buildings" instance=ExtResource( 7 )]
-transform = Transform( -0.674831, 0, -0.737973, 0, 1, 0, 0.737973, 0, -0.674831, 5.72722, 0, 2.12353 )
+transform = Transform( 0.422571, 0, 0.90633, 0, 1, 0, -0.90633, 0, 0.422571, 3.05955, 0, 1.90177 )
+
+[node name="CollisionShape" parent="Buildings/MarketSalad/Visual/MeshInstance/StaticBody" index="0"]
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
 
 [node name="WarningNoOutputSpaceSprite3D" parent="Buildings/MarketSalad/Warnings" index="1"]
 visible = false
 
 [node name="Ranch" parent="Buildings" instance=ExtResource( 11 )]
-transform = Transform( -0.305778, 0, 0.952103, 0, 1, 0, -0.952103, 0, -0.305778, -9.61072, 9.53674e-07, -0.445289 )
+transform = Transform( 0.192641, 0, -0.981269, 0, 1, 0, 0.981269, 0, 0.192641, -9.61072, 9.53674e-07, -0.445289 )
+
+[node name="ranch" parent="Buildings/Ranch/Visual/ranch" index="0"]
+transform = Transform( 1.78814e-07, 0, 0.9, 0, 0.9, 0, -0.9, 0, 1.78814e-07, 0, 0.45, 0 )
 
 [node name="JustBurgers" parent="Buildings" instance=ExtResource( 12 )]
 transform = Transform( 0.616926, 0, 0.787021, 0, 1, 0, -0.787021, 0, 0.616926, -10.4578, 1.90735e-06, 4.10674 )
@@ -279,7 +282,7 @@ transform = Transform( -0.0736734, 0, -0.997282, 0, 1, 0, 0.997282, 0, -0.073673
 transform = Transform( 0.875953, 0, 0.482396, 0, 1, 0, -0.482396, 0, 0.875953, -6.18188, -9.53674e-07, -2.39907 )
 
 [node name="Land" parent="Buildings" instance=ExtResource( 14 )]
-transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, 8.32923, 0, 4.77028 )
+transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, -1.98966, 0, -10.1265 )
 
 [node name="MapUI" parent="." instance=ExtResource( 9 )]
 
@@ -295,5 +298,6 @@ transform = Transform( 0.178567, -0.625406, 0.759593, 0.14312, 0.780299, 0.60881
 [editable path="Buildings/RestoSalad"]
 [editable path="Buildings/MarketSalad"]
 [editable path="Buildings/Ranch"]
+[editable path="Buildings/Ranch/Visual/ranch"]
 [editable path="Buildings/JustBurgers"]
 [editable path="Buildings/MarketBurger"]

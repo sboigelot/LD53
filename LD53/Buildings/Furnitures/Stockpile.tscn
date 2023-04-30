@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 cargo_type = "Vegetable"
 
 [node name="PaletteStaticBody" type="StaticBody" parent="."]
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="PaletteStaticBody"]
 transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
@@ -23,15 +24,15 @@ shape = SubResource( 2 )
 [node name="Crates" type="Spatial" parent="."]
 
 [node name="crate1" parent="Crates" instance=ExtResource( 2 )]
-transform = Transform( 0.972917, 0, -0.231154, 0, 1, 0, 0.231154, 0, 0.972917, -0.173, 0.17, -0.085 )
+transform = Transform( 0.985553, 0, -0.169367, 0, 1, 0, 0.169367, 0, 0.985553, -0.196609, 0.17, -0.0902465 )
 visible = false
 
 [node name="crate2" parent="Crates" instance=ExtResource( 2 )]
-transform = Transform( 0.966205, 0, -0.257774, 0, 1, 0, 0.257774, 0, 0.966205, 0.198502, 0.17, 0.112058 )
+transform = Transform( 0.966205, 0, -0.257774, 0, 1, 0, 0.257774, 0, 0.966205, 0.227358, 0.17, 0.172392 )
 visible = false
 
 [node name="crate3" parent="Crates" instance=ExtResource( 2 )]
-transform = Transform( 0.920594, 0, 0.390522, 0, 1, 0, -0.390522, 0, 0.920594, 0.00542337, 0.530991, 0.0576297 )
+transform = Transform( 0.920594, 0, 0.390522, 0, 1, 0, -0.390522, 0, 0.920594, 0.00542337, 0.596572, 0.0576297 )
 visible = false
 
 [node name="Buckets" type="Spatial" parent="."]
@@ -45,7 +46,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222532, 0.185648, -0.068827 
 visible = false
 
 [node name="bucket3" parent="Buckets" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0320818, 0.185648, 0.181701 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0239902, 0.185648, 0.187534 )
 visible = false
 
 [connection signal="input_event" from="PaletteStaticBody" to="." method="_on_StaticBody_input_event"]

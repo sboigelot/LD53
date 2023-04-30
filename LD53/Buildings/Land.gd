@@ -1,7 +1,7 @@
 extends Spatial
 
 export(PackedScene) var GarageScene
-export var garage_price: int = 200
+export var garage_price: int = 300
 
 func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 	if Game.Data.deliver_phase:

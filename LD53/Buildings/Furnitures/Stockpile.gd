@@ -5,6 +5,7 @@ class_name Stockpile
 
 signal Pressed
 signal DroneLeft(stockpile)
+signal NewCargo
 
 export var cargo_max: int = 3
 export var cargo_count: int = 0 setget set_crate_count
@@ -99,8 +100,12 @@ func try_deliver(reserved:bool, quantity:int) -> bool:
 		return false
 		
 	self.cargo_count += quantity
+	emit_signal("NewCargo")
+	Game.Data.register_day_delivery(cargo_type, quantity)
+	
 	if reserved:
 		cargo_space_reserved -= quantity
+	
 	return true
 	
 func register_waiting() -> int:

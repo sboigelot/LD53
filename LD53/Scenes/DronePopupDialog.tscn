@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/DronePopupDialog.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Icons/memory.png" type="Texture" id=2]
@@ -9,10 +9,18 @@
 [ext_resource path="res://fonts/ld53/ld52_def_xsmall.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/WaypointView.tscn" type="PackedScene" id=9]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.360784 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="DronePopupDialog" type="PopupDialog"]
 margin_top = 100.0
 margin_right = 450.0
 margin_bottom = 580.0
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 WaypointViewScene = ExtResource( 9 )
 np_waypoint_view_placeholder = NodePath("MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder")
@@ -127,7 +135,6 @@ focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 text = "add stop"
-flat = true
 align = 0
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer"]

@@ -79,9 +79,7 @@ func play_next_music():
 
 [node name="Music" type="Node"]
 script = SubResource( 1 )
-play_on_start = true
 playlist = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
-bus = "Music"
