@@ -17,7 +17,31 @@ var game_goal_factories: Array
 var daily_deliveries: Array
 var daily_money_benefits: Array
 
+var tutorial_steps = [
+	"click_me_drone",
+	"add_step",
+	"pick_target",
+	"click_me_water_tower",
+	"add_step",
+	"change_deliver",
+	"pick_target",
+	"click_me_farm",
+	"start_day",
+	"victory_info"
+]
+
+func is_tutorial_step(step_name:String) -> bool:
+	if tutorial_steps.size() == 0:
+		return false
+		
+	return tutorial_steps[0] == step_name
+	
+func complete_tutorial_step(step_name:String):
+	if is_tutorial_step(step_name):
+		tutorial_steps.remove(0)
+
 func start_delivery_phase():
+	complete_tutorial_step("start_day")
 	deliver_phase_timer = 0.0
 	deliver_phase_speed = 1.0
 	deliver_phase = true
@@ -76,6 +100,8 @@ func register_day_delivery(cargo:String, count:int):
 		day_delivery[cargo] += count
 	else:
 		day_delivery[cargo] = count
+		
+	Game.Map.map_ui.update_goal_labels()
 
 func complete_day():
 	deliver_phase_timer = 0.0

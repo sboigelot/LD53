@@ -6,18 +6,24 @@ signal Pressed(factory)
 
 export var display_name: String
 
+export(NodePath) var np_click_me
+export(NodePath) var np_click_me_victory
 export(NodePath) var np_animation_player
 export(NodePath) var np_money_animation_player
 export(NodePath) var np_input_stockpile
 export(NodePath) var np_output_stockpile
+export(NodePath) var np_storage_stockpile_container
 export(NodePath) var np_warning_no_input_sprite_3D
 export(NodePath) var np_warning_no_output_space_sprite_3D
 export(NodePath) var np_delivery_target_placeholder
 
+onready var sp_click_me 							= get_node(np_click_me) as HoverLabel3D
+onready var sp_click_me_victory						= get_node(np_click_me_victory) as HoverLabel3D
 onready var sp_animation_player 					= get_node_or_null(np_animation_player) as AnimationPlayer
 onready var sp_money_animation_player 				= get_node_or_null(np_money_animation_player) as AnimationPlayer
 onready var sp_input_stockpile 						= get_node_or_null(np_input_stockpile) as Stockpile
 onready var sp_output_stockpile 					= get_node_or_null(np_output_stockpile) as Stockpile
+onready var sp_storage_stockpile_container 			= get_node_or_null(np_storage_stockpile_container) as Spatial
 onready var sp_warning_no_input_sprite_3D 			= get_node(np_warning_no_input_sprite_3D) 		as Spatial
 onready var sp_warning_no_output_space_sprite_3D 	= get_node(np_warning_no_output_space_sprite_3D) 	as Spatial
 onready var sp_delivery_target_placeholder 			= get_node(np_delivery_target_placeholder) 	as Spatial
@@ -29,6 +35,8 @@ export var output_retry_delay: float = 0.5
 export var cycle_warning_duration: float = -3.0
 export var cycle_money_generation: int = 0
 
+var victory_info_timer: float = 10.0 
+
 var current_cycle_unpaid_timer: float
 var current_cycle_remaining_duration: float
 var current_cycle_paid: bool
@@ -38,8 +46,11 @@ var current_delay_between_cycle: float
 var delivery_phase_started: bool = false
 
 func _ready():
-	sp_warning_no_input_sprite_3D.visible = false
-	sp_warning_no_output_space_sprite_3D.visible = false
+	if sp_warning_no_input_sprite_3D != null:
+		sp_warning_no_input_sprite_3D.visible = false
+		
+	if sp_warning_no_output_space_sprite_3D != null:
+		sp_warning_no_output_space_sprite_3D.visible = false
 	
 	register_game_goals()
 
@@ -63,7 +74,7 @@ func progress_goals():
 				return
 
 func get_total_goals_count() -> int:
-	if sp_delivery_target_placeholder != null:
+	if sp_delivery_target_placeholder == null:
 		return 0
 	return sp_delivery_target_placeholder.get_child_count()
 
@@ -80,8 +91,11 @@ func are_goals_completed() -> bool:
 	return get_total_goals_count() == get_completed_goals_count()
 
 func reset():
-	sp_warning_no_input_sprite_3D.visible = false
-	sp_warning_no_output_space_sprite_3D.visible = false
+	if sp_warning_no_input_sprite_3D != null:
+		sp_warning_no_input_sprite_3D.visible = false
+		
+	if sp_warning_no_output_space_sprite_3D != null:
+		sp_warning_no_output_space_sprite_3D.visible = false
 	
 	current_cycle_unpaid_timer = 0
 	current_cycle_remaining_duration = 0
@@ -89,11 +103,17 @@ func reset():
 	current_output_retry_delay = 0
 	current_delay_between_cycle = 0
 	
+	reset_goals()
+	
 	if sp_input_stockpile != null:
 		sp_input_stockpile.reset()
 		
 	if sp_output_stockpile != null:
 		sp_output_stockpile.reset()
+		
+	if sp_storage_stockpile_container != null:
+		for stockpile in sp_storage_stockpile_container.get_children():
+			stockpile.reset(true)
 		
 	if sp_animation_player.is_playing():
 		sp_animation_player.stop(true)
@@ -101,16 +121,38 @@ func reset():
 	if sp_money_animation_player != null and sp_money_animation_player.is_playing():
 		sp_money_animation_player.stop(true)
 	
+func show_hide_click_me(delta):
+	if sp_click_me != null:
+		if Game.Data.is_tutorial_step("click_me_%s" % display_name.to_lower().replace(" ", "_")):
+			sp_click_me.popup()
+		else:
+			sp_click_me.hide()
+			
+	if sp_click_me_victory != null:
+		if Game.Data.is_tutorial_step("victory_info"):
+			sp_click_me_victory.popup()
+			victory_info_timer -= delta
+			if victory_info_timer <= 0:
+				Game.Data.complete_tutorial_step("victory_info")
+		else:
+			sp_click_me_victory.hide()
+		
 func _process(delta):
 	
+	show_hide_click_me(delta)
+	
 	if not Game.Data.deliver_phase:
-		sp_warning_no_input_sprite_3D.visible = Game.Map.map_ui.waiting_for_factory_target != null
+		if sp_warning_no_input_sprite_3D != null:
+			sp_warning_no_input_sprite_3D.visible = Game.Map.map_ui.waiting_for_factory_target != null
 		if delivery_phase_started:
 			reset()
 		return
 	delivery_phase_started = true
 		
 	if not visible:
+		return
+	
+	if sp_storage_stockpile_container != null:
 		return
 		
 	var game_delta = Game.Data.deliver_phase_speed * delta
@@ -216,6 +258,7 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 			
 func on_mouse_left_button_click():
 	emit_signal("Pressed", self)
+	Game.Data.complete_tutorial_step("click_me_%s" % display_name.to_lower().replace(" ", "_"))
 	Game.Map.map_ui.on_factory_pressed(self)
 
 func _on_Input_NewCargo():

@@ -5,6 +5,8 @@ var Data: GameData
 
 var Map: MapScene
 
+export(PoolColorArray) var available_drone_colors
+
 func _ready():
 	new_game() # for debug singl components
 	randomize()

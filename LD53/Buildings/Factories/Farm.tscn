@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Buildings/Factories/Factory.gd" type="Script" id=1]
 [ext_resource path="res://Buildings/Furnitures/Stockpile.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Models/Farm/farm.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/HoverLabel3D.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Cycle"
@@ -120,6 +121,7 @@ tracks/1/keys = {
 [node name="Farm" type="Spatial"]
 script = ExtResource( 1 )
 display_name = "Farm"
+np_click_me = NodePath("Visual/ClickMeHoverLabel3D")
 np_animation_player = NodePath("AnimationPlayer")
 np_money_animation_player = NodePath("MoneyEffect/MoneyAnimationPlayer")
 np_input_stockpile = NodePath("Stockpiles/Input")
@@ -131,6 +133,10 @@ cycle_money_generation = 10
 [node name="Visual" type="Spatial" parent="."]
 
 [node name="farm" parent="Visual" instance=ExtResource( 5 )]
+
+[node name="ClickMeHoverLabel3D" parent="Visual" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01138, 0 )
+text = "Click me!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Cycle = SubResource( 3 )

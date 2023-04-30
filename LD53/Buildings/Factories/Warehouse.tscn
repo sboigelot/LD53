@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Buildings/Factories/Factory.gd" type="Script" id=1]
+[ext_resource path="res://Buildings/Furnitures/Stockpile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Models/Farm/farm.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.05, 1.05, 1.05 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Warehouse" type="Spatial"]
+script = ExtResource( 1 )
+display_name = "Warehouse"
+np_animation_player = NodePath("AnimationPlayer")
+np_storage_stockpile_container = NodePath("StorageStockpiles")
+
+[node name="Visual" type="Spatial" parent="."]
+
+[node name="farm" parent="Visual" instance=ExtResource( 5 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Cycle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="StorageStockpiles" type="Spatial" parent="."]
+
+[node name="StorageStockpile1" parent="StorageStockpiles" instance=ExtResource( 2 )]
+transform = Transform( 0.000942072, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.000942072, -2.79053, -0.0666175, -1.45635 )
+cargo_type = "water"
+
+[node name="StorageStockpile2" parent="StorageStockpiles" instance=ExtResource( 2 )]
+transform = Transform( 0.000942072, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.000942072, -2.79053, -0.0666175, -0.208564 )
+cargo_type = "vegetable"
+
+[node name="StorageStockpile3" parent="StorageStockpiles" instance=ExtResource( 2 )]
+transform = Transform( 0.000942072, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.000942072, -2.79053, -0.0666175, 1.15768 )
+cargo_type = "salad"
+
+[node name="StorageStockpile4" parent="StorageStockpiles" instance=ExtResource( 2 )]
+transform = Transform( 0.000942072, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.000942072, -4.05526, -0.0666175, -0.170489 )
+cargo_type = "meat"
+
+[node name="StorageStockpile5" parent="StorageStockpiles" instance=ExtResource( 2 )]
+transform = Transform( 0.000942072, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.000942072, -4.02833, -0.0666175, 1.12592 )
+cargo_type = "burger"
+
+[connection signal="input_event" from="Visual/farm/farm/StaticBody" to="." method="_on_StaticBody_input_event"]
+[connection signal="mouse_entered" from="Visual/farm/farm/StaticBody" to="." method="_on_StaticBody_mouse_entered"]
+[connection signal="mouse_exited" from="Visual/farm/farm/StaticBody" to="." method="_on_StaticBody_mouse_exited"]
+
+[editable path="Visual/farm"]

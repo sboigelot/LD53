@@ -4,21 +4,21 @@ class_name Drone
 
 signal Pressed
 
+export(NodePath) var np_click_me
 export(NodePath) var np_warning_no_cargo_sprite_3D
 export(NodePath) var np_warning_no_cargo_space_sprite_3D
 export(NodePath) var np_warning_long_wait_time_sprite_3D
 export(NodePath) var np_warning_confused
 
-export(NodePath) var np_cargo_icon_1
-export(NodePath) var np_cargo_icon_2
-export(NodePath) var np_cargo_icon_3
-
-export(NodePath) var np_animation_player
-
+onready var sp_click_me =							get_node(np_click_me) as HoverLabel3D
 onready var sp_warning_no_cargo_sprite_3D = 		get_node(np_warning_no_cargo_sprite_3D) 		as Sprite3D
 onready var sp_warning_no_cargo_space_sprite_3D = 	get_node(np_warning_no_cargo_space_sprite_3D) 	as Sprite3D
 onready var sp_warning_long_wait_time_sprite_3D = 	get_node(np_warning_long_wait_time_sprite_3D)	as Sprite3D
 onready var sp_warning_confused = 					get_node(np_warning_confused)					as Sprite3D
+
+export(NodePath) var np_cargo_icon_1
+export(NodePath) var np_cargo_icon_2
+export(NodePath) var np_cargo_icon_3
 
 onready var sp_cargo_icons = [
 	get_node(np_cargo_icon_1),
@@ -26,8 +26,25 @@ onready var sp_cargo_icons = [
 	get_node(np_cargo_icon_3)
 ]
 
-onready var sp_animation_player = 					get_node(np_animation_player)					as AnimationPlayer
+export(NodePath) var np_animation_player
+export(NodePath) var np_selection_torus
+export(NodePath) var np_drone_mesh
 
+onready var sp_animation_player = get_node(np_animation_player)	as AnimationPlayer
+onready var sp_selection_torus = get_node(np_selection_torus)	as CSGTorus
+onready var sp_drone_mesh = get_node(np_drone_mesh)	as MeshInstance
+
+export var color:Color = Color.white setget set_color
+
+func set_color(value:Color):
+	color = value
+	if sp_drone_mesh == null:
+		return
+		
+	var material = SpatialMaterial.new()
+	material.albedo_color = color
+	sp_drone_mesh.material_override = material
+	
 export var speed:float = 3.0
 export var take_off_speed:float = 2.0
 export var cargo_max:int = 1
@@ -77,7 +94,19 @@ func _ready():
 	clear_all()
 	on_cargo_change()
 	sp_animation_player.play("Wobble")
+	
+	var random_color = Color.white
+	if (Game.available_drone_colors != null and 
+		Game.available_drone_colors.size() != 0):
+		random_color = Game.available_drone_colors[randi() % Game.available_drone_colors.size()]
+	set_color(random_color)
 
+func show_hide_click_me():
+	if Game.Data.is_tutorial_step("click_me_drone"):
+		sp_click_me.popup()
+	else:
+		sp_click_me.hide()
+		
 func move_toward_drone_pad(delta) -> bool:
 	clear_all()
 	if cargo.size() > 0:
@@ -100,12 +129,19 @@ func move_toward_drone_pad(delta) -> bool:
 		global_rotation = drone_pad.global_rotation
 	
 	return reached_drone_pad
-		
+
+func update_selection_torus_visibility():
+	sp_selection_torus.visible = (Game.Map.map_ui.ui_drone_popup.visible and
+									Game.Map.map_ui.ui_drone_popup.drone == self)
+
 func _physics_process(delta):
 	if not visible:
 		return
 		
 	var game_delta = Game.Data.deliver_phase_speed * delta
+	
+	show_hide_click_me()
+	update_selection_torus_visibility()
 	
 	if not Game.Data.deliver_phase:
 		
@@ -233,12 +269,13 @@ func move_toward_destination(destination:Vector3, delta:float) -> bool:
 	if distance < destination_snap_distance:
 		return true
 	
-#	look_at(destination, Vector3.UP)
 	rotation_degrees.y =  lerp(rotation_degrees.y,
 				rad2deg(translation.angle_to(destination)), 1.0)
 
 	var direction = translation.direction_to(destination)
-	translation += direction * get_upgraded_speed() * delta
+	var actual_speed =  get_upgraded_speed() * delta
+	actual_speed = min(actual_speed, translation.distance_to(destination))
+	translation += direction * actual_speed
 	return false
 
 func waypoint_order_match_stockpile() -> bool:
@@ -247,7 +284,7 @@ func waypoint_order_match_stockpile() -> bool:
 	return matching_order
 
 func reserve_waypoint(delta) -> bool:
-	if waypoint.stockpile.import:
+	if waypoint.factory_input:
 		return try_reserve_delivery(delta)
 	else:
 		return try_reserve_pickup(delta)
@@ -315,7 +352,7 @@ func land_on_drone_pad(delta) -> bool:
 	return true
 	
 func pickup_or_deliver(delta)->bool:
-	if waypoint.stockpile.import:
+	if waypoint.factory_input:
 		return try_deliver(delta)
 		
 	return try_pickup(delta)
@@ -374,9 +411,9 @@ func _on_Drone_input_event(camera, event, position, normal, shape_idx):
 			on_mouse_left_button_click()
 
 func on_mouse_left_button_click():
-	print("on_mouse_left_button_click")
 	emit_signal("Pressed", self)
 	
+	Game.Data.complete_tutorial_step("click_me_drone")
 	Game.Map.map_ui.show_drone_popup(self)
 
 func _on_Drone_mouse_entered():

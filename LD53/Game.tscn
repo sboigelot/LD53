@@ -8,6 +8,7 @@
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
 game_data_scene = ExtResource( 2 )
+available_drone_colors = PoolColorArray( 0.839216, 0.447059, 0.133333, 1, 0.823529, 0.764706, 0.133333, 1, 0.352941, 0.764706, 0.121569, 1, 0.141176, 0.8, 0.631373, 1, 0.156863, 0.14902, 0.784314, 1, 0.686275, 0.152941, 0.815686, 1, 0.870588, 0.141176, 0.141176, 1 )
 
 [node name="VoiceGeneratorAudioStreamPlayer" parent="." instance=ExtResource( 3 )]
 stream = ExtResource( 4 )

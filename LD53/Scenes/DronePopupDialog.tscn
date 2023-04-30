@@ -5,30 +5,26 @@
 [ext_resource path="res://Assets/Icons/speed.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/cargo.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/UpgradeView.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Icons/arrow_up.png" type="Texture" id=6]
 [ext_resource path="res://fonts/ld53/ld52_def_small.tres" type="DynamicFont" id=7]
 [ext_resource path="res://fonts/ld53/ld52_def_xsmall.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/WaypointView.tscn" type="PackedScene" id=9]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0.360784 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[node name="DronePopupDialog" type="PopupDialog"]
+[node name="DronePopupDialog" type="WindowDialog"]
+self_modulate = Color( 0.0392157, 0.392157, 0.647059, 0.741176 )
 margin_top = 100.0
 margin_right = 450.0
 margin_bottom = 580.0
-custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 WaypointViewScene = ExtResource( 9 )
+np_color_option = NodePath("MarginContainer/VBoxContainer/TitleContainer/ColorOptionButton")
 np_waypoint_view_placeholder = NodePath("MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder")
 np_add_stop_index_label = NodePath("MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2/AddStopIndexLabel")
 np_add_stop_button = NodePath("MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2/AddStopButton")
 np_speed_upgrade_view = NodePath("MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer/SpeedUpgradeView")
 np_cargo_upgrade_view = NodePath("MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer/CargoUpgradeView2")
 np_memory_upgrade_view = NodePath("MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer/MemoryUpgradeView3")
+np_tutorial_add_step_container = NodePath("MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/TutorialAddStopContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -44,12 +40,26 @@ margin_top = 10.0
 margin_right = 440.0
 margin_bottom = 470.0
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitleContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 430.0
 margin_bottom = 30.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TitleContainer"]
+margin_right = 430.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Drone"
 align = 1
+
+[node name="ColorOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TitleContainer"]
+margin_left = 380.0
+margin_right = 430.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 8
+items = [ "", null, false, 0, null ]
+selected = 0
 
 [node name="Separator" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 34.0
@@ -78,12 +88,12 @@ margin_bottom = 230.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer"]
 margin_right = 420.0
-margin_bottom = 220.0
+margin_bottom = 156.0
 size_flags_horizontal = 3
 
 [node name="WaipointPlaceholder" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2"]
 margin_right = 420.0
-margin_bottom = 188.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 
 [node name="WaypointView" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
@@ -96,29 +106,33 @@ margin_right = 420.0
 margin_bottom = 60.0
 
 [node name="WaypointView3" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
+visible = false
 margin_top = 64.0
 margin_right = 420.0
 margin_bottom = 92.0
 
 [node name="WaypointView4" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
+visible = false
 margin_top = 96.0
 margin_right = 420.0
 margin_bottom = 124.0
 
 [node name="WaypointView5" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
+visible = false
 margin_top = 128.0
 margin_right = 420.0
 margin_bottom = 156.0
 
 [node name="WaypointView6" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
+visible = false
 margin_top = 160.0
 margin_right = 420.0
 margin_bottom = 188.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2"]
-margin_top = 192.0
+margin_top = 64.0
 margin_right = 420.0
-margin_bottom = 220.0
+margin_bottom = 92.0
 
 [node name="AddStopIndexLabel" type="Label" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2"]
 margin_top = 3.0
@@ -136,6 +150,36 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 text = "add stop"
 align = 0
+
+[node name="TutorialAddStopContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2"]
+visible = false
+margin_top = 96.0
+margin_right = 420.0
+margin_bottom = 124.0
+
+[node name="AddStopIndexLabel" type="Label" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/TutorialAddStopContainer"]
+margin_top = 3.0
+margin_right = 27.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 27, 0 )
+custom_fonts/font = ExtResource( 8 )
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/TutorialAddStopContainer"]
+margin_left = 31.0
+margin_right = 59.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="AddStopIndexLabel2" type="Label" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/TutorialAddStopContainer"]
+margin_left = 63.0
+margin_top = 3.0
+margin_right = 163.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 27, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "Click here!"
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 300.0
@@ -206,6 +250,7 @@ margin_bottom = 460.0
 rect_min_size = Vector2( 0, 2 )
 
 [connection signal="about_to_show" from="." to="." method="_on_DronePopupDialog_about_to_show"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/TitleContainer/ColorOptionButton" to="." method="_on_ColorOptionButton_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2/AddStopButton" to="." method="_on_AddStopButton_pressed"]
 [connection signal="Upgraded" from="MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer/SpeedUpgradeView" to="." method="_on_SpeedUpgradeView_Upgraded"]
 [connection signal="Upgraded" from="MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer/CargoUpgradeView2" to="." method="_on_CargoUpgradeView2_Upgraded"]

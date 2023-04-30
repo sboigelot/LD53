@@ -101,7 +101,8 @@ func try_deliver(reserved:bool, quantity:int) -> bool:
 		
 	self.cargo_count += quantity
 	emit_signal("NewCargo")
-	Game.Data.register_day_delivery(cargo_type, quantity)
+	if import:
+		Game.Data.register_day_delivery(cargo_type, quantity)
 	
 	if reserved:
 		cargo_space_reserved -= quantity
@@ -110,16 +111,18 @@ func try_deliver(reserved:bool, quantity:int) -> bool:
 	
 func register_waiting() -> int:
 	drone_waiting += 1
+	print("Sockpile %s -> drone_waiting now %d" % [get_path(), drone_waiting])
 	return drone_waiting - 1
 	
 func unregister_waiting():
 	drone_waiting -= 1
 	emit_signal("DroneLeft", self)
 	
-func reset():
+func reset(keep_cargo:bool = false):
 	drone_waiting = 0
 	cargo_space_reserved = 0
 	cargo_reserved = 0
 	drone_in_lane = null
-	set_crate_count(0)
+	if not keep_cargo:
+		set_crate_count(0)
 	

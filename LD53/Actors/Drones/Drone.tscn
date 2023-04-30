@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Actors/Drones/Drone.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Icons/confused.png" type="Texture" id=2]
@@ -7,9 +7,14 @@
 [ext_resource path="res://Assets/Icons/wait.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/meat.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Models/Drone/drone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/HoverLabel3D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.3
+
+[sub_resource type="SpatialMaterial" id=7]
+params_diffuse_mode = 4
+albedo_color = Color( 0.117647, 0.32549, 0.639216, 1 )
 
 [sub_resource type="SphereMesh" id=2]
 radius = 0.3
@@ -83,6 +88,7 @@ tracks/1/keys = {
 mode = 3
 gravity_scale = 0.0
 script = ExtResource( 1 )
+np_click_me = NodePath("Visual/ClickMeSpatial")
 np_warning_no_cargo_sprite_3D = NodePath("Warnings/WarningNoCargoSprite3D")
 np_warning_no_cargo_space_sprite_3D = NodePath("Warnings/WarningNoSpaceSprite3D")
 np_warning_long_wait_time_sprite_3D = NodePath("Warnings/WarningLongWaitSprite3D")
@@ -91,10 +97,20 @@ np_cargo_icon_1 = NodePath("Cargos/CargoSprite3D1")
 np_cargo_icon_2 = NodePath("Cargos/CargoSprite3D2")
 np_cargo_icon_3 = NodePath("Cargos/CargoSprite3D3")
 np_animation_player = NodePath("AnimationPlayer")
+np_selection_torus = NodePath("SelectionTorus")
+np_drone_mesh = NodePath("Visual/drone/dell-e")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109384, 0 )
 shape = SubResource( 1 )
+
+[node name="SelectionTorus" type="CSGTorus" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0797948, 0 )
+inner_radius = 0.5
+outer_radius = 0.6
+sides = 32
+ring_sides = 18
+material = SubResource( 7 )
 
 [node name="Visual" type="Spatial" parent="."]
 
@@ -119,6 +135,10 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
 
 [node name="drone" parent="Visual" instance=ExtResource( 7 )]
+
+[node name="ClickMeSpatial" parent="Visual" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.664113, 0 )
+text = "Click me!"
 
 [node name="Warnings" type="Spatial" parent="."]
 
@@ -173,3 +193,5 @@ anims/Wobble = SubResource( 5 )
 [connection signal="input_event" from="." to="." method="_on_Drone_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Drone_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Drone_mouse_exited"]
+
+[editable path="Visual/drone"]
