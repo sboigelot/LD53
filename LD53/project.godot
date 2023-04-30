@@ -417,8 +417,12 @@ _global_script_class_icons={
 [application]
 
 config/name="LD53"
-run/main_scene="res://Scenes/MapScene.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[audio]
+
+default_bus_layout="res://Sounds/MasterBusLayout.tres"
 
 [autoload]
 

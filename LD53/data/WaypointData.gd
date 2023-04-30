@@ -3,8 +3,8 @@ extends Resource
 class_name WaypointData
 
 var factory: Factory 
-var factory_input: bool = false
-var cargo_type: String = "water"
+export var factory_input: bool = false
+export var cargo_type: String = "water"
 
 export var np_stockpile: NodePath
 

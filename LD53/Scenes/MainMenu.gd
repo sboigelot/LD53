@@ -16,29 +16,18 @@ onready var better_ai_button = get_node(np_better_ai_button) as Button
 func _on_StartGameButton_pressed():
 	SfxManager.play("buttonpress")
 	Game.new_game()
-	Game.data.better_ai = better_ai_button.pressed
-	Game.transition_to_scene("res://scenes/WorldMap.tscn")
+	Game.transition_to_scene("res://scenes/MapScene.tscn")
 
-func _on_NoBombButton_pressed():
-	SfxManager.play("buttonpress")
-	Game.new_game()
-	Game.data.no_bomb_challenge = true
-	Game.data.better_ai = better_ai_button.pressed
-	Game.transition_to_scene("res://scenes/WorldMap.tscn")
-
-func _on_NoTaxesButton_pressed():
-	SfxManager.play("buttonpress")
-	Game.new_game()
-	Game.data.no_taxes_challenge = true
-	Game.data.better_ai = better_ai_button.pressed
-	Game.transition_to_scene("res://scenes/WorldMap.tscn")
-	
 func _on_FullscreenButton_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen
 	SfxManager.play("buttonpress")
 
 func _ready():
 	update_sound_sliders()
+	
+func _input(event):
+	if Input.is_action_just_released("ui_cancel"):
+		get_tree().quit()
 	
 func update_sound_sliders():
 	var master_volume:float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
@@ -74,3 +63,6 @@ func _on_MusicVolumeSlider_drag_ended(_value_changed):
 
 func _on_SoundFxVolumeSlider_drag_ended(_value_changed):
 	SfxManager.play("confirm")
+
+func _on_QuitGameButton_pressed():
+	get_tree().quit()

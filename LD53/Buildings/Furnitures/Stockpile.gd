@@ -111,7 +111,7 @@ func try_deliver(reserved:bool, quantity:int) -> bool:
 	
 func register_waiting() -> int:
 	drone_waiting += 1
-	print("Sockpile %s -> drone_waiting now %d" % [get_path(), drone_waiting])
+#	print("Sockpile %s -> drone_waiting now %d" % [get_path(), drone_waiting])
 	return drone_waiting - 1
 	
 func unregister_waiting():

@@ -9,6 +9,7 @@ export var day:int = 1
 
 export var deliver_phase:bool = false
 export var deliver_phase_duration_seconds:float = 60.0
+export var deliver_phase_infinite: bool = false
 export var deliver_phase_timer: float = 0.0
 export var deliver_phase_speed: float = 1.0
 var pre_start_delivery_phase_money:int
@@ -40,8 +41,9 @@ func complete_tutorial_step(step_name:String):
 	if is_tutorial_step(step_name):
 		tutorial_steps.remove(0)
 
-func start_delivery_phase():
+func start_delivery_phase(infinite:bool = false):
 	complete_tutorial_step("start_day")
+	deliver_phase_infinite = infinite
 	deliver_phase_timer = 0.0
 	deliver_phase_speed = 1.0
 	deliver_phase = true
@@ -85,7 +87,7 @@ func get_completed_goals_count(cargo_type:String) -> int:
 	return total
 	
 func _process(delta):
-	if deliver_phase:
+	if deliver_phase and not deliver_phase_infinite:
 		deliver_phase_timer += (delta * deliver_phase_speed)
 		if deliver_phase_timer >= deliver_phase_duration_seconds:
 			complete_day()

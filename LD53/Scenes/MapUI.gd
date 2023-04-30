@@ -59,7 +59,7 @@ func _process(delta):
 	ui_delivery_phase_progress_bar.value = Game.Data.deliver_phase_timer
 #	ui_delivery_phase_progress_bar.visible = Game.Data.deliver_phase
 	
-	ui_delivery_phase_info_label.text = "Delivery in Progress!" if Game.Data.deliver_phase else "Configuration Mode"
+	ui_delivery_phase_info_label.text = "Delivery in Progress!" if Game.Data.deliver_phase else "Planning Mode"
 
 	ui_tutorial_start_day_container.visible = Game.Data.is_tutorial_step("start_day")
 
@@ -127,6 +127,9 @@ func show_end_of_day_report(day:int):
 	ui_end_of_day_report_popup.popup_centered()
 	
 func update_goal_labels():
+	if Game.Data == null:
+		return
+		
 	var delivered_salad = Game.Data.get_completed_goals_count("salad")
 	var goal_salad = Game.Data.get_total_goals_count("salad")
 	ui_edr_count_label_goal_salad.text 	=	"%d / %d" % [delivered_salad, goal_salad]

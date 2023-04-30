@@ -7,7 +7,7 @@
 [ext_resource path="res://Buildings/Factories/WaterTower.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Buildings/Factories/Farm.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Buildings/Factories/SaladResto.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Buildings/Factories/SalarKitchen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Buildings/Factories/SaladKitchen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/MapUI.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Buildings/Factories/BurgerResto.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Buildings/Factories/Ranch.tscn" type="PackedScene" id=11]
@@ -20,85 +20,117 @@
 size = Vector2( 100, 100 )
 
 [sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.141176, 0.172549, 0.105882, 1 )
+albedo_color = Color( 0.388235, 0.498039, 0.262745, 1 )
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../ExportStockpile")
 cargo_count = 1
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../ImportStockpile")
 cargo_count = 1
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../WaterTower/Stockpiles/Stockpile")
 cargo_count = 2
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../Farm/Stockpiles/Input")
 cargo_count = 2
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../Farm/Stockpiles/Output")
 cargo_count = 1
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../ImportStockpile")
 cargo_count = 1
 
 [sub_resource type="Resource" id=9]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/Farm/Stockpiles/Output")
 cargo_count = 1
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/RestoSalad/Stockpiles/Input")
 cargo_count = 1
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/RestoSalad/Stockpiles/Output")
 cargo_count = 1
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/MarketSalad/Stockpiles/Input")
 cargo_count = 1
 
 [sub_resource type="Resource" id=13]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/Farm/Stockpiles/Output")
 cargo_count = 3
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/Ranch/Stockpiles/Input")
 cargo_count = 3
 
 [sub_resource type="Resource" id=19]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/Ranch/Stockpiles/Output")
 cargo_count = 1
 
 [sub_resource type="Resource" id=20]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/JustBurgers/Stockpiles/Input")
 cargo_count = 1
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/JustBurgers/Stockpiles/Output")
 cargo_count = 1
 
 [sub_resource type="Resource" id=18]
 script = ExtResource( 3 )
+factory_input = false
+cargo_type = "water"
 np_stockpile = NodePath("../../Buildings/MarketBurger/Stockpiles/Input")
 cargo_count = 1
 
@@ -256,7 +288,7 @@ transform = Transform( 0.690983, 0, 0.722871, 0, 1, 0, -0.722871, 0, 0.690983, 0
 transform = Transform( 0.578057, 0, 0.815997, 0, 1, 0, -0.815997, 0, 0.578057, 6.1141, 0, -8.36852 )
 
 [node name="RestoSalad" parent="Buildings" instance=ExtResource( 8 )]
-transform = Transform( 0.081521, 0, -0.996672, 0, 1, 0, 0.996672, 0, 0.081521, 10.5085, 0, -2.56809 )
+transform = Transform( 0.897043, 0, -0.441944, 0, 1, 0, 0.441944, 0, 0.897043, 10.5085, 0, -2.92127 )
 
 [node name="MarketSalad" parent="Buildings" instance=ExtResource( 7 )]
 transform = Transform( 0.422571, 0, 0.90633, 0, 1, 0, -0.90633, 0, 0.422571, 3.05955, 0, 1.90177 )
@@ -286,7 +318,7 @@ transform = Transform( 0.875953, 0, 0.482396, 0, 1, 0, -0.482396, 0, 0.875953, -
 transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, 1.35407, 0, -10.3044 )
 
 [node name="Warehouse" parent="Buildings" instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9012, 0, 3.74791 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8523, 0, 3.74791 )
 
 [node name="MapUI" parent="." instance=ExtResource( 9 )]
 
@@ -300,6 +332,7 @@ transform = Transform( 0.178567, -0.625406, 0.759593, 0.14312, 0.780299, 0.60881
 [editable path="Buildings/Farm"]
 [editable path="Buildings/Farm/Visual/farm"]
 [editable path="Buildings/RestoSalad"]
+[editable path="Buildings/RestoSalad/Visual/saladekitchen"]
 [editable path="Buildings/MarketSalad"]
 [editable path="Buildings/Ranch"]
 [editable path="Buildings/Ranch/Visual/ranch"]

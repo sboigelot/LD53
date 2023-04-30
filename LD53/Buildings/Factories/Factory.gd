@@ -28,6 +28,7 @@ onready var sp_warning_no_input_sprite_3D 			= get_node(np_warning_no_input_spri
 onready var sp_warning_no_output_space_sprite_3D 	= get_node(np_warning_no_output_space_sprite_3D) 	as Spatial
 onready var sp_delivery_target_placeholder 			= get_node(np_delivery_target_placeholder) 	as Spatial
 
+export var cycle_pickup_delay: float = 1.0
 export var cycle_unpaid_delay_warning: float = 5.0
 export var cycle_duration: float = 5.0
 export var delay_between_cycle: float = 3.0
@@ -37,8 +38,10 @@ export var cycle_money_generation: int = 0
 
 var victory_info_timer: float = 10.0 
 
+var current_cycle_pickup_delay: float
 var current_cycle_unpaid_timer: float
 var current_cycle_remaining_duration: float
+var current_cycle_cargo_reserved: bool
 var current_cycle_paid: bool
 var current_output_retry_delay: float
 var current_delay_between_cycle: float
@@ -57,7 +60,8 @@ func _ready():
 func register_game_goals():
 	if (sp_delivery_target_placeholder != null and
 		sp_delivery_target_placeholder.get_child_count() > 0):
-		Game.Data.register_game_goal(self)
+		if Game.Data != null:
+			Game.Data.register_game_goal(self)
 		
 func reset_goals():
 	if (sp_delivery_target_placeholder != null and
@@ -99,6 +103,7 @@ func reset():
 	
 	current_cycle_unpaid_timer = 0
 	current_cycle_remaining_duration = 0
+	current_cycle_cargo_reserved = false
 	current_cycle_paid = false
 	current_output_retry_delay = 0
 	current_delay_between_cycle = 0
@@ -164,7 +169,7 @@ func _process(delta):
 	if not current_cycle_paid:
 		current_cycle_unpaid_timer += game_delta
 		sp_warning_no_input_sprite_3D.visible = current_cycle_unpaid_timer > cycle_unpaid_delay_warning
-		current_cycle_paid = try_pay_cycle_if_needed()
+		current_cycle_paid = try_pay_cycle_if_needed(game_delta)
 		if current_cycle_paid:
 			start_new_cycle()
 			return
@@ -176,16 +181,25 @@ func _process(delta):
 	if current_cycle_paid:
 		progress_cycle(game_delta)
 		
-func try_pay_cycle_if_needed() -> bool:
+func try_pay_cycle_if_needed(delta) -> bool:
 	if current_cycle_paid:
 		return true
 	
 	if sp_input_stockpile == null:
 		return true
 	
-	if sp_input_stockpile.try_reserve_cargo(1):
-		if sp_input_stockpile.try_pickup(true, 1):
-			return true
+	if not current_cycle_cargo_reserved:
+		current_cycle_cargo_reserved = sp_input_stockpile.try_reserve_cargo(1)
+		if current_cycle_cargo_reserved:
+			current_cycle_pickup_delay = cycle_pickup_delay
+		return false
+		
+	current_cycle_pickup_delay -= delta
+	if current_cycle_pickup_delay > 0:
+		return false
+	
+	if sp_input_stockpile.try_pickup(true, 1):
+		return true
 	
 	return false
 	
@@ -220,6 +234,7 @@ func complete_cycle():
 		
 	sp_warning_no_input_sprite_3D.visible = false
 	sp_warning_no_output_space_sprite_3D.visible = false
+	current_cycle_cargo_reserved = false
 	current_delay_between_cycle = delay_between_cycle
 	
 func produce_output() -> bool:

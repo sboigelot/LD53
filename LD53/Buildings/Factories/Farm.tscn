@@ -128,6 +128,7 @@ np_input_stockpile = NodePath("Stockpiles/Input")
 np_output_stockpile = NodePath("Stockpiles/Output")
 np_warning_no_input_sprite_3D = NodePath("Warnings/WarningNoInputSprite3D")
 np_warning_no_output_space_sprite_3D = NodePath("Warnings/WarningNoOutputSprite3D")
+delay_between_cycle = 1.0
 cycle_money_generation = 10
 
 [node name="Visual" type="Spatial" parent="."]

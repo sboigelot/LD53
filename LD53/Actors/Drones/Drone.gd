@@ -95,14 +95,15 @@ func _ready():
 	on_cargo_change()
 	sp_animation_player.play("Wobble")
 	
-	var random_color = Color.white
-	if (Game.available_drone_colors != null and 
+	var random_color = color
+	if (random_color == Color.white and
+		Game.available_drone_colors != null and 
 		Game.available_drone_colors.size() != 0):
 		random_color = Game.available_drone_colors[randi() % Game.available_drone_colors.size()]
 	set_color(random_color)
 
 func show_hide_click_me():
-	if Game.Data.is_tutorial_step("click_me_drone"):
+	if not Game.Data.deliver_phase and Game.Data.is_tutorial_step("click_me_drone"):
 		sp_click_me.popup()
 	else:
 		sp_click_me.hide()
@@ -345,6 +346,9 @@ func land_on_waypoint(delta) -> bool:
 	return true
 
 func land_on_drone_pad(delta) -> bool:
+	if drone_pad == null:
+		return true
+		
 	if translation.y > (drone_pad.global_translation.y):
 		translation.y -= (take_off_speed * delta)
 		return false

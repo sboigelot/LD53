@@ -1,9 +1,450 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/ld53/ld52_def_normal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/MapUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Actors/Drones/Drone.tscn" type="PackedScene" id=4]
 [ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Buildings/Factories/Farm.tscn" type="PackedScene" id=6]
 [ext_resource path="res://fonts/ld53/ld52_def_xsmall.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Buildings/Factories/SaladKitchen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Buildings/Factories/WaterTower.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Buildings/Factories/SaladResto.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Data/WaypointData.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/MapScene.gd" type="Script" id=12]
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 100, 100 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.388235, 0.498039, 0.262745, 1 )
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 11 )
+factory_input = false
+cargo_type = "water"
+np_stockpile = NodePath("../../Buildings/WaterTower/Stockpiles/Stockpile")
+cargo_count = 1
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 11 )
+factory_input = true
+cargo_type = "water"
+np_stockpile = NodePath("../../Buildings/Farm/Stockpiles/Input")
+cargo_count = 1
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 11 )
+factory_input = false
+cargo_type = "vegetable"
+np_stockpile = NodePath("../../Buildings/Farm/Stockpiles/Output")
+cargo_count = 1
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 11 )
+factory_input = true
+cargo_type = "vegetable"
+np_stockpile = NodePath("../../Buildings/RestoSalad/Stockpiles/Input")
+cargo_count = 1
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 11 )
+factory_input = false
+cargo_type = "salad"
+np_stockpile = NodePath("../../Buildings/RestoSalad/Stockpiles/Output")
+cargo_count = 1
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 11 )
+factory_input = true
+cargo_type = "salad"
+np_stockpile = NodePath("../../Buildings/MarketSalad/Stockpiles/Input")
+cargo_count = 1
+
+[sub_resource type="Animation" id=5]
+resource_name = "Cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.05, 1.05, 1.05 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.05, 1.05, 1.05 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "CoinUp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ), Vector3( 0, 3, 0 ), Vector3( 0, 3, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.05, 1.05, 1.05 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "CoinUp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ), Vector3( 0, 3, 0 ), Vector3( 0, 3, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.05, 1.05, 1.05 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "CoinUp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ), Vector3( 0, 3, 0 ), Vector3( 0, 3, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.4, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -140,14 +581,24 @@ margin_bottom = 71.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="QuitGameButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 194.0
+margin_right = 184.0
+margin_bottom = 239.0
+rect_pivot_offset = Vector2( 41.5, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Quit to OS"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 249.0
 margin_right = 1720.0
-margin_bottom = 482.0
+margin_bottom = 510.0
 size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-margin_top = 492.0
+margin_top = 520.0
 margin_right = 1720.0
 margin_bottom = 781.0
 size_flags_vertical = 3
@@ -180,8 +631,101 @@ bbcode_text = "[center]Made for Ludum Dare 53 \"Delivery\" by [color=#00ffff]Bu[
 text = "Made for Ludum Dare 53 \"Delivery\" by Bu & Togis"
 fit_content_height = true
 
+[node name="MainMenu3D" type="Spatial" parent="."]
+script = ExtResource( 12 )
+np_map_ui = NodePath("MapUI")
+allow_keyboard_control = false
+
+[node name="Camera" type="Camera" parent="MainMenu3D"]
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 22, 30 )
+projection = 1
+current = true
+fov = 23.6
+size = 20.0
+
+[node name="Plane" type="MeshInstance" parent="MainMenu3D"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Drones" type="Spatial" parent="MainMenu3D"]
+
+[node name="Drone1" parent="MainMenu3D/Drones" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22221, 0, 3.16154 )
+color = Color( 0.0392157, 0.752941, 1, 1 )
+route = [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ]
+
+[node name="Buildings" type="Spatial" parent="MainMenu3D"]
+
+[node name="StockpileNodePathSource" type="Spatial" parent="MainMenu3D/Buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13882, 0.617886, 4.04727 )
+visible = false
+
+[node name="WaterTower" parent="MainMenu3D/Buildings" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.587216, 0.617886, -2.07772 )
+
+[node name="AnimationPlayer" parent="MainMenu3D/Buildings/WaterTower" index="1"]
+anims/Cycle = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="Stockpile" parent="MainMenu3D/Buildings/WaterTower/Stockpiles" index="0"]
+transform = Transform( 0.690983, 0, 0.722871, 0, 1, 0, -0.722871, 0, 0.690983, 0.988391, 0, 1.44266 )
+
+[node name="Farm" parent="MainMenu3D/Buildings" instance=ExtResource( 6 )]
+transform = Transform( 0.578057, 0, 0.815997, 0, 1, 0, -0.815997, 0, 0.578057, 7.25292, 0.617886, -4.32125 )
+
+[node name="AnimationPlayer" parent="MainMenu3D/Buildings/Farm" index="1"]
+anims/Cycle = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[node name="MoneyAnimationPlayer" parent="MainMenu3D/Buildings/Farm/MoneyEffect" index="1"]
+anims/CoinUp = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="RestoSalad" parent="MainMenu3D/Buildings" instance=ExtResource( 8 )]
+transform = Transform( 0.897043, 0, -0.441944, 0, 1, 0, 0.441944, 0, 0.897043, 11.6473, 0.617886, 1.126 )
+
+[node name="AnimationPlayer" parent="MainMenu3D/Buildings/RestoSalad" index="1"]
+anims/Cycle = SubResource( 11 )
+anims/RESET = SubResource( 12 )
+
+[node name="MoneyAnimationPlayer" parent="MainMenu3D/Buildings/RestoSalad/MoneyEffect" index="1"]
+anims/CoinUp = SubResource( 13 )
+anims/RESET = SubResource( 14 )
+
+[node name="MarketSalad" parent="MainMenu3D/Buildings" instance=ExtResource( 10 )]
+transform = Transform( 0.422571, 0, 0.90633, 0, 1, 0, -0.90633, 0, 0.422571, 4.19837, 0.617886, 5.94904 )
+
+[node name="CollisionShape" parent="MainMenu3D/Buildings/MarketSalad/Visual/MeshInstance/StaticBody" index="0"]
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" parent="MainMenu3D/Buildings/MarketSalad" index="1"]
+anims/Cycle = SubResource( 15 )
+anims/RESET = SubResource( 16 )
+
+[node name="WarningNoOutputSpaceSprite3D" parent="MainMenu3D/Buildings/MarketSalad/Warnings" index="1"]
+visible = false
+
+[node name="MoneyAnimationPlayer" parent="MainMenu3D/Buildings/MarketSalad/MoneyEffect" index="1"]
+anims/CoinUp = SubResource( 17 )
+anims/RESET = SubResource( 18 )
+
+[node name="MapUI" parent="MainMenu3D" instance=ExtResource( 3 )]
+visible = false
+
+[node name="DirectionalLight" type="DirectionalLight" parent="MainMenu3D"]
+transform = Transform( 0.178567, -0.625406, 0.759593, 0.14312, 0.780299, 0.60881, -0.973463, 1.98914e-11, 0.228844, 7.05351, 3.04778, 0 )
+
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
 [connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicControl/SoundFxVolumeSlider" to="." method="_on_SoundFxVolumeSlider_value_changed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuitGameButton" to="." method="_on_QuitGameButton_pressed"]
+
+[editable path="MainMenu3D/Buildings/WaterTower"]
+[editable path="MainMenu3D/Buildings/WaterTower/Visual/watertower"]
+[editable path="MainMenu3D/Buildings/Farm"]
+[editable path="MainMenu3D/Buildings/Farm/Visual/farm"]
+[editable path="MainMenu3D/Buildings/RestoSalad"]
+[editable path="MainMenu3D/Buildings/RestoSalad/Visual/saladekitchen"]
+[editable path="MainMenu3D/Buildings/MarketSalad"]

@@ -19,6 +19,7 @@ export var auto_play:bool = true
 export var play_on_start:bool = false
 export var playing_index = -1
 export var random:bool = true
+export (String) var bus_name:String = 'Music'	
 
 export var current_song_title = \"\"
 
@@ -37,6 +38,7 @@ func _ready():
 func play(music:AudioStream)->void:
 	emit_signal(\"MusicStarts\", current_song_title)
 	audio.stream = music
+	audio.bus = bus_name
 	audio.play()
 	
 func stop()->void:
@@ -79,6 +81,7 @@ func play_next_music():
 
 [node name="Music" type="Node"]
 script = SubResource( 1 )
+play_on_start = true
 playlist = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

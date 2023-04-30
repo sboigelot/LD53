@@ -137,7 +137,7 @@ np_warning_no_input_sprite_3D = NodePath("Warnings/WarningNoInputSprite3D")
 np_warning_no_output_space_sprite_3D = NodePath("Warnings/WarningNoOutputSpaceSprite3D")
 np_delivery_target_placeholder = NodePath("DeliveryTargetPlaceholder")
 cycle_duration = 1.0
-delay_between_cycle = 0.0
+delay_between_cycle = 1.0
 cycle_warning_duration = -5.0
 cycle_money_generation = 12
 

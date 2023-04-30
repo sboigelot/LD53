@@ -8,7 +8,7 @@ var Map: MapScene
 export(PoolColorArray) var available_drone_colors
 
 func _ready():
-	new_game() # for debug singl components
+#	new_game() # for debug singl components
 	randomize()
 
 func new_game():
@@ -41,16 +41,9 @@ func transition_to_scene(scene_path):
 	ScreenTransition.transition_to_scene(scene_path)
 
 func _input(_event):
-	
-	if Input.is_action_just_released("ui_accept"):
-		if Data != null:
-			if not Data.deliver_phase:
-				Data.start_delivery_phase()
-			else:
-				Data.reset_delivery_phase()
 				
 	if Input.is_action_just_released("ui_cancel"):
-		get_tree().quit()
+		Game.transition_to_scene("res://scenes/MainMenu.tscn")
 			
 	if Input.is_action_just_released("toggle_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
