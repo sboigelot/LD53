@@ -436,7 +436,7 @@ func _on_Drone_mouse_exited():
 func show_fly_path():
 	var fly_path = get_fly_path()
 	if fly_path.size() > 0:
-		Game.Map.show_path(fly_path)
+		Game.Map.show_path(fly_path, color)
 
 func get_fly_path() -> Array:
 	var points = []

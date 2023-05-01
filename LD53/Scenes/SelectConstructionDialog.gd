@@ -50,11 +50,13 @@ func _on_CancelButton_pressed():
 	hide()
 
 func _on_SelectDroneHubButton_pressed():
+	SfxManager.play("confirm")
 	Game.Data.money -= drone_hub_price
 	emit_signal("ConstructionSelected", drone_hub_scene)
 	hide()
 
 func _on_SelectWarehoudeHubButton_pressed():
+	SfxManager.play("confirm")
 	map_has_warehouse = true
 	Game.Data.money -= warehouse_price
 	emit_signal("ConstructionSelected", warehouse_scene)

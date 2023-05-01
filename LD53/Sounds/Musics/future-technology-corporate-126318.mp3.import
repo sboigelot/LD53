@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/future-technology-corporate-126318.mp3-7ce5bf52bc379d82227c5bf7fa1758fb.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/future-technology-corporate-126318.mp3"
+dest_files=[ "res://.import/future-technology-corporate-126318.mp3-7ce5bf52bc379d82227c5bf7fa1758fb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

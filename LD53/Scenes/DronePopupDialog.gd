@@ -83,11 +83,13 @@ func update_ui():
 	drone.show_fly_path()
 
 func on_waypoint_view_picking_target(waypoint_view):
+	SfxManager.play("beep_click")
 	for child in ui_waypoint_view_placeholder.get_children():
 		if child != waypoint_view:
 			child.toggle_target_button_off()
 
 func on_delete_waypoint(data:WaypointData):
+	SfxManager.play("robot_error_1")
 	drone.route.erase(data)
 	update_ui()
 
@@ -98,18 +100,22 @@ func _process(delta):
 			hide()
 
 func _on_SpeedUpgradeView_Upgraded():
+	SfxManager.play("confirm")
 	drone.upgrade_speed += 1
 	update_ui()
 
 func _on_CargoUpgradeView2_Upgraded():
+	SfxManager.play("confirm")
 	drone.upgrade_cargo += 1
 	update_ui()
 
 func _on_MemoryUpgradeView3_Upgraded():
+	SfxManager.play("confirm")
 	drone.upgrade_memory += 1
 	update_ui()
 
 func _on_AddStopButton_pressed():
+	SfxManager.play("beep_click")
 	var waypoint = WaypointData.new()
 	if not Game.Data.is_tutorial_step("add_step") and drone.route.size() > 0:
 		var last_waypoint = drone.route[drone.route.size() - 1]
@@ -122,8 +128,11 @@ func _on_AddStopButton_pressed():
 	update_ui()
 
 func _on_ColorOptionButton_item_selected(index):
+	SfxManager.play("beep_click")
 	if drone != null:
 		drone.color = Game.available_drone_colors[index]
+		drone.show_fly_path()
 
 func _on_DronePopupDialog_popup_hide():
+	SfxManager.play("beep_click")
 	Game.Map.hide_path()

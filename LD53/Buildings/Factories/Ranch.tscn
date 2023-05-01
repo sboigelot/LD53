@@ -37,6 +37,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=11]
 resource_name = "Popup"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual:translation")
 tracks/0/interp = 1
@@ -44,7 +45,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( -2, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -4, 0 ), Vector3( 0, 0, 0 ) ]

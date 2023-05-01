@@ -37,7 +37,7 @@ export(NodePath) var np_edr_count_label_burger
 export(NodePath) var np_edr_count_label_coin
 export(NodePath) var np_edr_count_label_goal_salad
 export(NodePath) var np_edr_count_label_goal_meat
-export(NodePath) var np_edr_victory_label
+export(NodePath) var np_edr_victory_container
 
 onready var ui_end_of_day_report_popup		= get_node(np_end_of_day_report_popup) as PopupDialog
 onready var ui_edr_count_label_water		= get_node(np_edr_count_label_water) as Label
@@ -48,7 +48,7 @@ onready var ui_edr_count_label_burger		= get_node(np_edr_count_label_burger) as 
 onready var ui_edr_count_label_coin			= get_node(np_edr_count_label_coin) as Label
 onready var ui_edr_count_label_goal_salad	= get_node(np_edr_count_label_goal_salad) as Label
 onready var ui_edr_count_label_goal_meat	= get_node(np_edr_count_label_goal_meat) as Label
-onready var ui_edr_victory_label			= get_node(np_edr_victory_label) as Label
+onready var ui_edr_victory_container		= get_node(np_edr_victory_container) as Container
 
 export(NodePath) var np_edr_prev_day_button
 export(NodePath) var np_edr_day_label
@@ -94,20 +94,24 @@ func show_drone_popup(drone):
 	ui_drone_popup.update_ui()
 	if not ui_drone_popup.visible:
 		ui_drone_popup.popup()
+		SfxManager.play("confirm")
 
 func show_select_construction_dialog(instance, function):
 	ui_select_construction_dialog.popup_centered()
+	SfxManager.play("beep_click")
 	
 	last_confirmation_request_func = FuncRef.new()
 	last_confirmation_request_func.set_instance(instance)
 	last_confirmation_request_func.function = function
 
 func _on_SelectConstructionDialog_ConstructionSelected(packed_scene):
+	SfxManager.play("beep_click")
 	if last_confirmation_request_func != null:
 		last_confirmation_request_func.call_func(packed_scene)
 		last_confirmation_request_func = null
 	
 func show_confirmation_dialog(title:String, text:String, instance, function):
+	SfxManager.play("beep_click")
 	ui_confirmation_dialog.window_title = title
 	ui_confirmation_dialog.dialog_text = text
 	ui_confirmation_dialog.popup_centered()
@@ -117,6 +121,7 @@ func show_confirmation_dialog(title:String, text:String, instance, function):
 	last_confirmation_request_func.function = function
 
 func _on_ConfirmationDialog_confirmed():
+	SfxManager.play("beep_click")
 	if last_confirmation_request_func != null:
 		last_confirmation_request_func.call_func()
 		last_confirmation_request_func = null
@@ -128,6 +133,8 @@ func on_factory_pressed(factory: Factory):
 	if waiting_for_factory_target == null:
 		return
 		
+#	SfxManager.play("buttonpress")
+		
 	waiting_for_factory_target.on_factory_selected(factory)
 	waiting_for_factory_target = null
 	
@@ -136,15 +143,18 @@ func on_factory_pressed(factory: Factory):
 
 func _on_ResetButton_pressed():
 	if Game.Data.deliver_phase:
+		SfxManager.play("bululup")
 		Game.Data.reset_delivery_phase()
 
 func _on_PlayButton_pressed():
+	SfxManager.play("buttonpress")
 	if not Game.Data.deliver_phase:
 		Game.Data.start_delivery_phase()
 	else:
 		Game.Data.deliver_phase_speed = 1.0
 
 func _on_ForwardButton_pressed():
+	SfxManager.play("buttonpress")
 	if not Game.Data.deliver_phase:
 		Game.Data.start_delivery_phase()
 	if Game.Data.deliver_phase:
@@ -196,21 +206,37 @@ func update_goal_labels():
 		ui_edr_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
 		ui_stat_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
 	
-	ui_edr_victory_label.visible = delivered_salad >= goal_salad and delivered_meat >= goal_meat
+	var was_visible = ui_edr_victory_container.visible
+	ui_edr_victory_container.visible = delivered_salad >= goal_salad and delivered_meat >= goal_meat
+	if not was_visible and ui_edr_victory_container.visible:
+		SfxManager.play("achievement")
 	
 func _on_CloseButton_pressed():
+	SfxManager.play("beep_click")
 	ui_end_of_day_report_popup.hide()
 
 func _on_OpenDayReportButton_button_down():
+	SfxManager.play("beep_click")
 	show_end_of_day_report(Game.Data.day - 1)
 
 func _on_PrevDayButton_pressed():
+	SfxManager.play("beep_click")
 	current_report_day -= 1
 	show_end_of_day_report(current_report_day)
 
 func _on_NextDayButton_pressed():	
+	SfxManager.play("beep_click")
 	current_report_day += 1
 	show_end_of_day_report(current_report_day)
 
 func _on_ShowRecipeButton_pressed():
+	SfxManager.play("beep_click")
 	ui_help_window.popup()
+
+func _on_VictoryExitButton2_pressed():
+	SfxManager.play("beep_click")
+	Game.transition_to_scene("res://scenes/MainMenu.tscn")
+
+func _on_VictoryCloseButton_pressed():
+	SfxManager.play("beep_click")
+	ui_edr_victory_container.visible = false

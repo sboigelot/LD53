@@ -72,18 +72,18 @@ func try_unlock():
 	if unlock_condition_cargo_count == 0:
 		visible = true
 		return
-		
+	
 	var game_count = Game.Data.get_delivery_count(unlock_condition_cargo_type)
 	if game_count >= unlock_condition_cargo_count:
-		Game.Map.map_ui.play_achiement_animation()
+		visible = true
 		popup()
+		Game.Map.map_ui.play_achiement_animation()
 
-func popup():
-	visible = true
+func popup():	
 	if (sp_animation_player != null and
-			sp_animation_player.has_animation("Popup")):
-				sp_animation_player.play("Popup")
-
+		sp_animation_player.has_animation("Popup")):
+			sp_animation_player.play("Popup")
+				
 func register_game_goals():
 	if (sp_delivery_target_placeholder != null and
 		sp_delivery_target_placeholder.get_child_count() > 0):

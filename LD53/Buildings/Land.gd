@@ -14,7 +14,6 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 
 func on_mouse_left_button_click():
 	emit_signal("Pressed", self)
-	
 	Game.Data.complete_tutorial_step("build_on_land")
 	
 #	var text = ""
@@ -41,7 +40,7 @@ func _process(delta):
 	if tutorial_shown:
 		if $HoverLabel3D.visible:
 			$HoverLabel3D.visible = Game.Data.is_tutorial_step("build_on_land")
-	elif Game.Data.is_tutorial_step("build_on_land"):
+	elif not Game.Data.deliver_phase and Game.Data.is_tutorial_step("build_on_land"):
 			$HoverLabel3D.visible = true
 			tutorial_shown = true
 

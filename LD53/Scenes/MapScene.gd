@@ -31,11 +31,13 @@ func _input(event):
 func get_stockpile(node_path:NodePath):
 	return $Buildings/StockpileNodePathSource.get_node(node_path)
 
-func show_path(points:Array):
+func show_path(points:Array, color:Color):
 	var multi_line = $Paths/DronePathMultiLine3D as MultiLine3D
 	multi_line.points = points
 	multi_line.rebuild()
 	multi_line.visible = true
+	color.a = 0.36
+	multi_line.material.albedo_color = color
 	
 func hide_path():
 	$Paths/DronePathMultiLine3D.visible = false

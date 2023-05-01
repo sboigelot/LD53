@@ -42,11 +42,11 @@ margin_bottom = 470.0
 
 [node name="TitleContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TitleContainer"]
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Drone"
@@ -55,55 +55,55 @@ align = 1
 [node name="ColorOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TitleContainer"]
 margin_left = 380.0
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 50, 0 )
 size_flags_horizontal = 8
 items = [ "", null, false, 0, null ]
 selected = 0
 
 [node name="Separator" type="ColorRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 34.0
+margin_top = 32.0
 margin_right = 430.0
-margin_bottom = 36.0
+margin_bottom = 34.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="ProgramLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 40.0
+margin_top = 38.0
 margin_right = 430.0
-margin_bottom = 62.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 8 )
 text = "Program"
 
 [node name="RouteContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 66.0
+margin_top = 68.0
 margin_right = 430.0
-margin_bottom = 296.0
+margin_bottom = 288.0
 size_flags_vertical = 3
 custom_constants/margin_left = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/RouteContainer"]
 margin_left = 10.0
 margin_right = 430.0
-margin_bottom = 230.0
+margin_bottom = 220.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer"]
 margin_right = 420.0
-margin_bottom = 156.0
+margin_bottom = 168.0
 size_flags_horizontal = 3
 
 [node name="WaipointPlaceholder" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2"]
 margin_right = 420.0
-margin_bottom = 60.0
+margin_bottom = 132.0
 size_flags_horizontal = 3
 
 [node name="WaypointView" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
 margin_right = 420.0
-margin_bottom = 28.0
+margin_bottom = 64.0
 
 [node name="WaypointView2" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
-margin_top = 32.0
+margin_top = 68.0
 margin_right = 420.0
-margin_bottom = 60.0
+margin_bottom = 132.0
 
 [node name="WaypointView3" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/WaipointPlaceholder" instance=ExtResource( 9 )]
 visible = false
@@ -130,21 +130,22 @@ margin_right = 420.0
 margin_bottom = 188.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2"]
-margin_top = 64.0
+margin_top = 136.0
 margin_right = 420.0
-margin_bottom = 92.0
+margin_bottom = 168.0
 
 [node name="AddStopIndexLabel" type="Label" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2"]
 margin_top = 3.0
-margin_right = 27.0
-margin_bottom = 25.0
+margin_right = 24.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 24, 0 )
 custom_fonts/font = ExtResource( 8 )
 text = "#2"
 
 [node name="AddStopButton" type="Button" parent="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2"]
-margin_left = 31.0
+margin_left = 28.0
 margin_right = 420.0
-margin_bottom = 28.0
+margin_bottom = 32.0
 focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
@@ -182,20 +183,20 @@ custom_fonts/font = ExtResource( 8 )
 text = "Click here!"
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 300.0
+margin_top = 292.0
 margin_right = 430.0
-margin_bottom = 302.0
+margin_bottom = 294.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="UpgradeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 306.0
+margin_top = 298.0
 margin_right = 430.0
-margin_bottom = 328.0
+margin_bottom = 324.0
 custom_fonts/font = ExtResource( 8 )
 text = "Upgrades"
 
 [node name="UpgrtadeContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 332.0
+margin_top = 328.0
 margin_right = 430.0
 margin_bottom = 454.0
 custom_constants/margin_top = 5
@@ -204,13 +205,13 @@ custom_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/UpgrtadeContainer"]
 margin_top = 5.0
 margin_right = 430.0
-margin_bottom = 117.0
+margin_bottom = 121.0
 alignment = 1
 
 [node name="SpeedUpgradeView" parent="MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 43.0
 margin_right = 155.0
-margin_bottom = 112.0
+margin_bottom = 116.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 texture = ExtResource( 3 )
@@ -222,7 +223,7 @@ upgrade_max_level = 4
 [node name="CargoUpgradeView2" parent="MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 159.0
 margin_right = 271.0
-margin_bottom = 112.0
+margin_bottom = 116.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 texture = ExtResource( 4 )
@@ -234,7 +235,7 @@ upgrade_max_level = 3
 [node name="MemoryUpgradeView3" parent="MarginContainer/VBoxContainer/UpgrtadeContainer/HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 275.0
 margin_right = 387.0
-margin_bottom = 112.0
+margin_bottom = 116.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 texture = ExtResource( 2 )

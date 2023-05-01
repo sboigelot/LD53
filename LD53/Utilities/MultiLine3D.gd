@@ -30,7 +30,7 @@ func rebuild():
 	for i in (points.size() - 1):
 		var start_point = points[i]
 		var end_point = points[i + 1]
-		print("line3d %s -> %s" % [start_point, end_point])
+#		print("line3d %s -> %s" % [start_point, end_point])
 	
 		var line3d = Line3D.new()
 		add_child(line3d)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/robot_tido.ogg-ae6c2fc62c092e785542bb4aab5eacec.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SoundFx/robot_tido.ogg"
+dest_files=[ "res://.import/robot_tido.ogg-ae6c2fc62c092e785542bb4aab5eacec.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -8,7 +8,6 @@ var Map: MapScene
 export(PoolColorArray) var available_drone_colors
 export var building_jump: bool = true
 
-
 func _ready():
 #	new_game() # for debug singl components
 	randomize()
@@ -21,19 +20,13 @@ func new_game():
 	add_child(Data)
 
 func transition_to_scene(scene_path):
-	var colors = [
-		Color.black,
-		Color.blueviolet,
-		Color.goldenrod,
-		Color.purple,
-		Color.sienna
-	]
+	var colors = available_drone_colors
 
 	var textures = [
 		load("res://addons/node_library/assets/transition-texture.png"),
 		load("res://addons/node_library/assets/screen-transition-alternate.png"),
 		load("res://addons/node_library/assets/screen-transition-alternate2.png"),
-#		load("res://addons/node_library/assets/screen-transition-alternate3.png")
+		load("res://addons/node_library/assets/middle_strip.png")
 	]
 
 	var color_index = randi() % colors.size()

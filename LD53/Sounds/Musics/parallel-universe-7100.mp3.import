@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/parallel-universe-7100.mp3-cb2aa8cf522c910b115f0f14654fec5d.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/parallel-universe-7100.mp3"
+dest_files=[ "res://.import/parallel-universe-7100.mp3-cb2aa8cf522c910b115f0f14654fec5d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

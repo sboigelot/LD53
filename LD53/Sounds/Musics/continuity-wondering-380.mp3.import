@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/continuity-wondering-380.mp3-eaf56f3f5a2487b570b8cbd7343eda03.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Musics/continuity-wondering-380.mp3"
+dest_files=[ "res://.import/continuity-wondering-380.mp3-eaf56f3f5a2487b570b8cbd7343eda03.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

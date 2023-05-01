@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/robot_error_2.ogg-ac901eedbfc959537ca8ded812ce80e6.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SoundFx/robot_error_2.ogg"
+dest_files=[ "res://.import/robot_error_2.ogg-ac901eedbfc959537ca8ded812ce80e6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

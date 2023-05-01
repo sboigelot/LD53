@@ -22,6 +22,8 @@ func spawn_drone():
 	drone = DroneScene.instance()
 	Game.Map.get_drone_placeholder().add_child(drone)
 	drone.drone_pad = self
+	drone.drone_pad_reached = false
+	drone.drone_pad_landed = false
 	drone.global_translation = sp_drone_parking_space.global_translation
 	drone.global_rotation = sp_drone_parking_space.global_rotation
 

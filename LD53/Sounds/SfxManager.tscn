@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sounds/SfxManager.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/SoundFx/bululup.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/SoundFx/beep_click.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/SoundFx/robot_tido.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/SoundFx/robot_error_2.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/SoundFx/punch.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/SoundFx/robot_error_1.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/SoundFx/achievement.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Sounds/SoundFx/hover.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Sounds/SoundFx/buttonpress.ogg" type="AudioStream" id=19]
@@ -10,4 +15,4 @@
 [node name="SfxManager" type="Node"]
 script = ExtResource( 1 )
 start_player_count = 5
-sample_collection = [ ExtResource( 8 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 15 ), ExtResource( 6 ) ]
+sample_collection = [ ExtResource( 8 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ) ]

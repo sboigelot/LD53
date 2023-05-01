@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
+[ext_resource path="res://Assets/Models/RockAndRoll/rock2.glb" type="PackedScene" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/MapScene.gd" type="Script" id=4]
@@ -20,6 +21,8 @@
 [ext_resource path="res://Assets/Models/Trees/tree3.glb" type="PackedScene" id=19]
 [ext_resource path="res://Assets/Models/Trees/tree1.glb" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/DronePathMultiLine3D.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/Models/RockAndRoll/rock1.glb" type="PackedScene" id=22]
+[ext_resource path="res://Assets/Models/RockAndRoll/rock3.glb" type="PackedScene" id=23]
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 70, 70 )
@@ -70,29 +73,38 @@ size = Vector2( 100, 100 )
 [sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0.388235, 0.498039, 0.262745, 1 )
 
-[sub_resource type="SpatialMaterial" id=13]
-albedo_color = Color( 0.160784, 1, 0, 1 )
+[sub_resource type="SpatialMaterial" id=19]
+flags_transparent = true
+albedo_color = Color( 0.160784, 1, 0, 0.498039 )
 
-[sub_resource type="CubeMesh" id=14]
-material = SubResource( 13 )
-size = Vector3( 0.5, 0.5, 0.5 )
-
-[sub_resource type="SpatialMaterial" id=15]
-albedo_color = Color( 0.952941, 0.678431, 0, 1 )
-
-[sub_resource type="SphereMesh" id=16]
-material = SubResource( 15 )
+[sub_resource type="SphereMesh" id=22]
+material = SubResource( 19 )
 radius = 0.25
 height = 0.5
 radial_segments = 16
 rings = 8
 
-[sub_resource type="SpatialMaterial" id=17]
-albedo_color = Color( 0, 0.858824, 1, 1 )
+[sub_resource type="SpatialMaterial" id=23]
+flags_transparent = true
+albedo_color = Color( 1, 0.913725, 0, 0.498039 )
 
-[sub_resource type="CubeMesh" id=18]
-material = SubResource( 17 )
-size = Vector3( 0.5, 0.5, 0.5 )
+[sub_resource type="SphereMesh" id=24]
+material = SubResource( 23 )
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=20]
+flags_transparent = true
+albedo_color = Color( 0, 0.858824, 1, 0.498039 )
+
+[sub_resource type="SphereMesh" id=21]
+material = SubResource( 20 )
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
 
 [node name="MapScene" type="Spatial"]
 script = ExtResource( 4 )
@@ -153,10 +165,34 @@ visible = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25873, 0.0577831, -2.49567 )
 
 [node name="tree2" parent="Terrain/Trees" instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.34475, 0, -13.2467 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4241, 0, -9.6179 )
+
+[node name="tree19" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7356, 0, -8.79508 )
+
+[node name="tree20" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0807, 0, -7.93867 )
+
+[node name="tree21" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.493, 0, -7.11585 )
+
+[node name="tree24" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 0.969838, 0, -0.24375, 0, 1, 0, 0.24375, 0, 0.969838, 25.0553, 0, -14.2516 )
+
+[node name="tree25" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 0.969838, 0, -0.24375, 0, 1, 0, 0.24375, 0, 0.969838, 25.5224, 0, -13.2858 )
+
+[node name="tree26" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 0.969838, 0, -0.24375, 0, 1, 0, 0.24375, 0, 0.969838, 25.9488, 0, -12.2956 )
+
+[node name="tree27" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 0.969838, 0, -0.24375, 0, 1, 0, 0.24375, 0, 0.969838, 26.3183, 0, -11.3543 )
 
 [node name="tree6" parent="Terrain/Trees" instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8375, 4.76837e-07, 0.0954909 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.8563, 4.76837e-07, -0.549788 )
+
+[node name="tree23" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 0.916314, 0, 0, 0, 0.846073, 0, 0, 0, 0.88349, -28.9189, 4.76837e-07, -0.348996 )
 
 [node name="tree4" parent="Terrain/Trees" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3549, 0.00963879, 1.52937 )
@@ -168,13 +204,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.239, -9.53674e-07, -0.56586
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0894, 4.76837e-07, -18.5382 )
 
 [node name="tree3" parent="Terrain/Trees" instance=ExtResource( 20 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3389, 0, 5.66476 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9665, 0, 5.60957 )
 
 [node name="tree9" parent="Terrain/Trees" instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56714, 0.00207901, 13.7238 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72033, 0.00207901, 17.3273 )
+
+[node name="tree28" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -2.18912, 0.00207901, 18.4052 )
 
 [node name="tree10" parent="Terrain/Trees" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3127, 0.00343418, -2.04213 )
+
+[node name="tree29" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18519, -1.92013, 18.0661 )
+
+[node name="tree30" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25416, -1.92013, -0.681274 )
+
+[node name="tree31" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6861, -1.92013, -17.9429 )
 
 [node name="tree11" parent="Terrain/Trees" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6919, -2.38419e-07, -10.7724 )
@@ -189,7 +237,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4101, -4.76837e-07, -0.2514
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6435, 0, 0.396264 )
 
 [node name="tree15" parent="Terrain/Trees" instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0399, -4.76837e-07, -0.752237 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1313, -4.76837e-07, -20.1796 )
+
+[node name="tree22" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 0.750893, 0, 0, 0, 0.785542, 0, 0, 0, 0.750893, 11.8751, -4.76837e-07, -20.734 )
 
 [node name="tree16" parent="Terrain/Trees" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7623, -4.76837e-07, 0.543541 )
@@ -200,6 +251,86 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2189, -9.53674e-07, -1.1791
 [node name="tree18" parent="Terrain/Trees" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7898, -4.76837e-07, 0.41094 )
 
+[node name="Rocks" type="Spatial" parent="Terrain"]
+
+[node name="rock1" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -9.88652, -2.66503, -25.8361 )
+
+[node name="rock2" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( 0.1029, -1.94924, -0.43574, 0.447992, 0.447725, -1.89706, 1.94646, 0, 0.459658, -12.2494, 0, -23.4211 )
+
+[node name="rock3" parent="Terrain/Rocks" instance=ExtResource( 23 )]
+transform = Transform( 1.21954, -1.58515, 0, 1.58515, 1.21954, 0, 0, 0, 2, -11.0513, -0.845426, -24.1823 )
+
+[node name="rock4" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83077, -1.12534, 19.5211 )
+
+[node name="rock20" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 0.70397, -0.227701, 1.2185, 1.07962, 0.608718, -0.386154, -0.653796, 0.76001, 0.67435, -25.6592, -0.509079, 28.2939 )
+
+[node name="rock22" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 0.0951977, 0.288274, -1.38057, -0.0678197, 0.957195, 0.412773, 1.44047, 0.0260149, 0.110673, -27.7056, -0.626928, 20.2398 )
+
+[node name="rock23" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( -1.15186, 0.346807, 0.714575, 0.0792179, 0.856851, -0.740871, -0.869224, -0.381485, -1.01445, -26.3673, -0.626928, 24.962 )
+
+[node name="rock15" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4493, -0.61437, -23.2188 )
+
+[node name="rock10" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 1.22944, -0.129092, -0.0412113, 0.164872, 0.962629, 0.307309, 0, -0.238076, 1.26491, 7.58958, 1.16037, -30.2858 )
+
+[node name="rock7" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 1.20987, 0, 0.648784, 0, 1, 0, -1.57289, 0, 1.16037, -0.958535, -0.341152, -26.1622 )
+
+[node name="rock5" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -0.452685, -1.45882, 0.147196, -1.64503, 0.401441, 0.534903, -0.68761, 0, -1.3766, 3.34425, -0.249228, 18.5254 )
+
+[node name="rock17" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -2.97509, 0.420072, -0.616214, 0.0639654, 0.394768, -1.50901, -0.319987, -2.50983, -0.640617, -27.1909, -0.249954, 34.3697 )
+
+[node name="rock18" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -1.68729, -0.419942, 0.424049, -0.66205, 0.408693, -1.32543, 0.31398, -1.39496, -0.515979, -25.4766, -0.249229, 24.0682 )
+
+[node name="rock19" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -2.56405, -0.638153, 0.644394, 0.180118, 0.814263, 1.24247, -1.07931, 1.82982, -1.05203, -25.4766, -0.249229, 25.1826 )
+
+[node name="rock16" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -1.62287, -0.712244, 0.0142779, 0.568182, -0.852159, 1.13751, -0.653696, 1.02754, 0.953256, -32.0403, 1.02161, -24.2819 )
+
+[node name="rock12" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -1.70618, 0.549968, 0.211446, 0, 0.352956, -2.358, -0.68761, -1.36465, -0.524665, 9.11198, 0.179398, -30.4268 )
+
+[node name="rock11" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -3.70339, 0, -2.09216, 0, 1.51304, 0, 0.848564, 0, -0.977817, 0.487321, -0.957846, -26.454 )
+
+[node name="rock14" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -1.71545, -0.767944, -0.969111, -0.613596, 1.38192, -0.346639, 1.3454, 0, -1.55033, 9.13716, 1.9826, -35.2246 )
+
+[node name="rock8" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( 2.31521, 0, 0, 0, 1.33791, 0, 0, 0, 2.37474, 2.21124, -0.758574, -27.0738 )
+
+[node name="rock6" parent="Terrain/Rocks" instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2299, -0.435727, 19.4832 )
+
+[node name="rock21" parent="Terrain/Rocks" instance=ExtResource( 22 )]
+transform = Transform( 0.561262, 0, 0, 0, 0.911558, 0, 0, 0, 0.561262, -29.1735, -1.12534, -13.2268 )
+
+[node name="rock24" parent="Terrain/Rocks" instance=ExtResource( 1 )]
+transform = Transform( -1.70589, -0.0277264, 0.554693, -0.0312656, 1.51279, 0.0101664, -0.68761, 0, -1.3766, -31.2312, -1.38218, -13.3767 )
+
+[node name="rock25" parent="Terrain/Rocks" instance=ExtResource( 23 )]
+transform = Transform( 0.31699, 0, -0.948429, 0, 1, 0, 0.948429, 0, 0.31699, -28.9579, -0.460363, -11.3542 )
+
+[node name="rock26" parent="Terrain/Rocks" instance=ExtResource( 23 )]
+transform = Transform( -0.0717216, 0, -0.725088, 0, 1, 0, 0.725088, 0, -0.0717216, -26.3416, 0.202222, 23.5159 )
+
+[node name="rock13" parent="Terrain/Rocks" instance=ExtResource( 23 )]
+transform = Transform( 0.0473893, -3.5136, 0.591569, 2.19169, -0.118171, -0.493569, 0.471101, 0.903206, 2.23671, 10.5247, 1.03764, -34.3108 )
+
+[node name="rock9" parent="Terrain/Rocks" instance=ExtResource( 23 )]
+transform = Transform( 2.29397, 0, 2.45619, 0, 3.50183, 0, -2.18819, 0, 2.57493, 7.51855, -1.44425, -30.252 )
+
 [node name="Drones" type="Spatial" parent="."]
 
 [node name="Paths" type="Spatial" parent="."]
@@ -207,10 +338,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7898, -4.76837e-07, 0.41094
 [node name="DronePathMultiLine3D" parent="Paths" instance=ExtResource( 21 )]
 visible = false
 points = PoolVector3Array( 0, 3, 0, 10, 3, 0, 10, 3, 10 )
-width = 0.2
-start_cap = SubResource( 14 )
-mid_cap = SubResource( 16 )
-end_cap = SubResource( 18 )
+width = 0.1
+start_cap = SubResource( 22 )
+mid_cap = SubResource( 24 )
+end_cap = SubResource( 21 )
 
 [node name="Buildings" type="Spatial" parent="."]
 
@@ -243,12 +374,12 @@ transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 4.70341, 
 
 [node name="Ranch" parent="Buildings" instance=ExtResource( 11 )]
 transform = Transform( 0.456103, 0, -0.889926, 0, 1, 0, 0.889926, 0, 0.456103, 18.3557, 0, -19.2217 )
-unlock_condition_cargo_count = 2
+unlock_condition_cargo_count = 3
 unlock_condition_cargo_type = "salad"
 
 [node name="Ranch2" parent="Buildings" instance=ExtResource( 11 )]
 transform = Transform( -0.787925, 0, -0.615771, 0, 1, 0, 0.615771, 0, -0.787925, -11.6719, 0, -12.6512 )
-unlock_condition_cargo_count = 2
+unlock_condition_cargo_count = 3
 unlock_condition_cargo_type = "salad"
 
 [node name="SaladKitchen" parent="Buildings" instance=ExtResource( 8 )]
@@ -262,12 +393,12 @@ transform = Transform( 0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, 0.642788, 9
 
 [node name="BurgerKitchen" parent="Buildings" instance=ExtResource( 12 )]
 transform = Transform( 0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 5.34695, 0, 1.87056 )
-unlock_condition_cargo_count = 2
+unlock_condition_cargo_count = 3
 unlock_condition_cargo_type = "salad"
 
 [node name="BurgerResto" parent="Buildings" instance=ExtResource( 10 )]
 transform = Transform( -0.707452, 0, 0.706761, 0, 1, 0, -0.706761, 0, -0.707452, -9.61339, 0, 6.10642 )
-unlock_condition_cargo_count = 2
+unlock_condition_cargo_count = 3
 unlock_condition_cargo_type = "salad"
 
 [node name="DroneHub" parent="Buildings" instance=ExtResource( 13 )]

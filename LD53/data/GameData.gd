@@ -4,7 +4,7 @@ class_name GameData
 
 export var player_name:String = "Player"
 
-export var money:int = 2000
+export var money:int = 200
 export var day:int = 1
 
 export var deliver_phase:bool = false

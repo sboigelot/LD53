@@ -4,7 +4,7 @@
 
 [sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
-albedo_color = Color( 0.811765, 0.14902, 0.14902, 0.745098 )
+albedo_color = Color( 0.811765, 0.14902, 0.14902, 0.360784 )
 
 [node name="DronePathMultiLine3D" type="Spatial"]
 script = ExtResource( 1 )

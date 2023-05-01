@@ -64,6 +64,7 @@ func _process(delta):
 	ui_tutorial_pick_target.visible = last and Game.Data.is_tutorial_step("pick_target")
 	
 func toggle_target_button_off():
+	SfxManager.play("beep_click")
 	ui_target_button.pressed = false
 	
 func on_factory_selected(factory):
@@ -71,15 +72,18 @@ func on_factory_selected(factory):
 	update_ui()
 
 func _on_DirectionToggleButton_toggled(button_pressed):
+	SfxManager.play("beep_click")
 	data.factory_input = button_pressed
 	Game.Data.complete_tutorial_step("change_deliver")
 	update_ui()
 		
 func _on_CargoCountItemList_item_selected(index):
+	SfxManager.play("beep_click")
 	data.cargo_count = ui_cargo_count_item_list.selected + 1
 	update_ui()
 
 func _on_CargoItemList_item_selected(index):
+	SfxManager.play("beep_click")
 	for cargo_name in cargo_ids.keys():
 		var cargo_id = cargo_ids[cargo_name]
 		if ui_cargo_item_list.selected == cargo_id:
