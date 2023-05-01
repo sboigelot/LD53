@@ -1,0 +1,251 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/ld53/ld52_def_xsmall.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/ld53/ld52_def_small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/SelectConstructionDialog.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Icons/water.png" type="Texture" id=4]
+[ext_resource path="res://fonts/ld53/ld52_def_xxsmall.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Buildings/DroneGarage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Buildings/Factories/Warehouse.tscn" type="PackedScene" id=7]
+
+[node name="SelectConstructionDialog" type="PopupDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -228.0
+margin_top = -147.0
+margin_right = 228.0
+margin_bottom = 147.0
+rect_min_size = Vector2( 456, 294 )
+rect_pivot_offset = Vector2( 20, 20 )
+popup_exclusive = true
+script = ExtResource( 3 )
+affordable_color = Color( 0, 1, 0.556863, 1 )
+not_affordable_color = Color( 1, 0, 0, 1 )
+drone_hub_scene = ExtResource( 6 )
+warehouse_scene = ExtResource( 7 )
+np_drone_hub_button = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/SelectDroneHubButton")
+np_drone_hub_price_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer/CostLabel")
+np_warehouse_button = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/SelectWarehoudeHubButton")
+np_warehouse_price_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer/CostLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 446.0
+margin_bottom = 284.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 436.0
+margin_bottom = 30.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 436.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select a construction"
+align = 1
+
+[node name="Separator" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 436.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 436.0
+margin_bottom = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+margin_right = 436.0
+margin_bottom = 196.0
+alignment = 1
+
+[node name="DroneHubOption" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 60.0
+margin_right = 210.0
+margin_bottom = 193.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="SelectDroneHubButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption"]
+margin_right = 150.0
+margin_bottom = 193.0
+focus_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption"]
+margin_right = 150.0
+margin_bottom = 193.0
+mouse_filter = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 188.0
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer"]
+margin_right = 140.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "Drone Hub"
+align = 1
+
+[node name="Separator" type="ColorRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 140.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 2 )
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer"]
+margin_left = 38.0
+margin_top = 40.0
+margin_right = 102.0
+margin_bottom = 104.0
+mouse_filter = 2
+size_flags_horizontal = 4
+texture = ExtResource( 4 )
+
+[node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 140.0
+margin_bottom = 143.0
+custom_fonts/font = ExtResource( 5 )
+text = "Start with
+a free drone"
+align = 1
+
+[node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer"]
+margin_top = 147.0
+margin_right = 140.0
+margin_bottom = 149.0
+rect_min_size = Vector2( 0, 2 )
+mouse_filter = 2
+
+[node name="CostLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/MarginContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 140.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 2 )
+text = "300"
+align = 1
+
+[node name="WarehouseHubOption" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 214.0
+margin_right = 375.0
+margin_bottom = 193.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="SelectWarehoudeHubButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption"]
+margin_right = 161.0
+margin_bottom = 193.0
+focus_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption"]
+margin_right = 161.0
+margin_bottom = 193.0
+mouse_filter = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 156.0
+margin_bottom = 188.0
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer"]
+margin_right = 151.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "Warehouse"
+align = 1
+
+[node name="Separator" type="ColorRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 151.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 2 )
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer"]
+margin_left = 43.0
+margin_top = 40.0
+margin_right = 107.0
+margin_bottom = 104.0
+mouse_filter = 2
+size_flags_horizontal = 4
+texture = ExtResource( 4 )
+
+[node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 151.0
+margin_bottom = 143.0
+custom_fonts/font = ExtResource( 5 )
+text = "Store crates for
+the next day"
+align = 1
+
+[node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer"]
+margin_top = 147.0
+margin_right = 151.0
+margin_bottom = 149.0
+rect_min_size = Vector2( 0, 2 )
+mouse_filter = 2
+
+[node name="CostLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/MarginContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 151.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 2 )
+text = "500"
+align = 1
+
+[node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+margin_top = 240.0
+margin_right = 436.0
+margin_bottom = 242.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 246.0
+margin_right = 436.0
+margin_bottom = 274.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Cancel"
+
+[connection signal="about_to_show" from="." to="." method="_on_SelectConstructionDialog_about_to_show"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DroneHubOption/SelectDroneHubButton" to="." method="_on_SelectDroneHubButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WarehouseHubOption/SelectWarehoudeHubButton" to="." method="_on_SelectWarehoudeHubButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

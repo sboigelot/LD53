@@ -105,8 +105,8 @@ shape = SubResource( 1 )
 
 [node name="SelectionTorus" type="CSGTorus" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0797948, 0 )
-inner_radius = 0.8
-outer_radius = 1.0
+inner_radius = 0.6
+outer_radius = 0.7
 sides = 32
 ring_sides = 18
 material = SubResource( 7 )
@@ -138,7 +138,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.982631, 0 )
 text = "Click me!"
 
 [node name="drone" parent="Visual" instance=ExtResource( 7 )]
-transform = Transform( 1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0 )
 
 [node name="Warnings" type="Spatial" parent="."]
 

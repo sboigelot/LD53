@@ -423,10 +423,32 @@ func on_mouse_left_button_click():
 
 func _on_Drone_mouse_entered():
 	if Game.Data.deliver_phase:
+		show_fly_path()
 		return
 	scale = Vector3(1.25,1.25,1.25)
 
 func _on_Drone_mouse_exited():
 	if Game.Data.deliver_phase:
+		Game.Map.hide_path()
 		return
 	scale = Vector3.ONE
+
+func show_fly_path():
+	var fly_path = get_fly_path()
+	if fly_path.size() > 0:
+		Game.Map.show_path(fly_path)
+
+func get_fly_path() -> Array:
+	var points = []
+	
+	for waypoint in route:
+		var waypoint_data:WaypointData = waypoint
+		var stockpile = waypoint_data.stockpile
+		if stockpile == null:
+			continue
+		points.append(stockpile.global_translation + Vector3(0,flight_y,0))
+	
+	if points.size() > 2:
+		points.append(points[0])
+		
+	return points 

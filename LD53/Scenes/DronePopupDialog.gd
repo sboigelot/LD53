@@ -79,6 +79,8 @@ func update_ui():
 	var can_add_stop = drone.route.size() < drone.get_upgraded_memory()
 	ui_add_stop_button.text = "add stop" if can_add_stop else "maximum memory"
 	ui_add_stop_button.disabled = not can_add_stop
+	
+	drone.show_fly_path()
 
 func on_waypoint_view_picking_target(waypoint_view):
 	for child in ui_waypoint_view_placeholder.get_children():
@@ -122,3 +124,6 @@ func _on_AddStopButton_pressed():
 func _on_ColorOptionButton_item_selected(index):
 	if drone != null:
 		drone.color = Game.available_drone_colors[index]
+
+func _on_DronePopupDialog_popup_hide():
+	Game.Map.hide_path()

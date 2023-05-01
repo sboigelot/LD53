@@ -30,3 +30,12 @@ func _input(event):
 
 func get_stockpile(node_path:NodePath):
 	return $Buildings/StockpileNodePathSource.get_node(node_path)
+
+func show_path(points:Array):
+	var multi_line = $Paths/DronePathMultiLine3D as MultiLine3D
+	multi_line.points = points
+	multi_line.rebuild()
+	multi_line.visible = true
+	
+func hide_path():
+	$Paths/DronePathMultiLine3D.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=1]
 [ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Assets/Process/marketburger.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Process/justbugers.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Process/ranch.png" type="Texture" id=24]
+[ext_resource path="res://Scenes/SelectConstructionDialog.tscn" type="PackedScene" id=25]
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.0392157, 0.392157, 0.647059, 0.360784 )
@@ -130,6 +131,7 @@ np_stat_count_label_goal_meat = NodePath("MarginContainer/StatPanel/ObjectivesPa
 np_open_day_report_button = NodePath("MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton")
 np_help_window = NodePath("HelpWIndow")
 np_confirmation_dialog = NodePath("ConfirmationDialog")
+np_select_construction_dialog = NodePath("SelectConstructionDialog")
 np_drone_popup = NodePath("DronePopupDialog")
 np_delivery_phase_info_label = NodePath("BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PhaseInfoLabel")
 np_delivery_phase_progress_bar = NodePath("BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/DayProgressBar")
@@ -160,7 +162,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 316.0
-margin_bottom = 212.0
+margin_bottom = 190.0
 custom_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel"]
@@ -211,14 +213,14 @@ text = "0"
 [node name="ObjectivesPanelContainer" type="PanelContainer" parent="MarginContainer/StatPanel"]
 margin_top = 88.0
 margin_right = 306.0
-margin_bottom = 202.0
+margin_bottom = 180.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 9 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer"]
 margin_right = 306.0
-margin_bottom = 114.0
+margin_bottom = 92.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -228,7 +230,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 301.0
-margin_bottom = 109.0
+margin_bottom = 87.0
 
 [node name="ObjectivesLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 296.0
@@ -289,20 +291,24 @@ text = "0 / 0"
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 82.0
 margin_right = 296.0
-margin_bottom = 104.0
+margin_bottom = 82.0
 
 [node name="OpenDayReportButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 margin_right = 146.0
 margin_bottom = 22.0
+focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 18 )
 text = "Open Day Report"
 flat = true
 
 [node name="ShowRecipeButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 margin_left = 150.0
 margin_right = 296.0
 margin_bottom = 22.0
+focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 18 )
 text = "Open Recipe Help"
@@ -683,6 +689,7 @@ size_flags_vertical = 4
 [node name="PrevDayButton" type="Button" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 20.0
+focus_mode = 0
 size_flags_vertical = 4
 text = "<"
 
@@ -697,6 +704,7 @@ text = "day 0"
 margin_left = 62.0
 margin_right = 82.0
 margin_bottom = 20.0
+focus_mode = 0
 size_flags_vertical = 4
 text = ">"
 
@@ -911,8 +919,11 @@ rect_min_size = Vector2( 0, 2 )
 margin_top = 246.0
 margin_right = 436.0
 margin_bottom = 274.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 15 )
 text = "Close"
+
+[node name="SelectConstructionDialog" parent="." instance=ExtResource( 25 )]
 
 [connection signal="button_down" from="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton" to="." method="_on_OpenDayReportButton_button_down"]
 [connection signal="pressed" from="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ShowRecipeButton" to="." method="_on_ShowRecipeButton_pressed"]
@@ -924,3 +935,4 @@ text = "Close"
 [connection signal="pressed" from="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/PrevDayButton" to="." method="_on_PrevDayButton_pressed"]
 [connection signal="pressed" from="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/NextDayButton" to="." method="_on_NextDayButton_pressed"]
 [connection signal="pressed" from="EndDayReport/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="ConstructionSelected" from="SelectConstructionDialog" to="." method="_on_SelectConstructionDialog_ConstructionSelected"]

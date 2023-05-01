@@ -1,8 +1,5 @@
 extends Spatial
 
-export(PackedScene) var GarageScene
-export var garage_price: int = 300
-
 var tutorial_shown:bool = false
 
 func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
@@ -20,24 +17,24 @@ func on_mouse_left_button_click():
 	
 	Game.Data.complete_tutorial_step("build_on_land")
 	
-	var text = ""
-	if Game.Data.money >= garage_price:
-		text = "Are you sure you want to buy\na garage for %d gold" % garage_price
-	else:
-		text = "You need %d gold to buy a new garage!" % garage_price
-	Game.Map.map_ui.show_confirmation_dialog("Buy Garge?", text, self, "on_confirm_garage_purchase")
+#	var text = ""
+#	if Game.Data.money >= garage_price:
+#		text = "Are you sure you want to buy\na garage for %d gold" % garage_price
+#	else:
+#		text = "You need %d gold to buy a new garage!" % garage_price
+#	Game.Map.map_ui.show_confirmation_dialog("Buy Garge?", text, self, "on_confirm_garage_purchase")
+	
+	Game.Map.map_ui.show_select_construction_dialog(self, "on_confirm_construction")
 
-func on_confirm_garage_purchase():
-	if Game.Data.money >= garage_price:
-		Game.Data.money -= garage_price
-		spawn_garage()
-		queue_free()
+func on_confirm_construction(packed_scene):
+	spawn_replacement(packed_scene)
+	queue_free()
 
-func spawn_garage():
-	var garage = GarageScene.instance()
-	Game.Map.get_building_placeholder().add_child(garage)
-	garage.global_translation = global_translation
-	garage.global_rotation = global_rotation
+func spawn_replacement(packed_scene):
+	var replacement = packed_scene.instance()
+	Game.Map.get_building_placeholder().add_child(replacement)
+	replacement.global_translation = global_translation
+	replacement.global_rotation = global_rotation
 
 func _process(delta):
 	if tutorial_shown:

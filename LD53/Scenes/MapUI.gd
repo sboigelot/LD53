@@ -9,6 +9,7 @@ export(NodePath) var np_stat_count_label_goal_meat
 export(NodePath) var np_open_day_report_button
 export(NodePath) var np_help_window
 export(NodePath) var np_confirmation_dialog
+export(NodePath) var np_select_construction_dialog
 export(NodePath) var np_drone_popup
 export(NodePath) var np_delivery_phase_info_label
 export(NodePath) var np_delivery_phase_progress_bar
@@ -21,6 +22,7 @@ onready var ui_stat_count_label_goal_meat	= get_node(np_stat_count_label_goal_me
 onready var ui_open_day_report_button		= get_node(np_open_day_report_button) as Button
 onready var ui_help_window					= get_node(np_help_window) as WindowDialog
 onready var ui_confirmation_dialog 			= get_node(np_confirmation_dialog) as ConfirmationDialog
+onready var ui_select_construction_dialog 	= get_node(np_select_construction_dialog) as SelectConstructionDialog
 onready var ui_drone_popup 					= get_node(np_drone_popup) as WindowDialog
 onready var ui_delivery_phase_info_label 	= get_node(np_delivery_phase_info_label) as Label
 onready var ui_delivery_phase_progress_bar 	= get_node(np_delivery_phase_progress_bar) as ProgressBar
@@ -82,6 +84,18 @@ func show_drone_popup(drone):
 	if not ui_drone_popup.visible:
 		ui_drone_popup.popup()
 
+func show_select_construction_dialog(instance, function):
+	ui_select_construction_dialog.popup_centered()
+	
+	last_confirmation_request_func = FuncRef.new()
+	last_confirmation_request_func.set_instance(instance)
+	last_confirmation_request_func.function = function
+
+func _on_SelectConstructionDialog_ConstructionSelected(packed_scene):
+	if last_confirmation_request_func != null:
+		last_confirmation_request_func.call_func(packed_scene)
+		last_confirmation_request_func = null
+	
 func show_confirmation_dialog(title:String, text:String, instance, function):
 	ui_confirmation_dialog.window_title = title
 	ui_confirmation_dialog.dialog_text = text
