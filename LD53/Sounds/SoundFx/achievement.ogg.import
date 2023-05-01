@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/achievement.ogg-293a5cc44377809485071c440ad5b1b5.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SoundFx/achievement.ogg"
+dest_files=[ "res://.import/achievement.ogg-293a5cc44377809485071c440ad5b1b5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

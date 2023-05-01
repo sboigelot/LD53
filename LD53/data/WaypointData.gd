@@ -14,7 +14,7 @@ func get_stockpile() -> Stockpile:
 		
 		if factory.sp_storage_stockpile_container != null:
 			for storage_stockpile in factory.sp_storage_stockpile_container.get_children():
-				if storage_stockpile.cargo_type == cargo_type:
+				if storage_stockpile.cargo_type == cargo_type and storage_stockpile.import == factory_input:
 					return storage_stockpile
 		
 		if factory_input:

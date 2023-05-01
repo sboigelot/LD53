@@ -4,7 +4,7 @@ class_name GameData
 
 export var player_name:String = "Player"
 
-export var money:int = 200
+export var money:int = 2000
 export var day:int = 1
 
 export var deliver_phase:bool = false
@@ -111,6 +111,14 @@ func register_day_delivery(cargo:String, count:int):
 		day_delivery[cargo] = count
 		
 	Game.Map.map_ui.update_goal_labels()
+	
+func get_delivery_count(cargo:String) -> int:
+	if daily_deliveries.size() == 0:
+		return 0
+	var day_delivery = daily_deliveries[day - 1]
+	if day_delivery.has(cargo):
+		return day_delivery[cargo]
+	return 0
 
 func complete_day():
 	deliver_phase_timer = 0.0

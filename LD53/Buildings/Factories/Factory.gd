@@ -36,6 +36,9 @@ export var output_retry_delay: float = 0.5
 export var cycle_warning_duration: float = -3.0
 export var cycle_money_generation: int = 0
 
+export var unlock_condition_cargo_count: int = 0
+export var unlock_condition_cargo_type: String
+
 var victory_info_timer: float = 10.0 
 
 var current_cycle_pickup_delay: float
@@ -49,6 +52,9 @@ var current_delay_between_cycle: float
 var delivery_phase_started: bool = false
 
 func _ready():
+	
+	lock()
+	
 	if sp_warning_no_input_sprite_3D != null:
 		sp_warning_no_input_sprite_3D.visible = false
 		
@@ -57,6 +63,26 @@ func _ready():
 	
 	yield(get_tree(),"idle_frame")
 	register_game_goals()
+
+func lock():
+	if unlock_condition_cargo_count > 0:
+		visible = false
+		
+func try_unlock():
+	if unlock_condition_cargo_count == 0:
+		visible = true
+		return
+		
+	var game_count = Game.Data.get_delivery_count(unlock_condition_cargo_type)
+	if game_count >= unlock_condition_cargo_count:
+		Game.Map.map_ui.play_achiement_animation()
+		popup()
+
+func popup():
+	visible = true
+	if (sp_animation_player != null and
+			sp_animation_player.has_animation("Popup")):
+				sp_animation_player.play("Popup")
 
 func register_game_goals():
 	if (sp_delivery_target_placeholder != null and
@@ -158,9 +184,11 @@ func _process(delta):
 	delivery_phase_started = true
 		
 	if not visible:
+		try_unlock()
 		return
 	
 	if sp_storage_stockpile_container != null:
+		transfert_stockpiles_to_output()
 		return
 		
 	var game_delta = Game.Data.deliver_phase_speed * delta
@@ -285,3 +313,30 @@ func _on_Input_NewCargo(quantity:int):
 		sp_money_animation_player.play("CoinUp")
 		progress_goals(quantity)
 
+func transfert_stockpiles_to_output():
+	var inputs = {}
+	var outputs = {}
+	
+	for stockpile in sp_storage_stockpile_container.get_children():
+		if stockpile.import:
+			inputs[stockpile.cargo_type] = stockpile
+		else:
+			outputs[stockpile.cargo_type] = stockpile
+			
+	for cargo_type in inputs:
+		if not inputs.has(cargo_type):
+			continue
+			
+		if not outputs.has(cargo_type):
+			continue
+			
+		var in_stockpile:Stockpile = inputs[cargo_type]
+		var out_stockpile:Stockpile = outputs[cargo_type]
+		
+		for i in in_stockpile.cargo_count:
+			if not out_stockpile.has_free_space(1):
+				break
+			
+			if out_stockpile.try_deliver(false, 1):
+				in_stockpile.try_pickup(false, 1)
+	

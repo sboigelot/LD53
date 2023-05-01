@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=1]
 [ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/Process/justbugers.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Process/ranch.png" type="Texture" id=24]
 [ext_resource path="res://Scenes/SelectConstructionDialog.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/AchievementView.tscn" type="PackedScene" id=26]
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.0392157, 0.392157, 0.647059, 0.360784 )
@@ -65,7 +66,7 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color( 0.890625, 1, 0.981177, 1 )
 
-[sub_resource type="Image" id=15]
+[sub_resource type="Image" id=18]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 10, 0, 0, 0, 8, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 10, 0, 0, 0, 19, 0, 0, 0, 25, 0, 0, 0, 31, 0, 0, 0, 34, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0, 34, 0, 0, 0, 31, 0, 0, 0, 25, 0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 10, 0, 0, 0, 22, 0, 0, 0, 39, 0, 0, 0, 53, 0, 0, 0, 63, 0, 0, 0, 69, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0, 69, 0, 0, 0, 63, 0, 0, 0, 53, 0, 0, 0, 39, 0, 0, 0, 22, 0, 0, 0, 10, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 19, 0, 0, 0, 39, 59, 59, 67, 148, 66, 66, 75, 245, 62, 62, 71, 250, 62, 62, 70, 251, 62, 62, 70, 251, 62, 62, 70, 251, 62, 62, 70, 251, 62, 62, 71, 250, 66, 66, 75, 245, 59, 59, 67, 148, 0, 0, 0, 39, 0, 0, 0, 19, 0, 0, 0, 5, 0, 0, 0, 8, 0, 0, 0, 25, 0, 0, 0, 53, 65, 65, 74, 245, 47, 47, 54, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 47, 47, 54, 255, 65, 65, 74, 245, 0, 0, 0, 53, 0, 0, 0, 25, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0, 31, 0, 0, 0, 64, 61, 61, 69, 252, 45, 45, 51, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 45, 45, 51, 255, 61, 61, 69, 252, 0, 0, 0, 64, 0, 0, 0, 31, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 34, 0, 0, 0, 69, 59, 59, 67, 251, 44, 44, 50, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 44, 44, 50, 255, 59, 59, 67, 251, 0, 0, 0, 69, 0, 0, 0, 34, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 35, 0, 0, 0, 70, 58, 58, 66, 251, 42, 42, 49, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 49, 255, 58, 58, 66, 251, 0, 0, 0, 70, 0, 0, 0, 35, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 35, 0, 0, 0, 70, 56, 56, 65, 251, 41, 41, 48, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 48, 255, 56, 56, 65, 251, 0, 0, 0, 70, 0, 0, 0, 35, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 34, 0, 0, 0, 69, 55, 55, 62, 251, 40, 40, 46, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 46, 255, 55, 55, 62, 251, 0, 0, 0, 69, 0, 0, 0, 34, 0, 0, 0, 11, 0, 0, 0, 10, 0, 0, 0, 31, 0, 0, 0, 64, 54, 54, 61, 252, 39, 39, 45, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 45, 255, 53, 53, 60, 252, 0, 0, 0, 64, 0, 0, 0, 31, 0, 0, 0, 10, 0, 0, 0, 8, 0, 0, 0, 26, 0, 0, 0, 53, 56, 56, 64, 245, 41, 41, 46, 255, 39, 39, 44, 255, 38, 38, 44, 255, 38, 38, 44, 255, 38, 38, 44, 255, 38, 38, 44, 255, 39, 39, 44, 255, 41, 41, 46, 255, 56, 56, 64, 246, 0, 0, 0, 53, 0, 0, 0, 26, 0, 0, 0, 8, 0, 0, 0, 5, 0, 0, 0, 19, 0, 0, 0, 39, 49, 49, 56, 149, 56, 56, 64, 245, 52, 52, 59, 250, 52, 52, 59, 251, 52, 52, 59, 251, 52, 52, 59, 251, 52, 52, 59, 251, 52, 52, 59, 250, 57, 57, 63, 244, 49, 49, 56, 148, 0, 0, 0, 39, 0, 0, 0, 19, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 10, 0, 0, 0, 22, 0, 0, 0, 39, 0, 0, 0, 53, 0, 0, 0, 64, 0, 0, 0, 69, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0, 69, 0, 0, 0, 63, 0, 0, 0, 53, 0, 0, 0, 39, 0, 0, 0, 22, 0, 0, 0, 10, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 10, 0, 0, 0, 19, 0, 0, 0, 25, 0, 0, 0, 31, 0, 0, 0, 34, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0, 34, 0, 0, 0, 31, 0, 0, 0, 25, 0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 10, 0, 0, 0, 8, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0 ),
 "format": "RGBA8",
@@ -77,7 +78,7 @@ data = {
 [sub_resource type="ImageTexture" id=2]
 flags = 4
 flags = 4
-image = SubResource( 15 )
+image = SubResource( 18 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="StyleBoxTexture" id=3]
@@ -121,6 +122,37 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.27451, 0.262745, 0.305882, 1 )
 
+[sub_resource type="Animation" id=16]
+resource_name = "Popup"
+length = 5.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 4.5, 5.5 ),
+"transitions": PoolRealArray( 2, 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1450, 1120 ), Vector2( 1450, 918 ), Vector2( 1450, 918 ), Vector2( 1950, 918 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1450, 1120 ) ]
+}
+
 [node name="MapUI" type="CanvasLayer"]
 layer = 2
 script = ExtResource( 3 )
@@ -149,6 +181,7 @@ np_edr_victory_label = NodePath("EndDayReport/MarginContainer/VBoxContainer/Marg
 np_edr_prev_day_button = NodePath("EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/PrevDayButton")
 np_edr_day_label = NodePath("EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/DayLabel")
 np_edr_next_day_button = NodePath("EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/NextDayButton")
+np_achivement_animation = NodePath("AchievementView/AchievementAnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 127.0
@@ -924,6 +957,18 @@ custom_fonts/font = ExtResource( 15 )
 text = "Close"
 
 [node name="SelectConstructionDialog" parent="." instance=ExtResource( 25 )]
+
+[node name="AchievementView" parent="." instance=ExtResource( 26 )]
+anchor_left = 1.0
+anchor_top = 1.0
+margin_left = 1450.0
+margin_top = 1120.0
+margin_right = 1900.0
+margin_bottom = 1262.0
+
+[node name="AchievementAnimationPlayer" type="AnimationPlayer" parent="AchievementView"]
+anims/Popup = SubResource( 16 )
+anims/RESET = SubResource( 17 )
 
 [connection signal="button_down" from="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton" to="." method="_on_OpenDayReportButton_button_down"]
 [connection signal="pressed" from="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ShowRecipeButton" to="." method="_on_ShowRecipeButton_pressed"]

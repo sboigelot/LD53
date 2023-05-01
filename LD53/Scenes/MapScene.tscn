@@ -243,9 +243,13 @@ transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 4.70341, 
 
 [node name="Ranch" parent="Buildings" instance=ExtResource( 11 )]
 transform = Transform( 0.456103, 0, -0.889926, 0, 1, 0, 0.889926, 0, 0.456103, 18.3557, 0, -19.2217 )
+unlock_condition_cargo_count = 2
+unlock_condition_cargo_type = "salad"
 
 [node name="Ranch2" parent="Buildings" instance=ExtResource( 11 )]
 transform = Transform( -0.787925, 0, -0.615771, 0, 1, 0, 0.615771, 0, -0.787925, -11.6719, 0, -12.6512 )
+unlock_condition_cargo_count = 2
+unlock_condition_cargo_type = "salad"
 
 [node name="SaladKitchen" parent="Buildings" instance=ExtResource( 8 )]
 transform = Transform( 0.897043, 0, -0.441944, 0, 1, 0, 0.441944, 0, 0.897043, -2.17029, 0, -0.809549 )
@@ -258,9 +262,13 @@ transform = Transform( 0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, 0.642788, 9
 
 [node name="BurgerKitchen" parent="Buildings" instance=ExtResource( 12 )]
 transform = Transform( 0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 5.34695, 0, 1.87056 )
+unlock_condition_cargo_count = 2
+unlock_condition_cargo_type = "salad"
 
 [node name="BurgerResto" parent="Buildings" instance=ExtResource( 10 )]
 transform = Transform( -0.707452, 0, 0.706761, 0, 1, 0, -0.706761, 0, -0.707452, -9.61339, 0, 6.10642 )
+unlock_condition_cargo_count = 2
+unlock_condition_cargo_type = "salad"
 
 [node name="DroneHub" parent="Buildings" instance=ExtResource( 13 )]
 transform = Transform( 0.538521, 0, -0.842612, 0, 1, 0, 0.842612, 0, 0.538521, 15.5301, 0, 10.4799 )

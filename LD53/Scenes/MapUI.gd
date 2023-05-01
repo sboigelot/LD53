@@ -58,6 +58,17 @@ onready var ui_edr_prev_day_button		= get_node(np_edr_prev_day_button) as Button
 onready var ui_edr_day_label			= get_node(np_edr_day_label) as Label
 onready var ui_edr_next_day_button		= get_node(np_edr_next_day_button) as Button
 
+export(NodePath) var np_achivement_animation
+var achievement_done: bool = false
+onready var ui_achivement_animation		= get_node(np_achivement_animation) as AnimationPlayer
+
+func play_achiement_animation():
+	if achievement_done:
+		return
+	achievement_done = true
+	SfxManager.play("achievement")
+	ui_achivement_animation.play("Popup")
+
 var last_confirmation_request_func: FuncRef
 
 var waiting_for_factory_target: WaypointView
@@ -175,11 +186,15 @@ func update_goal_labels():
 	var goal_salad = Game.Data.get_total_goals_count("salad")
 	ui_edr_count_label_goal_salad.text 	=	"%d / %d" % [delivered_salad, goal_salad]
 	ui_stat_count_label_goal_salad.text 	=	"%d / %d" % [delivered_salad, goal_salad]
-	
+
 	var delivered_meat = Game.Data.get_completed_goals_count("burger")
 	var goal_meat = Game.Data.get_total_goals_count("burger")
-	ui_edr_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
-	ui_stat_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
+	if not achievement_done:
+		ui_edr_count_label_goal_meat.text = "locked"
+		ui_stat_count_label_goal_meat.text = "locked"
+	else:
+		ui_edr_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
+		ui_stat_count_label_goal_meat.text 	=	"%d / %d" % [delivered_meat, goal_meat]
 	
 	ui_edr_victory_label.visible = delivered_salad >= goal_salad and delivered_meat >= goal_meat
 	

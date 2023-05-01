@@ -35,6 +35,7 @@ func spawn_replacement(packed_scene):
 	Game.Map.get_building_placeholder().add_child(replacement)
 	replacement.global_translation = global_translation
 	replacement.global_rotation = global_rotation
+	replacement.popup()
 
 func _process(delta):
 	if tutorial_shown:
