@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "Arc2D",
-"language": "GDScript",
-"path": "res://addons/primitives2d/arc2d.gd"
-}, {
 "base": "Reference",
 "class": "Array2D",
 "language": "GDScript",
@@ -48,11 +43,6 @@ _global_script_classes=[ {
 "class": "CallbackDelegator",
 "language": "GDScript",
 "path": "res://addons/godot-next/nodes/callback_delegator.gd"
-}, {
-"base": "Node2D",
-"class": "Circle2D",
-"language": "GDScript",
-"path": "res://addons/primitives2d/circle2d.gd"
 }, {
 "base": "Reference",
 "class": "ClassType",
@@ -94,60 +84,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-next/gui/cycle.gd"
 }, {
-"base": "Reference",
-"class": "DTS",
-"language": "GDScript",
-"path": "res://addons/dialogic/Localization/translation_service.gd"
-}, {
 "base": "Label",
 "class": "DebugLabel",
 "language": "GDScript",
 "path": "res://addons/godot-next/gui/debug_label.gd"
-}, {
-"base": "Node",
-"class": "Dialogic",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicClass.gd"
-}, {
-"base": "Reference",
-"class": "DialogicAnimaPropertiesHelper",
-"language": "GDScript",
-"path": "res://addons/dialogic/Nodes/Anima/DialogicAnimaPropertiesHelper.gd"
-}, {
-"base": "Node",
-"class": "DialogicAnimaResources",
-"language": "GDScript",
-"path": "res://addons/dialogic/Nodes/Anima/DialogicAnimaResources.gd"
-}, {
-"base": "Control",
-"class": "DialogicBackgroundMusic",
-"language": "GDScript",
-"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
-}, {
-"base": "Node",
-"class": "DialogicCustomEvents",
-"language": "GDScript",
-"path": "res://addons/dialogic/Nodes/DialogicCustomEvents.gd"
-}, {
-"base": "Node",
-"class": "DialogicDefinitionsUtil",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
-}, {
-"base": "Node",
-"class": "DialogicParser",
-"language": "GDScript",
-"path": "res://addons/dialogic/Parser/DialogicParser.gd"
-}, {
-"base": "Reference",
-"class": "DialogicResources",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicResources.gd"
-}, {
-"base": "Reference",
-"class": "DialogicUtil",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
 "base": "ImageTexture",
 "class": "DiscreteGradientTexture",
@@ -203,11 +143,6 @@ _global_script_classes=[ {
 "class": "HTerrainDataSaver",
 "language": "GDScript",
 "path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
-}, {
-"base": "PanelContainer",
-"class": "HistoryRow",
-"language": "GDScript",
-"path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
 "base": "Spatial",
 "class": "HoverLabel3D",
@@ -279,11 +214,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-next/references/property_info_factory.gd"
 }, {
-"base": "Node2D",
-"class": "Rectangle2D",
-"language": "GDScript",
-"path": "res://addons/primitives2d/rectangle2d.gd"
-}, {
 "base": "ResourceCollection",
 "class": "ResourceArray",
 "language": "GDScript",
@@ -313,11 +243,6 @@ _global_script_classes=[ {
 "class": "Singletons",
 "language": "GDScript",
 "path": "res://addons/godot-next/global/singletons.gd"
-}, {
-"base": "",
-"class": "StateMachinePlayer",
-"language": "GDScript",
-"path": "res://addons/imjp94.yafsm/src/StateMachinePlayer.gd"
 }, {
 "base": "Spatial",
 "class": "Stockpile",
@@ -370,7 +295,6 @@ _global_script_classes=[ {
 "path": "res://Scenes/WaypointView.gd"
 } ]
 _global_script_class_icons={
-"Arc2D": "",
 "Array2D": "",
 "ArrayMap": "",
 "Behavior": "",
@@ -378,7 +302,6 @@ _global_script_class_icons={
 "Bitset": "",
 "CSVFile": "",
 "CallbackDelegator": "",
-"Circle2D": "",
 "ClassType": "",
 "ControllerButton": "",
 "ControllerMapper": "",
@@ -387,17 +310,7 @@ _global_script_class_icons={
 "ControllerSprite3D": "",
 "ControllerTextureRect": "",
 "Cycle": "res://addons/godot-next/icons/icon_cycle.svg",
-"DTS": "",
 "DebugLabel": "",
-"Dialogic": "",
-"DialogicAnimaPropertiesHelper": "",
-"DialogicAnimaResources": "",
-"DialogicBackgroundMusic": "",
-"DialogicCustomEvents": "",
-"DialogicDefinitionsUtil": "",
-"DialogicParser": "",
-"DialogicResources": "",
-"DialogicUtil": "",
 "DiscreteGradientTexture": "",
 "Drone": "",
 "DronePad": "",
@@ -409,7 +322,6 @@ _global_script_class_icons={
 "Geometry2D": "res://addons/godot-next/icons/icon_geometry_2d.svg",
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
-"HistoryRow": "",
 "HoverLabel3D": "",
 "Icons": "",
 "Inflector": "",
@@ -424,14 +336,12 @@ _global_script_class_icons={
 "ProjectTools": "",
 "PropertyInfo": "",
 "PropertyInfoFactory": "",
-"Rectangle2D": "",
 "ResourceArray": "",
 "ResourceAsyncLoader": "",
 "ResourceCollection": "",
 "ResourceSet": "",
 "SelectConstructionDialog": "",
 "Singletons": "",
-"StateMachinePlayer": "",
 "Stockpile": "",
 "Trail2D": "res://addons/godot-next/icons/icon_trail_2d.svg",
 "Trail3D": "res://addons/godot-next/icons/icon_trail_3d.svg",
@@ -471,7 +381,7 @@ window/size/fullscreen=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/google_fonts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/primitives2d/plugin.cfg", "res://addons/retile/plugin.cfg", "res://addons/water2d/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/retile/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [filesystem]
 

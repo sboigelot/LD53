@@ -45,13 +45,13 @@ np_animation_player = NodePath("AnimationPlayer")
 [node name="DronePads" type="Spatial" parent="Visual"]
 
 [node name="DronePad1" parent="Visual/DronePads" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0611007, 0.997561, 1.33914 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212, 1.191, 1.9 )
 
 [node name="DronePad2" parent="Visual/DronePads" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0611007, 0.997561, 0.208544 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212309, 1.15669, 0.000482038 )
 
 [node name="DronePad3" parent="Visual/DronePads" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0611007, 0.997561, -0.917567 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212, 1.156, -1.9 )
 drone_bought = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

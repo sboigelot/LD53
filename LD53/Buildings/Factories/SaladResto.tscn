@@ -167,7 +167,7 @@ shape = SubResource( 8 )
 [node name="TutorialVictoryHoverLabel3D" parent="Visual" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.444202, 0.515793, 1.69611 )
 visible = false
-text = "Deliver all Salads to all Resto to win!"
+text = "I want Salads!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Cycle = SubResource( 3 )

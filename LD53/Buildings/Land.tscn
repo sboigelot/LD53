@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Buildings/Land.gd" type="Script" id=1]
-[ext_resource path="res://Buildings/DroneGarage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/HoverLabel3D.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
@@ -12,7 +11,6 @@ extents = Vector3( 2.1, 0.2, 2.1 )
 
 [node name="Land" type="Spatial"]
 script = ExtResource( 1 )
-GarageScene = ExtResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -28,8 +26,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204958, 0 )
 
 [node name="HoverLabel3D" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.810415, 0 )
-visible = false
-text = "Click here to build a new building"
+text = "Land for sale!"
 
 [connection signal="input_event" from="StaticBody" to="." method="_on_StaticBody_input_event"]
 [connection signal="mouse_entered" from="StaticBody" to="." method="_on_StaticBody_mouse_entered"]

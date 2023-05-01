@@ -195,7 +195,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 316.0
-margin_bottom = 190.0
+margin_bottom = 212.0
 custom_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel"]
@@ -246,14 +246,14 @@ text = "0"
 [node name="ObjectivesPanelContainer" type="PanelContainer" parent="MarginContainer/StatPanel"]
 margin_top = 88.0
 margin_right = 306.0
-margin_bottom = 180.0
+margin_bottom = 202.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 9 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer"]
 margin_right = 306.0
-margin_bottom = 92.0
+margin_bottom = 114.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -263,7 +263,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 301.0
-margin_bottom = 87.0
+margin_bottom = 109.0
 
 [node name="ObjectivesLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 296.0
@@ -324,7 +324,7 @@ text = "0 / 0"
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 82.0
 margin_right = 296.0
-margin_bottom = 82.0
+margin_bottom = 104.0
 
 [node name="OpenDayReportButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
@@ -337,8 +337,6 @@ text = "Open Day Report"
 flat = true
 
 [node name="ShowRecipeButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
-margin_left = 150.0
 margin_right = 296.0
 margin_bottom = 22.0
 focus_mode = 0
@@ -961,10 +959,10 @@ text = "Close"
 [node name="AchievementView" parent="." instance=ExtResource( 26 )]
 anchor_left = 1.0
 anchor_top = 1.0
-margin_left = 1450.0
-margin_top = 1120.0
-margin_right = 1900.0
-margin_bottom = 1262.0
+margin_left = -470.0
+margin_top = 40.0
+margin_right = -20.0
+margin_bottom = 182.0
 
 [node name="AchievementAnimationPlayer" type="AnimationPlayer" parent="AchievementView"]
 anims/Popup = SubResource( 16 )

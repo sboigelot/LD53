@@ -43,7 +43,7 @@ func set_color(value:Color):
 		
 	var material = SpatialMaterial.new()
 	material.albedo_color = color
-	sp_drone_mesh.set_surface_material(3, material)
+	sp_drone_mesh.set_surface_material(2, material)
 	
 export var turn_speed:float = 1.0
 export var speed:float = 3.0
