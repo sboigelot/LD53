@@ -137,6 +137,7 @@ cycle_money_generation = 10
 
 [node name="ClickMeHoverLabel3D" parent="Visual" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01138, 0 )
+visible = false
 text = "Click me!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -146,13 +147,13 @@ anims/RESET = SubResource( 4 )
 [node name="Warnings" type="Spatial" parent="."]
 
 [node name="WarningNoInputSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5563, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 3 )
 
 [node name="WarningNoOutputSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5563, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 4 )

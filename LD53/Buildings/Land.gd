@@ -3,6 +3,8 @@ extends Spatial
 export(PackedScene) var GarageScene
 export var garage_price: int = 300
 
+var tutorial_shown:bool = false
+
 func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 	if Game.Data.deliver_phase:
 		return
@@ -14,8 +16,9 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 			on_mouse_left_button_click()
 
 func on_mouse_left_button_click():
-	print("on_mouse_left_button_click")
 	emit_signal("Pressed", self)
+	
+	Game.Data.complete_tutorial_step("build_on_land")
 	
 	var text = ""
 	if Game.Data.money >= garage_price:
@@ -35,6 +38,14 @@ func spawn_garage():
 	Game.Map.get_building_placeholder().add_child(garage)
 	garage.global_translation = global_translation
 	garage.global_rotation = global_rotation
+
+func _process(delta):
+	if tutorial_shown:
+		if $HoverLabel3D.visible:
+			$HoverLabel3D.visible = Game.Data.is_tutorial_step("build_on_land")
+	elif Game.Data.is_tutorial_step("build_on_land"):
+			$HoverLabel3D.visible = true
+			tutorial_shown = true
 
 func _on_StaticBody_mouse_entered():
 	if Game.Data.deliver_phase:

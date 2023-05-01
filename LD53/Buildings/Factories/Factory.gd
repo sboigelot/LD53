@@ -55,6 +55,7 @@ func _ready():
 	if sp_warning_no_output_space_sprite_3D != null:
 		sp_warning_no_output_space_sprite_3D.visible = false
 	
+	yield(get_tree(),"idle_frame")
 	register_game_goals()
 
 func register_game_goals():
@@ -69,13 +70,15 @@ func reset_goals():
 		for cube in sp_delivery_target_placeholder.get_children():
 			cube.completed = false
 	
-func progress_goals():
+func progress_goals(quantity:int):
 	if (sp_delivery_target_placeholder != null and
 		sp_delivery_target_placeholder.get_child_count() > 0):
 		for cube in sp_delivery_target_placeholder.get_children():
 			if not cube.completed:
 				cube.completed = true
-				return
+				quantity -= 1
+				if quantity == 0:
+					return
 
 func get_total_goals_count() -> int:
 	if sp_delivery_target_placeholder == null:
@@ -108,7 +111,7 @@ func reset():
 	current_output_retry_delay = 0
 	current_delay_between_cycle = 0
 	
-	reset_goals()
+#	reset_goals()
 	
 	if sp_input_stockpile != null:
 		sp_input_stockpile.reset()
@@ -205,7 +208,7 @@ func try_pay_cycle_if_needed(delta) -> bool:
 	
 func start_new_cycle():
 	current_cycle_remaining_duration = cycle_duration
-	if not sp_animation_player.is_playing():
+	if Game.building_jump and not sp_animation_player.is_playing():
 		sp_animation_player.play("Cycle")
 		
 	sp_warning_no_input_sprite_3D.visible = false
@@ -276,8 +279,9 @@ func on_mouse_left_button_click():
 	Game.Data.complete_tutorial_step("click_me_%s" % display_name.to_lower().replace(" ", "_"))
 	Game.Map.map_ui.on_factory_pressed(self)
 
-func _on_Input_NewCargo():
+func _on_Input_NewCargo(quantity:int):
 	if cycle_money_generation != 0:
-		Game.Data.add_money(cycle_money_generation)
+		Game.Data.add_money(cycle_money_generation * quantity)
 		sp_money_animation_player.play("CoinUp")
-		progress_goals()
+		progress_goals(quantity)
+

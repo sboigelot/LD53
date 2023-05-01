@@ -644,6 +644,7 @@ fov = 23.6
 size = 20.0
 
 [node name="Plane" type="MeshInstance" parent="MainMenu3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458047, 0 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
@@ -651,7 +652,7 @@ material/0 = SubResource( 4 )
 
 [node name="Drone1" parent="MainMenu3D/Drones" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22221, 0, 3.16154 )
-color = Color( 0.0392157, 0.752941, 1, 1 )
+color = Color( 1, 0.0392157, 0.309804, 1 )
 route = [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ]
 
 [node name="Buildings" type="Spatial" parent="MainMenu3D"]
@@ -714,6 +715,8 @@ visible = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="MainMenu3D"]
 transform = Transform( 0.178567, -0.625406, 0.759593, 0.14312, 0.780299, 0.60881, -0.973463, 1.98914e-11, 0.228844, 7.05351, 3.04778, 0 )
+shadow_enabled = true
+directional_shadow_mode = 1
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]

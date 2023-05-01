@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Buildings/Land.gd" type="Script" id=1]
 [ext_resource path="res://Buildings/DroneGarage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/HoverLabel3D.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 4, 0.2, 4 )
@@ -24,6 +25,11 @@ shape = SubResource( 2 )
 
 [node name="DroneParkingSpace" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204958, 0 )
+
+[node name="HoverLabel3D" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.810415, 0 )
+visible = false
+text = "Click here to build a new building"
 
 [connection signal="input_event" from="StaticBody" to="." method="_on_StaticBody_input_event"]
 [connection signal="mouse_entered" from="StaticBody" to="." method="_on_StaticBody_mouse_entered"]

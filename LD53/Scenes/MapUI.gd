@@ -6,20 +6,24 @@ export(NodePath) var np_day_label
 export(NodePath) var np_money_label
 export(NodePath) var np_stat_count_label_goal_salad
 export(NodePath) var np_stat_count_label_goal_meat
+export(NodePath) var np_open_day_report_button
+export(NodePath) var np_help_window
 export(NodePath) var np_confirmation_dialog
 export(NodePath) var np_drone_popup
 export(NodePath) var np_delivery_phase_info_label
 export(NodePath) var np_delivery_phase_progress_bar
 export(NodePath) var np_tutorial_start_day_container
 
-onready var ui_day_label = get_node(np_day_label) as Label
-onready var ui_money_label = get_node(np_money_label) as Label
+onready var ui_day_label 					= get_node(np_day_label) as Label
+onready var ui_money_label 					= get_node(np_money_label) as Label
 onready var ui_stat_count_label_goal_salad	= get_node(np_stat_count_label_goal_salad) as Label
 onready var ui_stat_count_label_goal_meat	= get_node(np_stat_count_label_goal_meat) as Label
-onready var ui_confirmation_dialog = get_node(np_confirmation_dialog) as ConfirmationDialog
-onready var ui_drone_popup = get_node(np_drone_popup) as WindowDialog
-onready var ui_delivery_phase_info_label = get_node(np_delivery_phase_info_label) as Label
-onready var ui_delivery_phase_progress_bar = get_node(np_delivery_phase_progress_bar) as ProgressBar
+onready var ui_open_day_report_button		= get_node(np_open_day_report_button) as Button
+onready var ui_help_window					= get_node(np_help_window) as WindowDialog
+onready var ui_confirmation_dialog 			= get_node(np_confirmation_dialog) as ConfirmationDialog
+onready var ui_drone_popup 					= get_node(np_drone_popup) as WindowDialog
+onready var ui_delivery_phase_info_label 	= get_node(np_delivery_phase_info_label) as Label
+onready var ui_delivery_phase_progress_bar 	= get_node(np_delivery_phase_progress_bar) as ProgressBar
 onready var ui_tutorial_start_day_container = get_node(np_tutorial_start_day_container) as Container
 
 export(NodePath) var np_end_of_day_report_popup
@@ -44,12 +48,19 @@ onready var ui_edr_count_label_goal_salad	= get_node(np_edr_count_label_goal_sal
 onready var ui_edr_count_label_goal_meat	= get_node(np_edr_count_label_goal_meat) as Label
 onready var ui_edr_victory_label			= get_node(np_edr_victory_label) as Label
 
+export(NodePath) var np_edr_prev_day_button
+export(NodePath) var np_edr_day_label
+export(NodePath) var np_edr_next_day_button
+
+onready var ui_edr_prev_day_button		= get_node(np_edr_prev_day_button) as Button
+onready var ui_edr_day_label			= get_node(np_edr_day_label) as Label
+onready var ui_edr_next_day_button		= get_node(np_edr_next_day_button) as Button
+
 var last_confirmation_request_func: FuncRef
 
 var waiting_for_factory_target: WaypointView
 
-func _ready():
-	update_goal_labels()
+var current_report_day:int = 0
 
 func _process(delta):
 	ui_day_label.text = str(Game.Data.day)
@@ -62,6 +73,8 @@ func _process(delta):
 	ui_delivery_phase_info_label.text = "Delivery in Progress!" if Game.Data.deliver_phase else "Planning Mode"
 
 	ui_tutorial_start_day_container.visible = Game.Data.is_tutorial_step("start_day")
+	
+	ui_open_day_report_button.visible = Game.Data.day > 1
 
 func show_drone_popup(drone):
 	ui_drone_popup.drone = drone
@@ -115,7 +128,20 @@ func _on_ForwardButton_pressed():
 		else:
 			Game.Data.deliver_phase_speed = 1.0
 			
+
 func show_end_of_day_report(day:int):
+	
+	if Game.Data.daily_deliveries.size() <= day - 1:
+		return
+		
+	if day > Game.Data.day:
+		return
+	
+	current_report_day = day
+	
+	ui_edr_prev_day_button.disabled = day == 1
+	ui_edr_day_label.text = "day %d" % day
+	ui_edr_next_day_button.disabled = day == Game.Data.day
 	
 	ui_edr_count_label_water.text		=	str(Game.Data.daily_deliveries[day - 1]["water"])
 	ui_edr_count_label_vegetable.text 	=	str(Game.Data.daily_deliveries[day - 1]["vegetable"])
@@ -124,6 +150,7 @@ func show_end_of_day_report(day:int):
 	ui_edr_count_label_burger.text		=	str(Game.Data.daily_deliveries[day - 1]["burger"])
 	ui_edr_count_label_coin.text 		=	str(Game.Data.daily_money_benefits[day - 1])
 	
+	update_goal_labels()
 	ui_end_of_day_report_popup.popup_centered()
 	
 func update_goal_labels():
@@ -142,6 +169,19 @@ func update_goal_labels():
 	
 	ui_edr_victory_label.visible = delivered_salad >= goal_salad and delivered_meat >= goal_meat
 	
-
 func _on_CloseButton_pressed():
 	ui_end_of_day_report_popup.hide()
+
+func _on_OpenDayReportButton_button_down():
+	show_end_of_day_report(Game.Data.day - 1)
+
+func _on_PrevDayButton_pressed():
+	current_report_day -= 1
+	show_end_of_day_report(current_report_day)
+
+func _on_NextDayButton_pressed():	
+	current_report_day += 1
+	show_end_of_day_report(current_report_day)
+
+func _on_ShowRecipeButton_pressed():
+	ui_help_window.popup()

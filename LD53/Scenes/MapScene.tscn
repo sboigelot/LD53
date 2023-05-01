@@ -1,6 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://Buildings/Furnitures/Stockpile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Utilities/Line3D.gd" type="Script" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/MapScene.gd" type="Script" id=4]
 [ext_resource path="res://Buildings/Factories/WaterTower.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Buildings/Factories/Farm.tscn" type="PackedScene" id=6]
@@ -12,85 +14,251 @@
 [ext_resource path="res://Buildings/Factories/BurgerKitchen.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Buildings/DroneGarage.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Buildings/Land.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Buildings/Factories/Warehouse.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Models/Trees/tree4.glb" type="PackedScene" id=15]
+[ext_resource path="res://Data/Terrain/data.hterrain" type="Resource" id=16]
+[ext_resource path="res://Assets/Models/Trees/tree2.glb" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Models/Trees/tree5.glb" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Models/Trees/tree3.glb" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Models/Trees/tree1.glb" type="PackedScene" id=20]
 
 [sub_resource type="PlaneMesh" id=3]
+size = Vector2( 70, 70 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.262745, 0.470588, 0.498039, 1 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Wave"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6.9, 10, 12.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.4, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -0.2, 0 ), Vector3( 0, -0.2, 0 ) ]
+}
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+mode = 0
+textures = [ [  ], [  ] ]
+
+[sub_resource type="PlaneMesh" id=11]
 size = Vector2( 100, 100 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0.388235, 0.498039, 0.262745, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+albedo_color = Color( 0.811765, 0.14902, 0.14902, 0.745098 )
 
 [node name="MapScene" type="Spatial"]
 script = ExtResource( 4 )
 np_map_ui = NodePath("MapUI")
 
+[node name="MapUI" parent="." instance=ExtResource( 9 )]
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 20, 30 )
+transform = Transform( 1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 20, 33 )
 projection = 1
 current = true
-fov = 23.6
+fov = 90.0
 size = 35.0
 
 [node name="Terrain" type="Spatial" parent="."]
 
-[node name="Plane" type="MeshInstance" parent="Terrain"]
+[node name="Terrain3D" type="Spatial" parent="Terrain"]
+transform = Transform( 1.15, 0, 0, 0, 1, 0, 0, 0, 1.15, 0, 0, 0 )
+
+[node name="Water" type="MeshInstance" parent="Terrain/Terrain3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.270367, 0 )
 mesh = SubResource( 3 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 4 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Terrain/Terrain3D/Water"]
+reset_on_save = false
+anims/RESET = SubResource( 9 )
+anims/Wave = SubResource( 10 )
+
+[node name="HTerrain" type="Spatial" parent="Terrain/Terrain3D"]
+script = ExtResource( 3 )
+lod_scale = 2.0
+centered = true
+_terrain_data = ExtResource( 16 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "LowPoly"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 7 )
+render_layers = 1
+
+[node name="Terrain2D" type="MeshInstance" parent="Terrain"]
+visible = false
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="Trees" type="Spatial" parent="Terrain"]
+
+[node name="tree1" parent="Terrain/Trees" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0605, 0.000571251, 1.68698 )
+visible = false
+
+[node name="tree5" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25873, 0.0577831, -2.49567 )
+
+[node name="tree2" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.34475, 0, -13.2467 )
+
+[node name="tree6" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8375, 4.76837e-07, 0.0954909 )
+
+[node name="tree4" parent="Terrain/Trees" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3549, 0.00963879, 1.52937 )
+
+[node name="tree7" parent="Terrain/Trees" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.239, -9.53674e-07, -0.565861 )
+
+[node name="tree8" parent="Terrain/Trees" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0894, 4.76837e-07, -18.5382 )
+
+[node name="tree3" parent="Terrain/Trees" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3389, 0, 5.66476 )
+
+[node name="tree9" parent="Terrain/Trees" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56714, 0.00207901, 13.7238 )
+
+[node name="tree10" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3127, 0.00343418, -2.04213 )
+
+[node name="tree11" parent="Terrain/Trees" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6919, -2.38419e-07, -10.7724 )
+
+[node name="tree12" parent="Terrain/Trees" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4179, -4.36875, 15.3479 )
+
+[node name="tree13" parent="Terrain/Trees" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4101, -4.76837e-07, -0.251457 )
+
+[node name="tree14" parent="Terrain/Trees" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6435, 0, 0.396264 )
+
+[node name="tree15" parent="Terrain/Trees" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0399, -4.76837e-07, -0.752237 )
+
+[node name="tree16" parent="Terrain/Trees" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7623, -4.76837e-07, 0.543541 )
+
+[node name="tree17" parent="Terrain/Trees" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2189, -9.53674e-07, -1.17919 )
+
+[node name="tree18" parent="Terrain/Trees" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7898, -4.76837e-07, 0.41094 )
 
 [node name="Drones" type="Spatial" parent="."]
+
+[node name="Paths" type="Spatial" parent="."]
+
+[node name="Line3D" type="ImmediateGeometry" parent="Paths"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95604, 5.06157, 0 )
+visible = false
+material_override = SubResource( 6 )
+cast_shadow = 0
+script = ExtResource( 1 )
+end_point = Vector3( 18.945, 3, -5.546 )
+width = 0.2
 
 [node name="Buildings" type="Spatial" parent="."]
 
 [node name="StockpileNodePathSource" type="Spatial" parent="Buildings"]
 visible = false
 
-[node name="ExportStockpile" parent="Buildings" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.26106, 0, -6.12889 )
-visible = false
-cargo_count = 3
-cargo_type = "vegetable"
-
-[node name="ImportStockpile" parent="Buildings" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11899, 0, -9.73255 )
-visible = false
-import = true
-cargo_type = "vegetable"
-
 [node name="WaterTower" parent="Buildings" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72604, 0, -6.12499 )
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -19.972, 0, 22 )
 
 [node name="WaterTower2" parent="Buildings" instance=ExtResource( 5 )]
-transform = Transform( 0.38589, 0, 0.922545, 0, 1, 0, -0.922545, 0, 0.38589, -10.7041, 0, -6.73347 )
+transform = Transform( 0.255935, 0, -0.966694, 0, 1, 0, 0.966694, 0, 0.255935, 11.3798, 0, -19.1697 )
+
+[node name="WaterTower3" parent="Buildings" instance=ExtResource( 5 )]
+transform = Transform( 0.811595, 0, 0.584221, 0, 1, 0, -0.584221, 0, 0.811595, 10, 0, 17 )
+
+[node name="WaterTower4" parent="Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.001, 0, -15.623 )
 
 [node name="Farm" parent="Buildings" instance=ExtResource( 6 )]
-transform = Transform( 0.578057, 0, 0.815997, 0, 1, 0, -0.815997, 0, 0.578057, 6.1141, 0, -8.36852 )
+transform = Transform( 0.578057, 0, 0.815997, 0, 1, 0, -0.815997, 0, 0.578057, 23.5779, 0, -23.1269 )
 
-[node name="RestoSalad" parent="Buildings" instance=ExtResource( 8 )]
-transform = Transform( 0.897043, 0, -0.441944, 0, 1, 0, 0.441944, 0, 0.897043, 10.5085, 0, -2.92127 )
+[node name="Farm2" parent="Buildings" instance=ExtResource( 6 )]
+transform = Transform( 0.522469, 0, -0.852659, 0, 1, 0, 0.852659, 0, 0.522469, 23.3739, 0, -11.2775 )
 
-[node name="MarketSalad" parent="Buildings" instance=ExtResource( 7 )]
-transform = Transform( 0.422571, 0, 0.90633, 0, 1, 0, -0.90633, 0, 0.422571, 3.05955, 0, 1.90177 )
+[node name="Farm3" parent="Buildings" instance=ExtResource( 6 )]
+transform = Transform( 0.819853, 0, 0.572576, 0, 1, 0, -0.572576, 0, 0.819853, -23.4678, 0, -7.71109 )
+
+[node name="Farm4" parent="Buildings" instance=ExtResource( 6 )]
+transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 4.70341, 0, -16.1895 )
 
 [node name="Ranch" parent="Buildings" instance=ExtResource( 11 )]
-transform = Transform( 0.192641, 0, -0.981269, 0, 1, 0, 0.981269, 0, 0.192641, -9.61072, 9.53674e-07, -0.445289 )
+transform = Transform( 0.456103, 0, -0.889926, 0, 1, 0, 0.889926, 0, 0.456103, 18.3557, 0, -19.2217 )
 
-[node name="JustBurgers" parent="Buildings" instance=ExtResource( 12 )]
-transform = Transform( 0.616926, 0, 0.787021, 0, 1, 0, -0.787021, 0, 0.616926, -10.4578, 1.90735e-06, 4.10674 )
+[node name="Ranch2" parent="Buildings" instance=ExtResource( 11 )]
+transform = Transform( -0.787925, 0, -0.615771, 0, 1, 0, 0.615771, 0, -0.787925, -11.6719, 0, -12.6512 )
 
-[node name="MarketBurger" parent="Buildings" instance=ExtResource( 10 )]
-transform = Transform( 0.973255, 0, -0.229727, 0, 1, 0, 0.229727, 0, 0.973255, -0.557939, 0, 1.0411 )
+[node name="SaladKitchen" parent="Buildings" instance=ExtResource( 8 )]
+transform = Transform( 0.897043, 0, -0.441944, 0, 1, 0, 0.441944, 0, 0.897043, -2.17029, 0, -0.809549 )
 
-[node name="DroneGarage" parent="Buildings" instance=ExtResource( 13 )]
-transform = Transform( 0.875953, 0, 0.482396, 0, 1, 0, -0.482396, 0, 0.875953, -6.18188, -9.53674e-07, -2.39907 )
+[node name="SaladResto" parent="Buildings" instance=ExtResource( 7 )]
+transform = Transform( 0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, 0.5, -9.68367, 0, 0.387798 )
+
+[node name="SaladResto2" parent="Buildings" instance=ExtResource( 7 )]
+transform = Transform( 0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, 0.642788, 9.78837, 0, -5.93635 )
+
+[node name="BurgerKitchen" parent="Buildings" instance=ExtResource( 12 )]
+transform = Transform( 0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 5.34695, 0, 1.87056 )
+
+[node name="BurgerResto" parent="Buildings" instance=ExtResource( 10 )]
+transform = Transform( -0.707452, 0, 0.706761, 0, 1, 0, -0.706761, 0, -0.707452, -9.61339, 0, 6.10642 )
+
+[node name="DroneHub" parent="Buildings" instance=ExtResource( 13 )]
+transform = Transform( 1.07704, 0, -1.68522, 0, 2, 0, 1.68522, 0, 1.07704, 15.5301, 0, 10.4799 )
 
 [node name="Land" parent="Buildings" instance=ExtResource( 14 )]
-transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, 1.35407, 0, -10.3044 )
+transform = Transform( 0.882948, 0, 0.469472, 0, 1, 0, -0.469472, 0, 0.882948, 17.7557, 0, -3.82531 )
 
-[node name="Warehouse" parent="Buildings" instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8523, 0, 3.74791 )
+[node name="Land2" parent="Buildings" instance=ExtResource( 14 )]
+transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, -21.995, 0, 8.96465 )
 
-[node name="MapUI" parent="." instance=ExtResource( 9 )]
+[node name="Land3" parent="Buildings" instance=ExtResource( 14 )]
+transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, -18.7284, 0, -12.0212 )
+
+[node name="Land4" parent="Buildings" instance=ExtResource( 14 )]
+transform = Transform( 0.702066, 0, -0.712112, 0, 1, 0, 0.712112, 0, 0.702066, 0, 0, -9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.178567, -0.625406, 0.759593, 0.14312, 0.780299, 0.60881, -0.973463, 1.98914e-11, 0.228844, 7.05351, 3.04778, 0 )
+transform = Transform( 0.101473, -0.896316, 0.431648, 0.205116, 0.443415, 0.872531, -0.973463, -4.5197e-07, 0.228844, 7.05351, 3.04778, 0 )
+shadow_enabled = true
+directional_shadow_mode = 1

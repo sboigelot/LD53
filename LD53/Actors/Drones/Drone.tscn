@@ -10,7 +10,6 @@
 [ext_resource path="res://Scenes/HoverLabel3D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.3
 
 [sub_resource type="SpatialMaterial" id=7]
 params_diffuse_mode = 4
@@ -98,7 +97,7 @@ np_cargo_icon_2 = NodePath("Cargos/CargoSprite3D2")
 np_cargo_icon_3 = NodePath("Cargos/CargoSprite3D3")
 np_animation_player = NodePath("AnimationPlayer")
 np_selection_torus = NodePath("SelectionTorus")
-np_drone_mesh = NodePath("Visual/drone/dell-e")
+np_drone_mesh = NodePath("Visual/drone/drone")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109384, 0 )
@@ -106,8 +105,8 @@ shape = SubResource( 1 )
 
 [node name="SelectionTorus" type="CSGTorus" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0797948, 0 )
-inner_radius = 0.5
-outer_radius = 0.6
+inner_radius = 0.8
+outer_radius = 1.0
 sides = 32
 ring_sides = 18
 material = SubResource( 7 )
@@ -134,11 +133,12 @@ mesh = SubResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
 
-[node name="drone" parent="Visual" instance=ExtResource( 7 )]
-
 [node name="ClickMeSpatial" parent="Visual" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.664113, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.982631, 0 )
 text = "Click me!"
+
+[node name="drone" parent="Visual" instance=ExtResource( 7 )]
+transform = Transform( 1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0 )
 
 [node name="Warnings" type="Spatial" parent="."]
 

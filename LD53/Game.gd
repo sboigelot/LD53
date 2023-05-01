@@ -6,6 +6,8 @@ var Data: GameData
 var Map: MapScene
 
 export(PoolColorArray) var available_drone_colors
+export var building_jump: bool = true
+
 
 func _ready():
 #	new_game() # for debug singl components

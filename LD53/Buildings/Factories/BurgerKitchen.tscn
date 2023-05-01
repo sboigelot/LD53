@@ -1,20 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Buildings/Factories/Factory.gd" type="Script" id=1]
 [ext_resource path="res://Buildings/Furnitures/Stockpile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Process/justbugers.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/heavy.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=5]
-
-[sub_resource type="CubeMesh" id=5]
-
-[sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.564706, 0.0235294, 0.0235294, 1 )
-
-[sub_resource type="ConcavePolygonShape" id=8]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="SphereMesh" id=6]
+[ext_resource path="res://Assets/Models/BurgerKitchen/burgerkitchen.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Cycle"
@@ -56,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.5, 0.5, 0.5 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Visual:translation")
@@ -140,22 +131,8 @@ cycle_duration = 1.0
 cycle_money_generation = 25
 
 [node name="Visual" type="Spatial" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Visual"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.969537, 0 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 7 )
-
-[node name="StaticBody" type="StaticBody" parent="Visual/MeshInstance"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Visual/MeshInstance/StaticBody"]
-shape = SubResource( 8 )
-
-[node name="MeshInstance3" type="MeshInstance" parent="Visual"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96129, 0 )
-mesh = SubResource( 6 )
-material/0 = SubResource( 7 )
+[node name="burgerkitchen" parent="Visual" instance=ExtResource( 6 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Cycle = SubResource( 3 )
@@ -164,18 +141,19 @@ anims/RESET = SubResource( 4 )
 [node name="Warnings" type="Spatial" parent="."]
 
 [node name="WarningNoInputSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5563, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 3 )
 
 [node name="WarningNoOutputSpaceSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5563, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 4 )
 
 [node name="MoneyEffect" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0 )
 
 [node name="MoneyGeneratedSprite3D" type="Sprite3D" parent="MoneyEffect"]
 transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.4, 0 )
@@ -190,16 +168,18 @@ anims/RESET = SubResource( 10 )
 [node name="Stockpiles" type="Spatial" parent="."]
 
 [node name="Input" parent="Stockpiles" instance=ExtResource( 2 )]
-transform = Transform( 0.999853, 0, 0.0171213, 0, 1, 0, -0.0171213, 0, 0.999853, 0.110262, 0, 1.06473 )
+transform = Transform( 0.0312881, 0, 0.99951, 0, 1, 0, -0.99951, 0, 0.0312881, -2.79957, 0, 0.229779 )
 import = true
 cargo_type = "meat"
 
 [node name="Output" parent="Stockpiles" instance=ExtResource( 2 )]
-transform = Transform( -0.0444393, 0, 0.999012, 0, 1, 0, -0.999012, 0, -0.0444393, 1.07019, 0, 0.604542 )
+transform = Transform( 0.999728, 0, -0.0233151, 0, 1, 0, 0.0233151, 0, 0.999728, 0.52061, -4.76837e-07, 2.10569 )
 cargo_type = "burger"
 
-[connection signal="input_event" from="Visual/MeshInstance/StaticBody" to="." method="_on_StaticBody_input_event"]
-[connection signal="mouse_entered" from="Visual/MeshInstance/StaticBody" to="." method="_on_StaticBody_mouse_entered"]
-[connection signal="mouse_exited" from="Visual/MeshInstance/StaticBody" to="." method="_on_StaticBody_mouse_exited"]
+[connection signal="input_event" from="Visual/burgerkitchen/burgerkitchen/StaticBody" to="." method="_on_StaticBody_input_event"]
+[connection signal="mouse_entered" from="Visual/burgerkitchen/burgerkitchen/StaticBody" to="." method="_on_StaticBody_mouse_entered"]
+[connection signal="mouse_exited" from="Visual/burgerkitchen/burgerkitchen/StaticBody" to="." method="_on_StaticBody_mouse_exited"]
 [connection signal="animation_finished" from="MoneyEffect/MoneyAnimationPlayer" to="." method="_on_MoneyAnimationPlayer_animation_finished"]
 [connection signal="NewCargo" from="Stockpiles/Input" to="." method="_on_Input_NewCargo"]
+
+[editable path="Visual/burgerkitchen"]

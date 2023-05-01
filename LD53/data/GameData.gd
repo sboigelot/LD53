@@ -18,6 +18,7 @@ var game_goal_factories: Array
 var daily_deliveries: Array
 var daily_money_benefits: Array
 
+var build_tutorial_shown:bool = false
 var tutorial_steps = [
 	"click_me_drone",
 	"add_step",
@@ -55,6 +56,9 @@ func start_delivery_phase(infinite:bool = false):
 	daily_deliveries[day - 1]["meat"] = 0
 	daily_deliveries[day - 1]["burger"] = 0
 	daily_money_benefits.append(0)
+	
+	for factory in game_goal_factories:
+		factory.reset_goals()
 	
 func reset_delivery_phase():
 	deliver_phase_timer = 0.0
@@ -95,6 +99,9 @@ func _process(delta):
 func add_money(count:int):
 	daily_money_benefits[day - 1] += count
 	money += count
+	
+	if not build_tutorial_shown and money >= 300:
+		tutorial_steps.append("build_on_land")
 
 func register_day_delivery(cargo:String, count:int):
 	var day_delivery = daily_deliveries[day - 1]
@@ -109,9 +116,10 @@ func complete_day():
 	deliver_phase_timer = 0.0
 	deliver_phase_speed = 1.0
 	deliver_phase = false
-	Game.Map.map_ui.show_end_of_day_report(day)
 	day += 1
+	Game.Map.map_ui.show_end_of_day_report(day - 1)
 
 func register_game_goal(factory:Factory):
 	if not game_goal_factories.has(factory):
 		game_goal_factories.append(factory)
+		Game.Map.map_ui.update_goal_labels()

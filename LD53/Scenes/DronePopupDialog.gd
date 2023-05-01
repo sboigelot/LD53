@@ -69,6 +69,7 @@ func update_ui():
 		waypoint_view.index = index
 		waypoint_view.data = waypoint_data
 		waypoint_view.last = index == drone.route.size() - 1
+		waypoint_view.max_cargo = drone.get_upgraded_cargo_max()
 		ui_waypoint_view_placeholder.add_child(waypoint_view)
 		waypoint_view.connect("PickingTarget", self, "on_waypoint_view_picking_target")
 		waypoint_view.connect("Delete", self, "on_delete_waypoint")
@@ -107,7 +108,14 @@ func _on_MemoryUpgradeView3_Upgraded():
 	update_ui()
 
 func _on_AddStopButton_pressed():
-	drone.route.append(WaypointData.new())
+	var waypoint = WaypointData.new()
+	if not Game.Data.is_tutorial_step("add_step") and drone.route.size() > 0:
+		var last_waypoint = drone.route[drone.route.size() - 1]
+		waypoint.factory_input = not last_waypoint.factory_input
+		waypoint.cargo_type = last_waypoint.cargo_type
+		waypoint.cargo_count = last_waypoint.cargo_count
+	drone.route.append(waypoint)
+	
 	Game.Data.complete_tutorial_step("add_step")
 	update_ui()
 

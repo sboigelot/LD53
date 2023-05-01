@@ -43,15 +43,16 @@ func set_color(value:Color):
 		
 	var material = SpatialMaterial.new()
 	material.albedo_color = color
-	sp_drone_mesh.material_override = material
+	sp_drone_mesh.set_surface_material(3, material)
 	
+export var turn_speed:float = 1.0
 export var speed:float = 3.0
 export var take_off_speed:float = 2.0
 export var cargo_max:int = 1
 export var memory_size:int = 3
 
 const flight_y: float = 3.0
-const dock_y: float = 0.5
+const dock_y: float = 1.0
 const parking_speration: float = 2.0
 const destination_snap_distance: float = 0.1 
 
@@ -271,7 +272,7 @@ func move_toward_destination(destination:Vector3, delta:float) -> bool:
 		return true
 	
 	rotation_degrees.y =  lerp(rotation_degrees.y,
-				rad2deg(translation.angle_to(destination)), 1.0)
+				rad2deg(translation.angle_to(destination)), turn_speed * delta)
 
 	var direction = translation.direction_to(destination)
 	var actual_speed =  get_upgraded_speed() * delta

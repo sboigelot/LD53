@@ -28,6 +28,7 @@ onready var ui_tutorial_pick_target		= get_node(np_tutorial_pick_target) as Cont
 var data:WaypointData
 var index: int
 var last: bool = false
+var max_cargo: int = 1
 
 const cargo_ids: Dictionary = {
 	"water":	0,
@@ -47,6 +48,10 @@ func update_ui():
 	ui_direction_toggle_button.pressed = data.factory_input
 	ui_direction_toggle_button.text = "Deliver" if data.factory_input else "Pickup"
 	ui_cargo_count_item_list.selected =  (data.cargo_count - 1)
+	for i in ui_cargo_count_item_list.get_item_count():
+		var disabled = i >= max_cargo
+		ui_cargo_count_item_list.set_item_disabled(i, disabled)
+		
 	ui_cargo_item_list.selected = cargo_ids[data.cargo_type]
 	ui_to_from_label.text = "to" if data.factory_input else "from"
 	ui_target_button.text = "Pick Target" if data.factory == null else data.factory.display_name
