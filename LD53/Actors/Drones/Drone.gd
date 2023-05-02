@@ -51,7 +51,7 @@ export var take_off_speed:float = 2.0
 export var cargo_max:int = 1
 export var memory_size:int = 3
 
-const flight_y: float = 3.0
+const flight_y: float = 4.0
 const dock_y: float = 1.0
 const parking_speration: float = 2.0
 const destination_snap_distance: float = 0.1 
@@ -79,7 +79,7 @@ var upgrade_cargo: int = 1
 var upgrade_memory: int = 1
 
 func get_upgraded_speed() -> float:
-	return speed + (upgrade_speed * 0.5)
+	return speed + (upgrade_speed * 1.0)
 	
 func get_upgraded_cargo_max() -> int:
 	return cargo_max + (upgrade_cargo - 1)

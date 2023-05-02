@@ -94,7 +94,7 @@ delay_between_cycle = 0.0
 transform = Transform( -0.0837996, 0, -0.996483, 0, 1, 0, 0.996483, 0, -0.0837996, 0, 0, 0 )
 
 [node name="ClickMeHoverLabel3D" parent="Visual" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37362, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03858, 0 )
 visible = false
 text = "Click me!"
 

@@ -6,6 +6,8 @@ var Data: GameData
 var Map: MapScene
 
 export(PoolColorArray) var available_drone_colors
+
+export(PoolColorArray) var transition_colors
 export var building_jump: bool = true
 
 func _ready():
@@ -20,25 +22,22 @@ func new_game():
 	add_child(Data)
 
 func transition_to_scene(scene_path):
-	var colors = available_drone_colors
-
 	var textures = [
 		load("res://addons/node_library/assets/transition-texture.png"),
 		load("res://addons/node_library/assets/screen-transition-alternate.png"),
-		load("res://addons/node_library/assets/screen-transition-alternate2.png"),
 		load("res://addons/node_library/assets/middle_strip.png")
 	]
 
-	var color_index = randi() % colors.size()
+	var color_index = randi() % transition_colors.size()
 	var texture_index = randi() % textures.size()
-	ScreenTransition.set_transition_color(colors[color_index])
+	ScreenTransition.set_transition_color(transition_colors[color_index])
 	ScreenTransition.set_transition_texture(textures[texture_index])
 	ScreenTransition.transition_to_scene(scene_path)
 
 func _input(_event):
 				
 	if Input.is_action_just_released("ui_cancel"):
-		Game.transition_to_scene("res://scenes/MainMenu.tscn")
+		Game.transition_to_scene("res://Scenes/MainMenu.tscn")
 			
 	if Input.is_action_just_released("toggle_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen

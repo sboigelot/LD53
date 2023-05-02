@@ -62,6 +62,10 @@ export(NodePath) var np_achivement_animation
 var achievement_done: bool = false
 onready var ui_achivement_animation		= get_node(np_achivement_animation) as AnimationPlayer
 
+func _input(event):
+	if Input.is_key_pressed(KEY_O):
+		Game.Data.register_day_delivery("salad", 3)
+
 func play_achiement_animation():
 	if achievement_done:
 		return
@@ -89,12 +93,15 @@ func _process(delta):
 	
 	ui_open_day_report_button.visible = Game.Data.day > 1
 
-func show_drone_popup(drone):
+func show_drone_popup(drone, sound_override:String = ""):
 	ui_drone_popup.drone = drone
 	ui_drone_popup.update_ui()
 	if not ui_drone_popup.visible:
 		ui_drone_popup.popup()
-		SfxManager.play("confirm")
+		if sound_override == "":
+			SfxManager.play("confirm")
+#		else:
+#			SfxManager.play(sound_override)
 
 func show_select_construction_dialog(instance, function):
 	ui_select_construction_dialog.popup_centered()
@@ -139,7 +146,7 @@ func on_factory_pressed(factory: Factory):
 	waiting_for_factory_target = null
 	
 	if ui_drone_popup.drone != null:
-		show_drone_popup(ui_drone_popup.drone)
+		show_drone_popup(ui_drone_popup.drone, "buttonpress")
 
 func _on_ResetButton_pressed():
 	if Game.Data.deliver_phase:
@@ -235,7 +242,7 @@ func _on_ShowRecipeButton_pressed():
 
 func _on_VictoryExitButton2_pressed():
 	SfxManager.play("beep_click")
-	Game.transition_to_scene("res://scenes/MainMenu.tscn")
+	Game.transition_to_scene("res://Scenes/MainMenu.tscn")
 
 func _on_VictoryCloseButton_pressed():
 	SfxManager.play("beep_click")

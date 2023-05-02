@@ -38,9 +38,11 @@ func is_tutorial_step(step_name:String) -> bool:
 		
 	return tutorial_steps[0] == step_name
 	
-func complete_tutorial_step(step_name:String):
+func complete_tutorial_step(step_name:String, force: bool = false):
 	if is_tutorial_step(step_name):
 		tutorial_steps.remove(0)
+	elif force:
+		tutorial_steps.erase(step_name)
 
 func start_delivery_phase(infinite:bool = false):
 	complete_tutorial_step("start_day")
@@ -126,6 +128,7 @@ func complete_day():
 	deliver_phase = false
 	day += 1
 	Game.Map.map_ui.show_end_of_day_report(day - 1)
+	Game.Map.hide_path()
 
 func register_game_goal(factory:Factory):
 	if not game_goal_factories.has(factory):

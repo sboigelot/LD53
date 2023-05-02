@@ -250,7 +250,6 @@ margin_right = 430.0
 margin_bottom = 460.0
 rect_min_size = Vector2( 0, 2 )
 
-[connection signal="about_to_show" from="." to="." method="_on_DronePopupDialog_about_to_show"]
 [connection signal="popup_hide" from="." to="." method="_on_DronePopupDialog_popup_hide"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/TitleContainer/ColorOptionButton" to="." method="_on_ColorOptionButton_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RouteContainer/ScrollContainer/VBoxContainer2/HBoxContainer2/AddStopButton" to="." method="_on_AddStopButton_pressed"]

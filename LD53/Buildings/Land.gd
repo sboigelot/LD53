@@ -12,9 +12,12 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 			mouse_event.pressed):
 			on_mouse_left_button_click()
 
+func _ready():
+	$HoverLabel3D.visible = false
+
 func on_mouse_left_button_click():
 	emit_signal("Pressed", self)
-	Game.Data.complete_tutorial_step("build_on_land")
+	Game.Data.complete_tutorial_step("build_on_land", true)
 	
 #	var text = ""
 #	if Game.Data.money >= garage_price:

@@ -105,6 +105,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -130,7 +142,19 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( 0.1, 0.1, 0.1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MoneyEffect/MoneyGeneratedSprite3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [node name="Ranch" type="Spatial"]
@@ -142,7 +166,9 @@ np_input_stockpile = NodePath("Stockpiles/Input")
 np_output_stockpile = NodePath("Stockpiles/Output")
 np_warning_no_input_sprite_3D = NodePath("Warnings/WarningNoInputSprite3D")
 np_warning_no_output_space_sprite_3D = NodePath("Warnings/WarningNoOutputSpaceSprite3D")
-cycle_duration = 1.0
+cycle_unpaid_delay_warning = 3.0
+cycle_duration = 2.0
+delay_between_cycle = 1.0
 cycle_money_generation = 10
 
 [node name="Visual" type="Spatial" parent="."]
@@ -171,7 +197,8 @@ texture = ExtResource( 4 )
 [node name="MoneyEffect" type="Spatial" parent="."]
 
 [node name="MoneyGeneratedSprite3D" type="Sprite3D" parent="MoneyEffect"]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.4, 0 )
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.4, 0 )
+visible = false
 billboard = 1
 texture = ExtResource( 5 )
 

@@ -21,9 +21,6 @@ onready var ui_memory_upgrade_view = get_node(np_memory_upgrade_view) as Upgrade
 onready var ui_tutorial_add_step_container = get_node(np_tutorial_add_step_container) as Container
 
 var drone:Drone
-
-func _on_DronePopupDialog_about_to_show():
-	pass
 	
 func create_done_color_option_items():
 	if ui_color_option.get_item_count() > 1:
@@ -134,5 +131,9 @@ func _on_ColorOptionButton_item_selected(index):
 		drone.show_fly_path()
 
 func _on_DronePopupDialog_popup_hide():
+	if (Game.Map.map_ui.waiting_for_factory_target != null and
+		Game.Map.map_ui.waiting_for_factory_target.get_parent() == ui_waypoint_view_placeholder):
+			return
+	
 	SfxManager.play("beep_click")
 	Game.Map.hide_path()

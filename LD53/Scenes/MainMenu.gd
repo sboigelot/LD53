@@ -3,7 +3,6 @@ extends Control
 export(NodePath) var np_ui_audio_master
 export(NodePath) var np_ui_audio_music
 export(NodePath) var np_ui_audio_soundfx
-export(NodePath) var np_better_ai_button
 
 export(float) var volume_min = -40.0
 export(float) var volume_max = 6.0
@@ -11,12 +10,11 @@ export(float) var volume_max = 6.0
 onready var ui_audio_master = get_node(np_ui_audio_master) as HSlider
 onready var ui_audio_music = get_node(np_ui_audio_music) as HSlider
 onready var ui_audio_soundfx = get_node(np_ui_audio_soundfx) as HSlider
-onready var better_ai_button = get_node(np_better_ai_button) as Button
 
 func _on_StartGameButton_pressed():
 	SfxManager.play("buttonpress")
 	Game.new_game()
-	Game.transition_to_scene("res://scenes/MapScene.tscn")
+	Game.transition_to_scene("res://Scenes/MapScene.tscn")
 
 func _on_FullscreenButton_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen

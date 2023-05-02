@@ -149,7 +149,8 @@ func reset():
 		for stockpile in sp_storage_stockpile_container.get_children():
 			stockpile.reset(true)
 		
-	if sp_animation_player.is_playing():
+	if (sp_animation_player.is_playing() and 
+		sp_animation_player.current_animation != "Popup"):
 		sp_animation_player.stop(true)
 		
 	if sp_money_animation_player != null and sp_money_animation_player.is_playing():

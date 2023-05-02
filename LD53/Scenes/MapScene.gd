@@ -5,6 +5,9 @@ class_name MapScene
 export(NodePath) var np_map_ui
 onready var map_ui = get_node(np_map_ui) as MapUI
 
+export(NodePath) var np_water_animation_player
+onready var sp_water_animation_player = get_node(np_water_animation_player) as AnimationPlayer
+
 export var allow_keyboard_control: bool = true
 
 func get_drone_placeholder():
@@ -16,6 +19,9 @@ func get_building_placeholder():
 func _ready():
 	Game.new_game()
 	Game.Map = self
+	
+	if sp_water_animation_player != null:
+		sp_water_animation_player.play("Wave")
 	
 	if not allow_keyboard_control:
 		Game.Data.start_delivery_phase(not allow_keyboard_control)

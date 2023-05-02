@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=1]
 [ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=2]
@@ -66,7 +66,7 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color( 0.890625, 1, 0.981177, 1 )
 
-[sub_resource type="Image" id=18]
+[sub_resource type="Image" id=20]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 10, 0, 0, 0, 8, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 10, 0, 0, 0, 19, 0, 0, 0, 25, 0, 0, 0, 31, 0, 0, 0, 34, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0, 34, 0, 0, 0, 31, 0, 0, 0, 25, 0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 10, 0, 0, 0, 22, 0, 0, 0, 39, 0, 0, 0, 53, 0, 0, 0, 63, 0, 0, 0, 69, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0, 69, 0, 0, 0, 63, 0, 0, 0, 53, 0, 0, 0, 39, 0, 0, 0, 22, 0, 0, 0, 10, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 19, 0, 0, 0, 39, 59, 59, 67, 148, 66, 66, 75, 245, 62, 62, 71, 250, 62, 62, 70, 251, 62, 62, 70, 251, 62, 62, 70, 251, 62, 62, 70, 251, 62, 62, 71, 250, 66, 66, 75, 245, 59, 59, 67, 148, 0, 0, 0, 39, 0, 0, 0, 19, 0, 0, 0, 5, 0, 0, 0, 8, 0, 0, 0, 25, 0, 0, 0, 53, 65, 65, 74, 245, 47, 47, 54, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 45, 45, 51, 255, 47, 47, 54, 255, 65, 65, 74, 245, 0, 0, 0, 53, 0, 0, 0, 25, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0, 31, 0, 0, 0, 64, 61, 61, 69, 252, 45, 45, 51, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 44, 44, 50, 255, 45, 45, 51, 255, 61, 61, 69, 252, 0, 0, 0, 64, 0, 0, 0, 31, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 34, 0, 0, 0, 69, 59, 59, 67, 251, 44, 44, 50, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 43, 43, 49, 255, 44, 44, 50, 255, 59, 59, 67, 251, 0, 0, 0, 69, 0, 0, 0, 34, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 35, 0, 0, 0, 70, 58, 58, 66, 251, 42, 42, 49, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 48, 255, 42, 42, 49, 255, 58, 58, 66, 251, 0, 0, 0, 70, 0, 0, 0, 35, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 35, 0, 0, 0, 70, 56, 56, 65, 251, 41, 41, 48, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 47, 255, 41, 41, 48, 255, 56, 56, 65, 251, 0, 0, 0, 70, 0, 0, 0, 35, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 34, 0, 0, 0, 69, 55, 55, 62, 251, 40, 40, 46, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 45, 255, 40, 40, 46, 255, 55, 55, 62, 251, 0, 0, 0, 69, 0, 0, 0, 34, 0, 0, 0, 11, 0, 0, 0, 10, 0, 0, 0, 31, 0, 0, 0, 64, 54, 54, 61, 252, 39, 39, 45, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 44, 255, 39, 39, 45, 255, 53, 53, 60, 252, 0, 0, 0, 64, 0, 0, 0, 31, 0, 0, 0, 10, 0, 0, 0, 8, 0, 0, 0, 26, 0, 0, 0, 53, 56, 56, 64, 245, 41, 41, 46, 255, 39, 39, 44, 255, 38, 38, 44, 255, 38, 38, 44, 255, 38, 38, 44, 255, 38, 38, 44, 255, 39, 39, 44, 255, 41, 41, 46, 255, 56, 56, 64, 246, 0, 0, 0, 53, 0, 0, 0, 26, 0, 0, 0, 8, 0, 0, 0, 5, 0, 0, 0, 19, 0, 0, 0, 39, 49, 49, 56, 149, 56, 56, 64, 245, 52, 52, 59, 250, 52, 52, 59, 251, 52, 52, 59, 251, 52, 52, 59, 251, 52, 52, 59, 251, 52, 52, 59, 250, 57, 57, 63, 244, 49, 49, 56, 148, 0, 0, 0, 39, 0, 0, 0, 19, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 10, 0, 0, 0, 22, 0, 0, 0, 39, 0, 0, 0, 53, 0, 0, 0, 64, 0, 0, 0, 69, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0, 69, 0, 0, 0, 63, 0, 0, 0, 53, 0, 0, 0, 39, 0, 0, 0, 22, 0, 0, 0, 10, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 10, 0, 0, 0, 19, 0, 0, 0, 25, 0, 0, 0, 31, 0, 0, 0, 34, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0, 34, 0, 0, 0, 31, 0, 0, 0, 25, 0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0, 10, 0, 0, 0, 8, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0 ),
 "format": "RGBA8",
@@ -78,7 +78,7 @@ data = {
 [sub_resource type="ImageTexture" id=2]
 flags = 4
 flags = 4
-image = SubResource( 18 )
+image = SubResource( 20 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="StyleBoxTexture" id=3]
@@ -122,6 +122,13 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.27451, 0.262745, 0.305882, 1 )
 
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.0745098, 0.54902, 0.611765, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="Animation" id=16]
 resource_name = "Popup"
 length = 10.0
@@ -158,9 +165,9 @@ layer = 2
 script = ExtResource( 3 )
 np_day_label = NodePath("MarginContainer/StatPanel/HBoxContainer/DatePanel/MarginContainer/DayLabel")
 np_money_label = NodePath("MarginContainer/StatPanel/HBoxContainer/MoneyPanel/MarginContainer/MoneyLabel")
-np_stat_count_label_goal_salad = NodePath("MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/SaladCountLabel")
-np_stat_count_label_goal_meat = NodePath("MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/BurgerCountLabel")
-np_open_day_report_button = NodePath("MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton")
+np_stat_count_label_goal_salad = NodePath("MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/SaladCountLabel")
+np_stat_count_label_goal_meat = NodePath("MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/BurgerCountLabel")
+np_open_day_report_button = NodePath("MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton")
 np_help_window = NodePath("HelpWIndow")
 np_confirmation_dialog = NodePath("ConfirmationDialog")
 np_select_construction_dialog = NodePath("SelectConstructionDialog")
@@ -169,18 +176,18 @@ np_delivery_phase_info_label = NodePath("BottomControls/CenterMarginContainer/VB
 np_delivery_phase_progress_bar = NodePath("BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/DayProgressBar")
 np_tutorial_start_day_container = NodePath("BottomControls/CenterMarginContainer/VBoxContainer/TutorialStartDayContainer")
 np_end_of_day_report_popup = NodePath("EndDayReport")
-np_edr_count_label_water = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer/WaterCountLabel")
-np_edr_count_label_vegetable = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VegetableCountLabel")
-np_edr_count_label_salad = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer/SaladCountLabel")
-np_edr_count_label_meat = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer/MeatCountLabel")
-np_edr_count_label_burger = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer/BurgerCountLabel")
-np_edr_count_label_coin = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer/MoneyCountLabel")
-np_edr_count_label_goal_salad = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/SaladCountLabel")
-np_edr_count_label_goal_meat = NodePath("EndDayReport/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/BurgerCountLabel")
-np_edr_victory_container = NodePath("EndDayReport/MarginContainer/VictoryContainer")
-np_edr_prev_day_button = NodePath("EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/PrevDayButton")
-np_edr_day_label = NodePath("EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/DayLabel")
-np_edr_next_day_button = NodePath("EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/NextDayButton")
+np_edr_count_label_water = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/WaterCountLabel")
+np_edr_count_label_vegetable = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VegetableCountLabel")
+np_edr_count_label_salad = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/SaladCountLabel")
+np_edr_count_label_meat = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/MeatCountLabel")
+np_edr_count_label_burger = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/BurgerCountLabel")
+np_edr_count_label_coin = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/MoneyCountLabel")
+np_edr_count_label_goal_salad = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/SaladCountLabel")
+np_edr_count_label_goal_meat = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer/BurgerCountLabel")
+np_edr_victory_container = NodePath("EndDayReport/PanelContainer/MarginContainer/VictoryContainer")
+np_edr_prev_day_button = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer/PrevDayButton")
+np_edr_day_label = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer/DayLabel")
+np_edr_next_day_button = NodePath("EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer/NextDayButton")
 np_achivement_animation = NodePath("AchievementView/AchievementAnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -194,16 +201,16 @@ custom_constants/margin_bottom = 10
 [node name="StatPanel" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 316.0
+margin_right = 320.0
 margin_bottom = 218.0
 custom_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel"]
-margin_right = 306.0
+margin_right = 310.0
 margin_bottom = 82.0
 
 [node name="DatePanel" type="HBoxContainer" parent="MarginContainer/StatPanel/HBoxContainer"]
-margin_right = 151.0
+margin_right = 153.0
 margin_bottom = 82.0
 size_flags_horizontal = 3
 
@@ -229,8 +236,8 @@ custom_fonts/font = ExtResource( 2 )
 text = "1"
 
 [node name="MoneyPanel" type="HBoxContainer" parent="MarginContainer/StatPanel/HBoxContainer"]
-margin_left = 155.0
-margin_right = 306.0
+margin_left = 157.0
+margin_right = 310.0
 margin_bottom = 82.0
 size_flags_horizontal = 3
 
@@ -255,15 +262,21 @@ margin_bottom = 82.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 
-[node name="ObjectivesPanelContainer" type="PanelContainer" parent="MarginContainer/StatPanel"]
+[node name="ObjectivesMarginContainer" type="MarginContainer" parent="MarginContainer/StatPanel"]
 margin_top = 92.0
-margin_right = 306.0
+margin_right = 310.0
 margin_bottom = 208.0
+custom_constants/margin_left = 4
+
+[node name="ObjectivesPanelContainer" type="PanelContainer" parent="MarginContainer/StatPanel/ObjectivesMarginContainer"]
+margin_left = 4.0
+margin_right = 310.0
+margin_bottom = 116.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 9 )
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer"]
 margin_right = 306.0
 margin_bottom = 116.0
 custom_constants/margin_right = 5
@@ -271,19 +284,19 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 301.0
 margin_bottom = 111.0
 
-[node name="ObjectivesLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ObjectivesLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 296.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 15 )
-text = "Win by delivering to Markets:"
+text = "Win by delivering to resto:"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 296.0
 margin_bottom = 82.0
@@ -292,7 +305,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 286.0
@@ -300,14 +313,14 @@ margin_bottom = 42.0
 size_flags_horizontal = 0
 columns = 6
 
-[node name="SaladTextureRect" type="TextureRect" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="SaladTextureRect" type="TextureRect" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 11 )
 expand = true
 
-[node name="SaladCountLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="SaladCountLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_left = 36.0
 margin_top = 3.0
 margin_right = 136.0
@@ -316,7 +329,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0 / 0"
 
-[node name="BurgerTextureRect" type="TextureRect" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="BurgerTextureRect" type="TextureRect" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_left = 140.0
 margin_right = 172.0
 margin_bottom = 32.0
@@ -324,7 +337,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 13 )
 expand = true
 
-[node name="BurgerCountLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="BurgerCountLabel" type="Label" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_left = 176.0
 margin_top = 3.0
 margin_right = 276.0
@@ -333,22 +346,32 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0 / 0"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 86.0
 margin_right = 296.0
 margin_bottom = 106.0
 
-[node name="OpenDayReportButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
 margin_right = 146.0
-margin_bottom = 22.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 18 )
+text = "Quit Game"
+flat = true
+
+[node name="OpenDayReportButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 83.0
+margin_right = 202.0
+margin_bottom = 20.0
 focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 18 )
 text = "Open Day Report"
 flat = true
 
-[node name="ShowRecipeButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ShowRecipeButton" type="Button" parent="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 296.0
 margin_bottom = 20.0
 focus_mode = 0
@@ -674,7 +697,6 @@ margin_bottom = 530.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="EndDayReport" type="PopupDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -687,64 +709,84 @@ rect_min_size = Vector2( 456, 294 )
 rect_pivot_offset = Vector2( 20, 20 )
 popup_exclusive = true
 
-[node name="MarginContainer" type="MarginContainer" parent="EndDayReport"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -44.0
-margin_bottom = -6.0
+[node name="PanelContainer" type="PanelContainer" parent="EndDayReport"]
+margin_right = 14.0
+margin_bottom = 14.0
+custom_styles/panel = SubResource( 9 )
+
+[node name="MarginContainer" type="MarginContainer" parent="EndDayReport/PanelContainer"]
+margin_right = 456.0
+margin_bottom = 304.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndDayReport/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndDayReport/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 446.0
 margin_bottom = 294.0
 
-[node name="HBoxContainer" type="MarginContainer" parent="EndDayReport/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="MarginContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 436.0
 margin_bottom = 28.0
 
-[node name="TitleLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TitleLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 436.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 5 )
 text = "End of Day Report"
 align = 1
 
-[node name="DayPanelContainer" type="PanelContainer" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 352.0
-margin_top = 3.0
+[node name="Separator" type="ColorRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 32.0
 margin_right = 436.0
-margin_bottom = 25.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="MarginContainer3" type="MarginContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 436.0
+margin_bottom = 64.0
+
+[node name="DeliveriesLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+margin_right = 436.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 15 )
+text = "Daily Statistics"
+
+[node name="DayPanelContainer" type="PanelContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+margin_left = 434.0
+margin_top = 12.0
+margin_right = 436.0
+margin_bottom = 14.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 custom_styles/panel = SubResource( 14 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 83.0
 margin_bottom = 21.0
 size_flags_vertical = 4
 
-[node name="PrevDayButton" type="Button" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer"]
+[node name="PrevDayButton" type="Button" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 20.0
 focus_mode = 0
 size_flags_vertical = 4
 text = "<"
 
-[node name="DayLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer"]
+[node name="DayLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 58.0
 margin_bottom = 17.0
 text = "day 0"
 
-[node name="NextDayButton" type="Button" parent="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer"]
+[node name="NextDayButton" type="Button" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer"]
 margin_left = 62.0
 margin_right = 82.0
 margin_bottom = 20.0
@@ -752,20 +794,7 @@ focus_mode = 0
 size_flags_vertical = 4
 text = ">"
 
-[node name="Separator" type="ColorRect" parent="EndDayReport/MarginContainer/VBoxContainer"]
-margin_top = 32.0
-margin_right = 436.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 2 )
-
-[node name="DeliveriesLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer"]
-margin_top = 38.0
-margin_right = 436.0
-margin_bottom = 64.0
-custom_fonts/font = ExtResource( 15 )
-text = "Daily Statistics"
-
-[node name="MarginContainer" type="MarginContainer" parent="EndDayReport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 68.0
 margin_right = 436.0
 margin_bottom = 156.0
@@ -774,7 +803,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 426.0
@@ -782,14 +811,14 @@ margin_bottom = 78.0
 size_flags_horizontal = 0
 columns = 6
 
-[node name="WaterTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="WaterTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 10 )
 expand = true
 
-[node name="WaterCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="WaterCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 36.0
 margin_top = 3.0
 margin_right = 136.0
@@ -798,7 +827,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0"
 
-[node name="VegetableTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="VegetableTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 140.0
 margin_right = 172.0
 margin_bottom = 32.0
@@ -806,7 +835,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 12 )
 expand = true
 
-[node name="VegetableCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="VegetableCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 176.0
 margin_top = 3.0
 margin_right = 276.0
@@ -815,7 +844,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0"
 
-[node name="SaladTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="SaladTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 280.0
 margin_right = 312.0
 margin_bottom = 32.0
@@ -823,7 +852,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 11 )
 expand = true
 
-[node name="SaladCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="SaladCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 316.0
 margin_top = 3.0
 margin_right = 416.0
@@ -832,7 +861,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0"
 
-[node name="MeatTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="MeatTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_top = 36.0
 margin_right = 32.0
 margin_bottom = 68.0
@@ -840,7 +869,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 14 )
 expand = true
 
-[node name="MeatCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="MeatCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 36.0
 margin_top = 39.0
 margin_right = 136.0
@@ -849,7 +878,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0"
 
-[node name="BurgerTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="BurgerTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 140.0
 margin_top = 36.0
 margin_right = 172.0
@@ -858,7 +887,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 13 )
 expand = true
 
-[node name="BurgerCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="BurgerCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 176.0
 margin_top = 39.0
 margin_right = 276.0
@@ -867,7 +896,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0"
 
-[node name="MoneyTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="MoneyTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 280.0
 margin_top = 36.0
 margin_right = 312.0
@@ -876,7 +905,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 expand = true
 
-[node name="MoneyCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="MoneyCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 316.0
 margin_top = 39.0
 margin_right = 416.0
@@ -885,23 +914,29 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0"
 
-[node name="ObjectivesLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer"]
+[node name="Separator2" type="ColorRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 160.0
 margin_right = 436.0
-margin_bottom = 186.0
-custom_fonts/font = ExtResource( 15 )
-text = "Win by delivering to Markets:"
+margin_bottom = 162.0
+rect_min_size = Vector2( 0, 2 )
 
-[node name="MarginContainer2" type="MarginContainer" parent="EndDayReport/MarginContainer/VBoxContainer"]
-margin_top = 190.0
+[node name="ObjectivesLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 166.0
 margin_right = 436.0
-margin_bottom = 242.0
+margin_bottom = 192.0
+custom_fonts/font = ExtResource( 15 )
+text = "Win by delivering to resto:"
+
+[node name="MarginContainer2" type="MarginContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 196.0
+margin_right = 436.0
+margin_bottom = 248.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="GridContainer" type="GridContainer" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 286.0
@@ -909,14 +944,14 @@ margin_bottom = 42.0
 size_flags_horizontal = 0
 columns = 6
 
-[node name="SaladTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="SaladTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 11 )
 expand = true
 
-[node name="SaladCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="SaladCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_left = 36.0
 margin_top = 3.0
 margin_right = 136.0
@@ -925,7 +960,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0 / 0"
 
-[node name="BurgerTextureRect" type="TextureRect" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="BurgerTextureRect" type="TextureRect" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_left = 140.0
 margin_right = 172.0
 margin_bottom = 32.0
@@ -933,7 +968,7 @@ rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 13 )
 expand = true
 
-[node name="BurgerCountLabel" type="Label" parent="EndDayReport/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
+[node name="BurgerCountLabel" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/GridContainer"]
 margin_left = 176.0
 margin_top = 3.0
 margin_right = 276.0
@@ -942,13 +977,7 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 15 )
 text = "0 / 0"
 
-[node name="Separator2" type="ColorRect" parent="EndDayReport/MarginContainer/VBoxContainer"]
-margin_top = 246.0
-margin_right = 436.0
-margin_bottom = 248.0
-rect_min_size = Vector2( 0, 2 )
-
-[node name="CloseButton" type="Button" parent="EndDayReport/MarginContainer/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="EndDayReport/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 252.0
 margin_right = 436.0
 margin_bottom = 284.0
@@ -956,36 +985,35 @@ focus_mode = 0
 custom_fonts/font = ExtResource( 15 )
 text = "Close"
 
-[node name="VictoryContainer" type="PanelContainer" parent="EndDayReport/MarginContainer"]
+[node name="VictoryContainer" type="PanelContainer" parent="EndDayReport/PanelContainer/MarginContainer"]
 visible = false
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 446.0
 margin_bottom = 294.0
 rect_min_size = Vector2( 100, 0 )
+custom_styles/panel = SubResource( 19 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndDayReport/MarginContainer/VictoryContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 429.0
-margin_bottom = 277.0
+[node name="VBoxContainer" type="VBoxContainer" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer"]
+margin_right = 436.0
+margin_bottom = 284.0
 
-[node name="Separator" type="ColorRect" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer"]
-margin_right = 422.0
+[node name="Separator" type="ColorRect" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer"]
+margin_right = 436.0
 margin_bottom = 2.0
 rect_min_size = Vector2( 0, 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer"]
 margin_top = 6.0
-margin_right = 422.0
-margin_bottom = 228.0
+margin_right = 436.0
+margin_bottom = 242.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 422.0
-margin_bottom = 136.0
+[node name="Label" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/VBoxContainer"]
+margin_top = 61.0
+margin_right = 436.0
+margin_bottom = 143.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -993,17 +1021,17 @@ custom_fonts/font = ExtResource( 2 )
 text = "You won!"
 align = 1
 
-[node name="Separator2" type="ColorRect" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/VBoxContainer"]
+[node name="Separator2" type="ColorRect" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/VBoxContainer"]
 visible = false
 margin_top = 153.0
 margin_right = 422.0
 margin_bottom = 155.0
 rect_min_size = Vector2( 0, 2 )
 
-[node name="Label2" type="Label" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/VBoxContainer"]
-margin_top = 140.0
-margin_right = 422.0
-margin_bottom = 168.0
+[node name="Label2" type="Label" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/VBoxContainer"]
+margin_top = 147.0
+margin_right = 436.0
+margin_bottom = 175.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -1012,27 +1040,27 @@ text = "Many bellies are filled"
 align = 1
 autowrap = true
 
-[node name="Separator3" type="ColorRect" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer"]
-margin_top = 232.0
-margin_right = 422.0
-margin_bottom = 234.0
+[node name="Separator3" type="ColorRect" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer"]
+margin_top = 246.0
+margin_right = 436.0
+margin_bottom = 248.0
 rect_min_size = Vector2( 0, 2 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer"]
-margin_top = 238.0
-margin_right = 422.0
-margin_bottom = 270.0
+[node name="HBoxContainer" type="HBoxContainer" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 436.0
+margin_bottom = 284.0
 
-[node name="VictoryExitButton2" type="Button" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer"]
-margin_right = 209.0
+[node name="VictoryExitButton2" type="Button" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer"]
+margin_right = 216.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 15 )
 text = "Quit Game"
 
-[node name="VictoryCloseButton" type="Button" parent="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer"]
-margin_left = 213.0
-margin_right = 422.0
+[node name="VictoryCloseButton" type="Button" parent="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer"]
+margin_left = 220.0
+margin_right = 436.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 15 )
@@ -1056,16 +1084,16 @@ margin_bottom = 1262.0
 anims/Popup = SubResource( 16 )
 anims/RESET = SubResource( 17 )
 
-[connection signal="button_down" from="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton" to="." method="_on_OpenDayReportButton_button_down"]
-[connection signal="pressed" from="MarginContainer/StatPanel/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ShowRecipeButton" to="." method="_on_ShowRecipeButton_pressed"]
+[connection signal="button_down" from="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenDayReportButton" to="." method="_on_OpenDayReportButton_button_down"]
+[connection signal="pressed" from="MarginContainer/StatPanel/ObjectivesMarginContainer/ObjectivesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ShowRecipeButton" to="." method="_on_ShowRecipeButton_pressed"]
 [connection signal="pressed" from="BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer/ForwardButton" to="." method="_on_ForwardButton_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
 [connection signal="about_to_show" from="HelpWIndow" to="HelpWIndow" method="_on_DronePopupDialog_about_to_show"]
-[connection signal="pressed" from="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/PrevDayButton" to="." method="_on_PrevDayButton_pressed"]
-[connection signal="pressed" from="EndDayReport/MarginContainer/VBoxContainer/HBoxContainer/DayPanelContainer/HBoxContainer/NextDayButton" to="." method="_on_NextDayButton_pressed"]
-[connection signal="pressed" from="EndDayReport/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
-[connection signal="pressed" from="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer/VictoryExitButton2" to="." method="_on_VictoryExitButton2_pressed"]
-[connection signal="pressed" from="EndDayReport/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer/VictoryCloseButton" to="." method="_on_VictoryCloseButton_pressed"]
+[connection signal="pressed" from="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer/PrevDayButton" to="." method="_on_PrevDayButton_pressed"]
+[connection signal="pressed" from="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/DayPanelContainer/HBoxContainer/NextDayButton" to="." method="_on_NextDayButton_pressed"]
+[connection signal="pressed" from="EndDayReport/PanelContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer/VictoryExitButton2" to="." method="_on_VictoryExitButton2_pressed"]
+[connection signal="pressed" from="EndDayReport/PanelContainer/MarginContainer/VictoryContainer/VBoxContainer/HBoxContainer/VictoryCloseButton" to="." method="_on_VictoryCloseButton_pressed"]
 [connection signal="ConstructionSelected" from="SelectConstructionDialog" to="." method="_on_SelectConstructionDialog_ConstructionSelected"]
