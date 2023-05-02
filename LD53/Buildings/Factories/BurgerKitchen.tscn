@@ -166,7 +166,6 @@ np_input_stockpile = NodePath("Stockpiles/Input")
 np_output_stockpile = NodePath("Stockpiles/Output")
 np_warning_no_input_sprite_3D = NodePath("Warnings/WarningNoInputSprite3D")
 np_warning_no_output_space_sprite_3D = NodePath("Warnings/WarningNoOutputSpaceSprite3D")
-cycle_unpaid_delay_warning = 2.0
 cycle_duration = 1.0
 cycle_money_generation = 25
 
@@ -182,7 +181,7 @@ anims/RESET = SubResource( 4 )
 [node name="Warnings" type="Spatial" parent="."]
 
 [node name="WarningNoInputSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 4, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 3 )

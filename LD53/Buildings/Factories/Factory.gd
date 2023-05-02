@@ -29,7 +29,7 @@ onready var sp_warning_no_output_space_sprite_3D 	= get_node(np_warning_no_outpu
 onready var sp_delivery_target_placeholder 			= get_node(np_delivery_target_placeholder) 	as Spatial
 
 export var cycle_pickup_delay: float = 1.0
-export var cycle_unpaid_delay_warning: float = 5.0
+var cycle_unpaid_delay_warning: float = 120.0 #disabled
 export var cycle_duration: float = 5.0
 export var delay_between_cycle: float = 3.0
 export var output_retry_delay: float = 0.5

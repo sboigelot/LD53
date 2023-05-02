@@ -63,8 +63,14 @@ var achievement_done: bool = false
 onready var ui_achivement_animation		= get_node(np_achivement_animation) as AnimationPlayer
 
 func _input(event):
-	if Input.is_key_pressed(KEY_O):
-		Game.Data.register_day_delivery("salad", 3)
+#	if Input.is_key_pressed(KEY_O):
+#		Game.Data.register_day_delivery("salad", 3)
+
+	if Input.is_action_just_released("ui_cancel"):
+		show_confirmation_dialog("Please confirm", "Are you sure you want to quit the game?",self, "confirm_quit_game")
+		
+func confirm_quit_game():
+	Game.transition_to_scene("res://Scenes/MainMenu.tscn")
 
 func play_achiement_animation():
 	if achievement_done:

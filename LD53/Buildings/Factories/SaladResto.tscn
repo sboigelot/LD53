@@ -189,8 +189,7 @@ anims/RESET = SubResource( 4 )
 [node name="Warnings" type="Spatial" parent="."]
 
 [node name="WarningNoInputSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0 )
-visible = false
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.564, 4.5, 0 )
 billboard = 1
 texture = ExtResource( 2 )
 

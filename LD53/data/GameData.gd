@@ -8,7 +8,7 @@ export var money:int = 200
 export var day:int = 1
 
 export var deliver_phase:bool = false
-export var deliver_phase_duration_seconds:float = 60.0
+export var deliver_phase_duration_seconds:float = 80.0
 export var deliver_phase_infinite: bool = false
 export var deliver_phase_timer: float = 0.0
 export var deliver_phase_speed: float = 1.0

@@ -176,7 +176,7 @@ cycle_money_generation = 10
 [node name="farm" parent="Visual" instance=ExtResource( 5 )]
 
 [node name="ClickMeHoverLabel3D" parent="Visual" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25921, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20772, 3.86571, 0 )
 visible = false
 text = "Click me!"
 
@@ -188,7 +188,7 @@ anims/RESET = SubResource( 4 )
 [node name="Warnings" type="Spatial" parent="."]
 
 [node name="WarningNoInputSprite3D" type="Sprite3D" parent="Warnings"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 3, 0 )
 visible = false
 billboard = 1
 texture = ExtResource( 3 )
