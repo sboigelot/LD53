@@ -10,6 +10,8 @@ export(PoolColorArray) var available_drone_colors
 export(PoolColorArray) var transition_colors
 export var building_jump: bool = true
 
+export var enable_post_jam_features: bool = true
+
 func _ready():
 #	new_game() # for debug singl components
 	randomize()

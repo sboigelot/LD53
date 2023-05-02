@@ -177,10 +177,10 @@ func _process(delta):
 	show_hide_click_me(delta)
 	
 	if not Game.Data.deliver_phase:
-		if sp_warning_no_input_sprite_3D != null:
-			sp_warning_no_input_sprite_3D.visible = Game.Map.map_ui.waiting_for_factory_target != null
 		if delivery_phase_started:
 			reset()
+		if sp_warning_no_input_sprite_3D != null:
+			sp_warning_no_input_sprite_3D.visible = Game.Map.map_ui.waiting_for_factory_target != null
 		return
 	delivery_phase_started = true
 		

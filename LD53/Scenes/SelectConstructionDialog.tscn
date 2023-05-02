@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/Icons/dronehub.png" type="Texture" id=8]
 
 [node name="SelectConstructionDialog" type="PopupDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

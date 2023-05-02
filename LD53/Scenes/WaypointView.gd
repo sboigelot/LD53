@@ -69,7 +69,23 @@ func toggle_target_button_off():
 	
 func on_factory_selected(factory):
 	data.factory = factory
+	
+	if Game.enable_post_jam_features:
+		auto_select_cargo_type(factory)
+	
 	update_ui()
+
+func auto_select_cargo_type(factory:Factory):
+	if data.factory_input:
+		if factory.sp_input_stockpile == null:
+			return
+			
+		data.cargo_type = factory.sp_input_stockpile.cargo_type
+	else:
+		if factory.sp_output_stockpile == null:
+			return
+			
+		data.cargo_type = factory.sp_output_stockpile.cargo_type
 
 func _on_DirectionToggleButton_toggled(button_pressed):
 	SfxManager.play("beep_click")

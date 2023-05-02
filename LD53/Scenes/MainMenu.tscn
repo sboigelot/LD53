@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/ld53/ld52_def_normal.tres" type="DynamicFont" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/Models/Trees/tree2.glb" type="PackedScene" id=14]
 [ext_resource path="res://Assets/Models/Trees/tree1.glb" type="PackedScene" id=15]
 [ext_resource path="res://Assets/Logo.png" type="Texture" id=16]
+[ext_resource path="res://fonts/ld53/ld52_def_xxsmall.tres" type="DynamicFont" id=17]
 
 [sub_resource type="StyleBoxFlat" id=27]
 content_margin_left = 5.0
@@ -505,6 +506,7 @@ script = ExtResource( 1 )
 np_ui_audio_master = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MasterVolumeSlider")
 np_ui_audio_music = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MusicVolumeSlider")
 np_ui_audio_soundfx = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/SoundFxVolumeSlider")
+np_post_jame_feature_check_button = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/PostJamCheckButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -577,13 +579,22 @@ custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 margin_right = 550.0
-margin_bottom = 234.0
+margin_bottom = 278.0
 rect_min_size = Vector2( 550, 0 )
 size_flags_horizontal = 0
 
-[node name="StartGameButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="PostJamCheckButton" type="CheckButton" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 550.0
-margin_bottom = 55.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 17 )
+pressed = true
+text = "Post Jam Quality Of Life (minimal changes)"
+align = 2
+
+[node name="StartGameButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 550.0
+margin_bottom = 99.0
 rect_pivot_offset = Vector2( 41.5, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -594,9 +605,9 @@ custom_styles/normal = SubResource( 26 )
 text = "Start a new game"
 
 [node name="FullscreenButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 59.0
+margin_top = 103.0
 margin_right = 550.0
-margin_bottom = 114.0
+margin_bottom = 158.0
 rect_pivot_offset = Vector2( 41.5, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -607,9 +618,9 @@ custom_styles/normal = SubResource( 26 )
 text = "Toggle Fullscreen (F11)"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 118.0
+margin_top = 162.0
 margin_right = 550.0
-margin_bottom = 234.0
+margin_bottom = 278.0
 custom_constants/margin_top = 30
 
 [node name="MusicControl" type="GridContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
@@ -665,7 +676,7 @@ rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-margin_top = 244.0
+margin_top = 288.0
 margin_right = 1720.0
 margin_bottom = 441.0
 size_flags_vertical = 3
@@ -835,6 +846,7 @@ transform = Transform( 0.178567, -0.625406, 0.759593, 0.14312, 0.780299, 0.60881
 shadow_enabled = true
 directional_shadow_mode = 1
 
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/PostJamCheckButton" to="." method="_on_PostJamCheckButton_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
 [connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
