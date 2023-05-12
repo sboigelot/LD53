@@ -71,6 +71,11 @@ func update_ui():
 		waypoint_view.connect("PickingTarget", self, "on_waypoint_view_picking_target")
 		waypoint_view.connect("Delete", self, "on_delete_waypoint")
 		
+	if ui_waypoint_view_placeholder.get_child_count() > 0:
+		var last_waypoint_view:WaypointView = ui_waypoint_view_placeholder.get_child(ui_waypoint_view_placeholder.get_child_count() - 1)
+		if last_waypoint_view.data.factory == null:
+			last_waypoint_view.ui_target_button.pressed = true
+	
 	ui_add_stop_index_label.text = "#%s" % (drone.route.size() + 1)
 	
 	var can_add_stop = drone.route.size() < drone.get_upgraded_memory()
@@ -94,6 +99,7 @@ func _process(delta):
 	if visible:
 		ui_tutorial_add_step_container.visible = Game.Data.is_tutorial_step("add_step")
 		if Game.Data.deliver_phase:
+			Game.Map.hide_path()
 			hide()
 
 func _on_SpeedUpgradeView_Upgraded():
@@ -114,11 +120,12 @@ func _on_MemoryUpgradeView3_Upgraded():
 func _on_AddStopButton_pressed():
 	SfxManager.play("beep_click")
 	var waypoint = WaypointData.new()
-	if not Game.Data.is_tutorial_step("add_step") and drone.route.size() > 0:
+	if  drone.route.size() > 0:
 		var last_waypoint = drone.route[drone.route.size() - 1]
 		waypoint.factory_input = not last_waypoint.factory_input
 		waypoint.cargo_type = last_waypoint.cargo_type
 		waypoint.cargo_count = last_waypoint.cargo_count
+		
 	drone.route.append(waypoint)
 	
 	Game.Data.complete_tutorial_step("add_step")
@@ -129,11 +136,3 @@ func _on_ColorOptionButton_item_selected(index):
 	if drone != null:
 		drone.color = Game.available_drone_colors[index]
 		drone.show_fly_path()
-
-func _on_DronePopupDialog_popup_hide():
-	if (Game.Map.map_ui.waiting_for_factory_target != null and
-		Game.Map.map_ui.waiting_for_factory_target.get_parent() == ui_waypoint_view_placeholder):
-			return
-	
-	SfxManager.play("beep_click")
-	Game.Map.hide_path()

@@ -99,15 +99,19 @@ func _process(delta):
 	
 	ui_open_day_report_button.visible = Game.Data.day > 1
 
-func show_drone_popup(drone, sound_override:String = ""):
+func show_drone_popup(drone, close_if_open:bool = false):
+	if (close_if_open and 
+		ui_drone_popup.drone == drone and
+		ui_drone_popup.visible):
+			ui_drone_popup.hide()
+			Game.Map.hide_path()
+			return
+				
 	ui_drone_popup.drone = drone
 	ui_drone_popup.update_ui()
 	if not ui_drone_popup.visible:
-		ui_drone_popup.popup()
-		if sound_override == "":
-			SfxManager.play("confirm")
-#		else:
-#			SfxManager.play(sound_override)
+		ui_drone_popup.show()
+		SfxManager.play("confirm")
 
 func show_select_construction_dialog(instance, function):
 	ui_select_construction_dialog.popup_centered()
@@ -146,13 +150,11 @@ func on_factory_pressed(factory: Factory):
 	if waiting_for_factory_target == null:
 		return
 		
-#	SfxManager.play("buttonpress")
-		
 	waiting_for_factory_target.on_factory_selected(factory)
 	waiting_for_factory_target = null
 	
 	if ui_drone_popup.drone != null:
-		show_drone_popup(ui_drone_popup.drone, "buttonpress")
+		show_drone_popup(ui_drone_popup.drone, false)
 
 func _on_ResetButton_pressed():
 	if Game.Data.deliver_phase:
@@ -244,7 +246,7 @@ func _on_NextDayButton_pressed():
 
 func _on_ShowRecipeButton_pressed():
 	SfxManager.play("beep_click")
-	ui_help_window.popup()
+	ui_help_window.show()
 
 func _on_VictoryExitButton2_pressed():
 	SfxManager.play("beep_click")

@@ -176,8 +176,7 @@ cycle_money_generation = 10
 [node name="farm" parent="Visual" instance=ExtResource( 5 )]
 
 [node name="ClickMeHoverLabel3D" parent="Visual" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20772, 3.86571, 0 )
-visible = false
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.20772, 3.86571, 0 )
 text = "Click me!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -11,13 +11,11 @@ onready var ui_audio_master = get_node(np_ui_audio_master) as HSlider
 onready var ui_audio_music = get_node(np_ui_audio_music) as HSlider
 onready var ui_audio_soundfx = get_node(np_ui_audio_soundfx) as HSlider
 
-export(NodePath) var np_post_jame_feature_check_button
-onready var ui_post_jame_feature_check_button = get_node(np_post_jame_feature_check_button) as CheckButton
-
 func _on_StartGameButton_pressed():
 	SfxManager.play("buttonpress")
-	Game.new_game()
 	Game.transition_to_scene("res://Scenes/MapScene.tscn")
+	yield(ScreenTransition, "transitioned_halfway")
+	Game.new_game()
 
 func _on_FullscreenButton_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen
@@ -25,8 +23,6 @@ func _on_FullscreenButton_pressed():
 
 func _ready():
 	update_sound_sliders()
-	
-	ui_post_jame_feature_check_button.pressed = Game.enable_post_jam_features
 	
 func _input(event):
 	if Input.is_action_just_released("ui_cancel"):
@@ -69,6 +65,3 @@ func _on_SoundFxVolumeSlider_drag_ended(_value_changed):
 
 func _on_QuitGameButton_pressed():
 	get_tree().quit()
-
-func _on_PostJamCheckButton_pressed():
-	Game.enable_post_jam_features = ui_post_jame_feature_check_button.pressed

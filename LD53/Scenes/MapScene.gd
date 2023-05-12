@@ -46,4 +46,5 @@ func show_path(points:Array, color:Color):
 	multi_line.material.albedo_color = color
 	
 func hide_path():
-	$Paths/DronePathMultiLine3D.visible = false
+	if $Paths/DronePathMultiLine3D != null:
+		$Paths/DronePathMultiLine3D.visible = false

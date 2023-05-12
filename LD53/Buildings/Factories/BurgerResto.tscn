@@ -177,7 +177,7 @@ cycle_money_generation = 12
 [node name="Visual" type="Spatial" parent="."]
 
 [node name="TutorialVictoryHoverLabel3D" parent="Visual" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, 0 )
 text = "I want Burgers!"
 
 [node name="burgerresto" parent="Visual" instance=ExtResource( 8 )]

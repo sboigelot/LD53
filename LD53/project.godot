@@ -373,7 +373,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/retile/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/center_pivot_offset/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/jamcountdown/plugin.cfg", "res://addons/project-statistics/plugin.cfg", "res://addons/retile/plugin.cfg" )
 
 [filesystem]
 
@@ -412,3 +412,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_environment="res://default_env.tres"
+
+[statistics]
+
+force_include=PoolStringArray(  )

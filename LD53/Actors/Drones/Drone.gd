@@ -125,7 +125,7 @@ func move_toward_drone_pad(delta) -> bool:
 		drone_pad.global_translation.x,
 		drone_pad.global_translation.y + flight_y,
 		drone_pad.global_translation.z)
-	var reached_drone_pad = move_toward_destination(destination, delta)
+	var reached_drone_pad = move_toward_destination(destination, delta * 5)
 		
 	if reached_drone_pad:
 		global_rotation = drone_pad.global_rotation
@@ -419,7 +419,7 @@ func on_mouse_left_button_click():
 	emit_signal("Pressed", self)
 	
 	Game.Data.complete_tutorial_step("click_me_drone")
-	Game.Map.map_ui.show_drone_popup(self)
+	Game.Map.map_ui.show_drone_popup(self, true)
 
 func _on_Drone_mouse_entered():
 	if Game.Data.deliver_phase:

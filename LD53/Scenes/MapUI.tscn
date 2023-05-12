@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=1]
 [ext_resource path="res://fonts/ld53/ld52_def_xlarge.tres" type="DynamicFont" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/Process/ranch.png" type="Texture" id=24]
 [ext_resource path="res://Scenes/SelectConstructionDialog.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/AchievementView.tscn" type="PackedScene" id=26]
+[ext_resource path="res://fonts/ld53/ld52_def_normal_bold.tres" type="DynamicFont" id=27]
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.0392157, 0.392157, 0.647059, 0.360784 )
@@ -386,7 +387,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -960.0
-margin_top = -128.0
+margin_top = -159.0
 margin_right = 960.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -397,47 +398,49 @@ custom_constants/margin_bottom = 10
 margin_left = 390.0
 margin_top = 10.0
 margin_right = 1530.0
-margin_bottom = 133.0
+margin_bottom = 149.0
 size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BottomControls/CenterMarginContainer"]
 margin_right = 1140.0
-margin_bottom = 123.0
+margin_bottom = 139.0
 
 [node name="TutorialStartDayContainer" type="HBoxContainer" parent="BottomControls/CenterMarginContainer/VBoxContainer"]
+visible = false
+modulate = Color( 1, 0.937255, 0.0117647, 1 )
 margin_right = 1140.0
-margin_bottom = 43.0
+margin_bottom = 59.0
 alignment = 2
 
 [node name="AddStopIndexLabel2" type="Label" parent="BottomControls/CenterMarginContainer/VBoxContainer/TutorialStartDayContainer"]
-margin_left = 709.0
-margin_right = 1004.0
-margin_bottom = 43.0
+margin_left = 747.0
+margin_right = 989.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 27, 0 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 27 )
 text = "Start the Delivery"
 
 [node name="TextureRect" type="TextureRect" parent="BottomControls/CenterMarginContainer/VBoxContainer/TutorialStartDayContainer"]
-margin_left = 1008.0
-margin_right = 1036.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 28, 28 )
+margin_left = 993.0
+margin_right = 1048.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 55, 50 )
 texture = ExtResource( 16 )
 expand = true
 flip_v = true
 
 [node name="AddStopIndexLabel" type="Label" parent="BottomControls/CenterMarginContainer/VBoxContainer/TutorialStartDayContainer"]
-margin_left = 1040.0
-margin_top = 8.0
+margin_left = 1052.0
+margin_top = 16.0
 margin_right = 1140.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 100, 0 )
+margin_bottom = 42.0
+rect_min_size = Vector2( 88, 0 )
 custom_fonts/font = ExtResource( 15 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomControls/CenterMarginContainer/VBoxContainer"]
-margin_top = 47.0
+margin_top = 63.0
 margin_right = 1140.0
-margin_bottom = 123.0
+margin_bottom = 139.0
 size_flags_vertical = 10
 
 [node name="ResetButton" type="Button" parent="BottomControls/CenterMarginContainer/VBoxContainer/HBoxContainer"]
@@ -517,7 +520,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 10.0
 margin_top = -240.0
-margin_right = 460.0
+margin_right = 530.0
 margin_bottom = 240.0
 
 [node name="HelpWIndow" type="WindowDialog" parent="."]
